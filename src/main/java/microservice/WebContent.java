@@ -1,4 +1,4 @@
-package application;
+package microservice;
 
 public class WebContent {
 
