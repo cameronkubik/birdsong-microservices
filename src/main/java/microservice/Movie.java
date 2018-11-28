@@ -1,6 +1,6 @@
 package microservice;
 
-public class UpcomingMovie {
+public class Movie {
     
     private final String title;
     private final long id;
@@ -10,7 +10,7 @@ public class UpcomingMovie {
     private final String backdropImagePath;
 
 
-    public UpcomingMovie(String _title, long _id, String _posterImagePath, String _overview, String _releaseDate, String _backdropImagePath) {
+    public Movie(String _title, long _id, String _posterImagePath, String _overview, String _releaseDate, String _backdropImagePath) {
         title = _title;
         id = _id;
         posterImagePath = _posterImagePath;
