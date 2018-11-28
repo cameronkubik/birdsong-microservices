@@ -18,7 +18,8 @@ import org.json.simple.parser.JSONParser;
 @RestController
 public class MarketingController {
 
-    private ArrayList<UpcomingMovie> upcomingMovies = new ArrayList();
+    private ArrayList<Movie> upcomingMovies = new ArrayList();
+    private ArrayList<Movie> searchMovies = new ArrayList();
     private String requestUrlBase = "https://api.themoviedb.org/3";
     private String upcomingUrlExtension = "/movie/upcoming?";
     private String searchUrlExtension = "/search/movie?";
@@ -35,7 +36,7 @@ public class MarketingController {
     //https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&query=<<search_query>>&page=1&include_adult=false&region=<<region>>
     
     @RequestMapping("/marketing/load-upcoming")
-    public ArrayList<UpcomingMovie> loadUpcomingMovies() throws Exception {
+    public ArrayList<Movie> loadUpcomingMovies() throws Exception {
         StringBuilder jsonStringBuilder = new StringBuilder();
         // call tmdb for upcoming
         try {
@@ -66,5 +67,39 @@ public class MarketingController {
         // add to upcomingMovies Array
 
         return upcomingMovies;
+    }
+
+    @RequestMapping("/marketing/search-movie")
+    public ArrayList<Movie> loadSearch(@RequestParam(value="searchQuery", defaultValue="e404") String query) throws Exception {
+        StringBuilder jsonStringBuilder = new StringBuilder();
+        try {
+            URL requestUrl = new URL(requestUrlBase + upcomingUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
+            HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
+            connection.setDoOutput(false);
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+
+            String output;
+            System.out.println("Output from Server .... \n");
+            while ((output = reader.readLine()) != null) {
+                jsonStringBuilder.append(output);
+            }
+
+        } catch (Exception exception) {
+            System.out.print(exception);
+        }
+
+        //Create parser and parse response JSON
+        JSONParser parser = new JSONParser();
+        JSONObject responseJson = (JSONObject) parser.parse(jsonStringBuilder.toString());
+        JSONArray movieArray;
+
+        //Append movieArray
+        movieArray = (JSONArray) responseJson.get("results");
+
+        //Loop through movieArray, appending what we need to searchMovies
+        return searchMovies;
     }
 }
