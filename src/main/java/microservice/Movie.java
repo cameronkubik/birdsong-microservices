@@ -10,15 +10,17 @@ public class Movie {
     private final String overview;
     private final String releaseDate;
     private final String backdropImagePath;
+    private final int screenShowingOn;
 
 
-    public Movie(String _title, long _id, String _posterImagePath, String _overview, String _releaseDate, String _backdropImagePath) {
+    public Movie(String _title, long _id, String _posterImagePath, String _overview, String _releaseDate, String _backdropImagePath, int _screenShowingOn) {
         title = _title;
         id = _id;
         posterImagePath = _posterImagePath;
         overview = _overview;
         releaseDate = _releaseDate;
-        backdropImagePath = _backdropImagePath;     
+        backdropImagePath = _backdropImagePath;
+        screenShowingOn = _screenShowingOn;
     }
 
     @JsonGetter("title")
@@ -44,5 +46,9 @@ public class Movie {
     @JsonGetter("backdropImagePath")
     public String getBackdropImagePath() {
         return backdropImagePath;
+    }
+    @JsonGetter("screenShowingOn")
+    public int getScreenShowingOn() {
+        return screenShowingOn;
     }
 }
