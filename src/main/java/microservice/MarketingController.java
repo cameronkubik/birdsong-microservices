@@ -81,7 +81,7 @@ public class MarketingController {
             String releaseDate = (String) movieJson.get("release_date");
             String backdropImagePath = (String) movieJson.get("backdrop_path");
             // create movie obj    
-            Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath);
+            Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, -1);
             // add to upcomingMovies Array
             upcomingMovies.add(movieToAdd);
             allMovies.add(movieToAdd);
@@ -130,7 +130,7 @@ public class MarketingController {
             String releaseDate = (String) movieJson.get("release_date");
             String backdropImagePath = (String) movieJson.get("backdrop_path");
             // create movie obj    
-            Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath);
+            Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, -1);
             // add to upcomingMovies Array
             searchMovies.add(movieToAdd);
             allMovies.add(movieToAdd);
