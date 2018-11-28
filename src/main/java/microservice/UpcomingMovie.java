@@ -1,20 +1,21 @@
 package microservice;
 
 public class UpcomingMovie {
-
-    private final String parentTheaterID;
-    private final String limit;
+    
     private final String title;
-    private final String rating;
+    private final long id;
+    private final String posterImagePath;
+    private final String overview;
+    private final String releaseDate;
+    private final String backdropImagePath;
 
-    public UpcomingMovie(String theaterID, String limit) {
-        this.parentTheaterID = theaterID;
-        this.limit = limit;
-        this.title = "";
-        this.rating = "";
+
+    public UpcomingMovie(String _title, long _id, String _posterImagePath, String _overview, String _releaseDate, String _backdropImagePath) {
+        title = _title;
+        id = _id;
+        posterImagePath = _posterImagePath;
+        overview = _overview;
+        releaseDate = _releaseDate;
+        backdropImagePath = _backdropImagePath;     
     }
-
-    public String getId() {
-        return parentTheaterID;
-    } 
 }
