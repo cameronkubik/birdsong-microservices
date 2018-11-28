@@ -59,11 +59,9 @@ public class MarketingController {
         JSONObject responseJson = (JSONObject) parser.parse(jsonStringBuilder.toString());
 
         // loop through list
-        int i = 0;
         JSONArray movieArray;
         movieArray = (JSONArray) responseJson.get("results");
         //extract values we need
-        i++;
         // create upcomingMovie
         // add to upcomingMovies Array
 
