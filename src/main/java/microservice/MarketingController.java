@@ -92,6 +92,7 @@ public class MarketingController {
 
     @RequestMapping("/marketing/search-movie")
     public ArrayList<Movie> loadSearch(@RequestParam(value="searchQuery", defaultValue="e404") String query) throws Exception {
+        searchMovies.clear();
         StringBuilder jsonStringBuilder = new StringBuilder();
         try {
             URL requestUrl = new URL(requestUrlBase + searchUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
