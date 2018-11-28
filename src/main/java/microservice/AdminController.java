@@ -15,7 +15,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 @RestController
-public class MarketingController {
+public class AdminController {
     
     private ArrayList<Movie> allMovies = new ArrayList<Movie>();
     private ArrayList<Movie> upcomingMovies = new ArrayList<Movie>();
@@ -35,7 +35,7 @@ public class MarketingController {
     //https://api.themoviedb.org/3/movie/upcoming?api_key=12ab19db903903ba44c5e6bf73694e3c&language=en-US&page=1&region=US
     //https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&query=<<search_query>>&page=1&include_adult=false&region=<<region>>
     
-    @RequestMapping("/marketing/load-upcoming")
+    @RequestMapping("/admin/load-upcoming")
     public ArrayList<Movie> loadUpcomingMovies() throws Exception {
         HttpURLConnection connection;
         JSONObject responseJson;
@@ -90,7 +90,7 @@ public class MarketingController {
         return upcomingMovies;
     }
 
-    @RequestMapping("/marketing/search-movie")
+    @RequestMapping("/admin/search-movie")
     public ArrayList<Movie> loadSearch(@RequestParam(value="searchQuery", defaultValue="e404") String query) throws Exception {
         StringBuilder jsonStringBuilder = new StringBuilder();
         try {
@@ -139,7 +139,7 @@ public class MarketingController {
         return searchMovies;
     }
 
-    @RequestMapping("/marketing/save-movie")
+    @RequestMapping("/admin/save-movie")
     public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString) throws Exception {
         // find movie in allMovies
         // get connection with DB2
