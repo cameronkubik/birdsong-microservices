@@ -1,7 +1,6 @@
 package microservice;
 
 import java.util.ArrayList;
-import java.net.MalformedURLException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -138,5 +137,15 @@ public class MarketingController {
         }
         //Loop through movieArray, appending what we need to searchMovies
         return searchMovies;
+    }
+
+    @RequestMapping("/marketing/save-movie")
+    public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString) throws Exception {
+        // find movie in allMovies
+        // get connection with DB2
+        // create query strings
+        // execute queries
+
+        return true;
     }
 }
