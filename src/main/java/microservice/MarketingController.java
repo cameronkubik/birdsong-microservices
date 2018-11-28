@@ -95,7 +95,7 @@ public class MarketingController {
     public ArrayList<Movie> loadSearch(@RequestParam(value="searchQuery", defaultValue="e404") String query) throws Exception {
         StringBuilder jsonStringBuilder = new StringBuilder();
         try {
-            URL requestUrl = new URL(requestUrlBase + upcomingUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
+            URL requestUrl = new URL(requestUrlBase + searchUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
             HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
             connection.setDoOutput(false);
             connection.setRequestMethod("GET");
@@ -121,6 +121,21 @@ public class MarketingController {
         //Append movieArray
         movieArray = (JSONArray) responseJson.get("results");
 
+        for (Object movieObject: movieArray) {
+            JSONObject movieJson = (JSONObject) movieObject;
+            //extract values we need
+            String title = (String) movieJson.get("title");
+            long id = (long) movieJson.get("id");
+            String posterImagePath = (String) movieJson.get("poster_path");
+            String overview = (String) movieJson.get("overview");
+            String releaseDate = (String) movieJson.get("release_date");
+            String backdropImagePath = (String) movieJson.get("backdrop_path");
+            // create movie obj    
+            Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath);
+            // add to upcomingMovies Array
+            searchMovies.add(movieToAdd);
+            allMovies.add(movieToAdd);
+        }
         //Loop through movieArray, appending what we need to searchMovies
         return searchMovies;
     }

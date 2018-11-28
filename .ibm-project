@@ -1,1 +1,1 @@
-{"build-release-ready":true,"build-debug-ready":false,"devops":false,"deploy-image":"","chart-path":"","ibm-cluster":"","motd-access":"Wed, 21 Nov 2018 15:07:08 EST","app-id":"","deploy-target":""}
+{"build-release-ready":false,"build-debug-ready":false,"devops":false,"deploy-image":"","chart-path":"","ibm-cluster":"","motd-access":"Wed, 28 Nov 2018 11:58:22 CST","app-id":"","deploy-target":""}
