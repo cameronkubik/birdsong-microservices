@@ -17,9 +17,10 @@ import org.json.simple.parser.JSONParser;
 
 @RestController
 public class MarketingController {
-
-    private ArrayList<Movie> upcomingMovies = new ArrayList();
-    private ArrayList<Movie> searchMovies = new ArrayList();
+    
+    private ArrayList<Movie> allMovies = new ArrayList<Movie>();
+    private ArrayList<Movie> upcomingMovies = new ArrayList<Movie>();
+    private ArrayList<Movie> searchMovies = new ArrayList<Movie>();
     private String requestUrlBase = "https://api.themoviedb.org/3";
     private String upcomingUrlExtension = "/movie/upcoming?";
     private String searchUrlExtension = "/search/movie?";
@@ -37,35 +38,56 @@ public class MarketingController {
     
     @RequestMapping("/marketing/load-upcoming")
     public ArrayList<Movie> loadUpcomingMovies() throws Exception {
+        HttpURLConnection connection;
+        JSONObject responseJson;
+        JSONArray movieArray;
         StringBuilder jsonStringBuilder = new StringBuilder();
+        JSONParser parser = new JSONParser();
+        URL requestUrl = new URL(requestUrlBase + upcomingUrlExtension + "api_key=" + apiKey + "&language=" + language + "&page=" + page + "&region=" + region);
+        BufferedReader reader;
+        String inputStream;
+
         // call tmdb for upcoming
         try {
-            URL requestUrl = new URL(requestUrlBase + upcomingUrlExtension + "api_key=" + apiKey + "&language=" + language + "&page=" + page + "&region=" + region);
-            HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
+            // establish connection
+            connection = (HttpURLConnection) requestUrl.openConnection();
+            // set connection settings
             connection.setDoOutput(false);
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Content-Type", "application/json");
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
-
-            String output;
-            System.out.println("Output from Server .... \n");
-            while ((output = reader.readLine()) != null) {
-                jsonStringBuilder.append(output);
+            
+            // Display status
+            System.out.println("Reading from API connection...");
+            // Get data from response
+            reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+            while ((inputStream = reader.readLine()) != null) {
+                jsonStringBuilder.append(inputStream);
             }  
         } catch (Exception exception) {
             System.out.print(exception);
+            jsonStringBuilder.append("");
         }
-        JSONParser parser = new JSONParser();
-        JSONObject responseJson = (JSONObject) parser.parse(jsonStringBuilder.toString());
+        
+        responseJson = (JSONObject) parser.parse(jsonStringBuilder.toString());
 
         // loop through list
-        JSONArray movieArray;
         movieArray = (JSONArray) responseJson.get("results");
-        //extract values we need
-        // create upcomingMovie
-        // add to upcomingMovies Array
-
+        for (Object movieObject: movieArray) {
+            JSONObject movieJson = (JSONObject) movieObject;
+            //extract values we need
+            String title = (String) movieJson.get("title");
+            long id = (long) movieJson.get("id");
+            String posterImagePath = (String) movieJson.get("poster_path");
+            String overview = (String) movieJson.get("overview");
+            String releaseDate = (String) movieJson.get("release_date");
+            String backdropImagePath = (String) movieJson.get("backdrop_path");
+            // create movie obj    
+            Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath);
+            // add to upcomingMovies Array
+            upcomingMovies.add(movieToAdd);
+            allMovies.add(movieToAdd);
+        }
+        
         return upcomingMovies;
     }
 
