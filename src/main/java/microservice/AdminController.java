@@ -24,7 +24,7 @@ public class AdminController {
     private String requestUrlBase = "https://api.themoviedb.org/3";
     private String upcomingUrlExtension = "/movie/upcoming?";
     private String searchUrlExtension = "/search/movie?";
-    
+
     @Value("${tmdb.apikey}")
     String apiKey;
     @Value("${tmdb.language}")
@@ -70,12 +70,16 @@ public class AdminController {
         Statement stmt;
         ResultSet rs;
 
-        // find movie in allMovies
-        for (Movie movieObject: allMovies) {
-            if (movieObject.getId() == Long.valueOf(movieIDString)) {
-                saveMovie = movieObject;
-            }
-        }
+        // Search movie on TMDB
+        URL requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
+        String jsonString = queryTmdbApiForJsonString(requestURL);
+        JSONObject responseJson = new JSONObject(jsonString);
+        
+        // for (Movie movieObject: allMovies) {
+        //     if (movieObject.getId() == Long.valueOf(movieIDString)) {
+        //         saveMovie = movieObject;
+        //     }
+        // }
 
         // get connection with DB2
         // Load the driver
