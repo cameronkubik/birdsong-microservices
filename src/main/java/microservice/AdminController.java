@@ -44,38 +44,14 @@ public class AdminController {
     
     @RequestMapping("/admin/load-upcoming")
     public ArrayList<Movie> loadUpcomingMovies() throws Exception {
-        HttpURLConnection connection;
-        JSONObject responseJson;
-        ArrayList<JSONObject> movieJSONObjects = new ArrayList<JSONObject>();
-        StringBuilder jsonStringBuilder = new StringBuilder();
         URL requestUrl = new URL(requestUrlBase + upcomingUrlExtension + "api_key=" + apiKey + "&language=" + language + "&page=" + page + "&region=" + region);
-        BufferedReader reader;
-        String inputStream;
-
-        // call tmdb for upcoming
-        try {
-            // establish connection
-            connection = (HttpURLConnection) requestUrl.openConnection();
-            // set connection settings
-            connection.setDoOutput(false);
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-Type", "application/json");
-            
-            // Display status
-            System.out.println("Reading from API connection...");
-            // Get data from response
-            reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
-            while ((inputStream = reader.readLine()) != null) {
-                jsonStringBuilder.append(inputStream);
-            }  
-        } catch (Exception exception) {
-            System.out.print(exception);
-            jsonStringBuilder.append("");
-        }
         
-        responseJson = new JSONObject(jsonStringBuilder.toString());
-
+        String jsonString = queryTmdbApiForJsonString(requestUrl);
+        JSONObject responseJson = new JSONObject(jsonString);
+        
+        return getMovieListFromResponseJson(responseJson);
         // loop through list
+<<<<<<< HEAD
         JSONArray movieJSONArray = responseJson.getJSONArray("results");
         for(int i = 0; i < movieJSONArray.length(); i++) {
             JSONObject movieJSON = movieJSONArray.getJSONObject(i);
@@ -97,12 +73,31 @@ public class AdminController {
             upcomingMovies.add(movieToAdd);
             allMovies.add(movieToAdd);
         }
+=======
+        // JSONArray movieJSONArray = responseJson.getJSONArray("results");
+        // for (Object movieObject: movieJSONArray) {
+        //     JSONObject movieJson = (JSONObject) movieObject;
+        //     //extract values we need
+        //     String title = (String) movieJson.get("title");
+        //     long id = (long) movieJson.get("id");
+        //     String posterImagePath = (String) movieJson.get("poster_path");
+        //     String overview = (String) movieJson.get("overview");
+        //     String releaseDate = (String) movieJson.get("release_date");
+        //     String backdropImagePath = (String) movieJson.get("backdrop_path");
+        //     // create movie obj    
+        //     Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, -1);
+        //     // add to upcomingMovies Array
+        //     upcomingMovies.add(movieToAdd);
+        //     allMovies.add(movieToAdd);
+        // }
+>>>>>>> 7978487ca2b5bf8c1d1bcb0a51d8d97cde4b2351
         
-        return upcomingMovies;
+        //return upcomingMovies;
     }
 
     @RequestMapping("/admin/search-movie")
     public ArrayList<Movie> loadSearch(@RequestParam(value="searchQuery", defaultValue="e404") String query) throws Exception {
+<<<<<<< HEAD
         searchMovies.clear();
         StringBuilder jsonStringBuilder = new StringBuilder();
         try {
@@ -147,6 +142,37 @@ public class AdminController {
         }
         //Loop through movieArray, appending what we need to searchMovies
         return searchMovies;
+=======
+        URL requestUrl = new URL(requestUrlBase + searchUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
+        String jsonString = queryTmdbApiForJsonString(requestUrl);
+        JSONObject responseJson = new JSONObject(jsonString);
+        
+        return getMovieListFromResponseJson(responseJson);
+        // StringBuilder jsonStringBuilder = new StringBuilder();
+        // try {
+        //     URL requestUrl = new URL(requestUrlBase + searchUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
+        //     HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
+        //     connection.setDoOutput(false);
+        //     connection.setRequestMethod("GET");
+        //     connection.setRequestProperty("Content-Type", "application/json");
+
+        //     BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+
+        //     String output;
+        //     System.out.println("Output from Server .... \n");
+        //     while ((output = reader.readLine()) != null) {
+        //         jsonStringBuilder.append(output);
+        //     }
+
+        // } catch (Exception exception) {
+        //     System.out.print(exception);
+        // }
+
+        // JSONObject responseJson = new JSONObject(jsonStringBuilder.toString());
+        // searchMovies = getMovieListFromResponseJson(responseJson);
+        
+        // return searchMovies;
+>>>>>>> 7978487ca2b5bf8c1d1bcb0a51d8d97cde4b2351
     }
 
     @RequestMapping("/admin/save-movie")
@@ -193,5 +219,53 @@ public class AdminController {
         // execute queries
 
         return true;
+    }
+
+    public Movie getMovieFromJSON(JSONObject movieJson) throws Exception {
+        //extract values we need
+        String title = (String) movieJson.get("title");
+        long id = (long) movieJson.get("id");
+        String posterImagePath = (String) movieJson.get("poster_path");
+        String overview = (String) movieJson.get("overview");
+        String releaseDate = (String) movieJson.get("release_date");
+        String backdropImagePath = (String) movieJson.get("backdrop_path");
+        // create movie obj    
+        return new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, -1);
+    }
+
+    public ArrayList<Movie> getMovieListFromResponseJson(JSONObject responseJson) throws Exception {
+        JSONArray movieListJson = responseJson.getJSONArray("results");
+        ArrayList<Movie> movieList = new ArrayList<Movie>();
+
+        for (int i = 0; i < movieListJson.length(); i++) {
+            JSONObject movieJSON = movieListJson.getJSONObject(i);
+            Movie movie = getMovieFromJSON(movieJSON);
+            movieList.add(movie);
+        }
+
+        return movieList;
+    }
+
+    public String queryTmdbApiForJsonString(URL requestUrl) throws Exception {
+        StringBuilder jsonStringBuilder = new StringBuilder();
+
+        try {
+            HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
+            connection.setDoOutput(false);
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
+
+            String inputString;
+            while ((inputString = reader.readLine()) != null) {
+                jsonStringBuilder.append(inputString);
+            }
+        } catch (Exception exception) {
+            System.out.print(exception);
+            jsonStringBuilder.append("");
+        }
+
+        return jsonStringBuilder.toString();
     }
 }
