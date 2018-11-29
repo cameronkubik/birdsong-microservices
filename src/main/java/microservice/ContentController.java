@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.json.*;
 
 @RestController
 public class ContentController {
@@ -21,6 +19,6 @@ public class ContentController {
     
     @RequestMapping("/content/get-home-screen")
     public HomeScreenContent getHomeScreen() {
-        return new HomeScreenContent();
+        return new HomeScreenContent("", (long) 1, "", "", "", "", 0);
     }
 }

@@ -1,8 +1,10 @@
 package microservice;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -10,9 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.json.*;
 
 @RestController
 public class AdminController {
@@ -39,9 +39,8 @@ public class AdminController {
     public ArrayList<Movie> loadUpcomingMovies() throws Exception {
         HttpURLConnection connection;
         JSONObject responseJson;
-        JSONArray movieArray;
+        ArrayList<JSONObject> movieJSONObjects = new ArrayList<JSONObject>();
         StringBuilder jsonStringBuilder = new StringBuilder();
-        JSONParser parser = new JSONParser();
         URL requestUrl = new URL(requestUrlBase + upcomingUrlExtension + "api_key=" + apiKey + "&language=" + language + "&page=" + page + "&region=" + region);
         BufferedReader reader;
         String inputStream;
@@ -67,11 +66,16 @@ public class AdminController {
             jsonStringBuilder.append("");
         }
         
-        responseJson = (JSONObject) parser.parse(jsonStringBuilder.toString());
+        responseJson = new JSONObject(jsonStringBuilder.toString());
 
         // loop through list
-        movieArray = (JSONArray) responseJson.get("results");
-        for (Object movieObject: movieArray) {
+        JSONArray movieJSONArray = responseJson.getJSONArray("results");
+        for(int i = 0; i < movieJSONArray.length(); i++) {
+            JSONObject movieJSON = movieJSONArray.getJSONObject(i);
+            movieJSONObjects.add(movieJSON);
+        }
+        Array movieList = movieJSONObjects.toArray();
+        for (Object movieObject: movieList) {
             JSONObject movieJson = (JSONObject) movieObject;
             //extract values we need
             String title = (String) movieJson.get("title");
@@ -112,9 +116,7 @@ public class AdminController {
             System.out.print(exception);
         }
 
-        //Create parser and parse response JSON
-        JSONParser parser = new JSONParser();
-        JSONObject responseJson = (JSONObject) parser.parse(jsonStringBuilder.toString());
+        JSONObject responseJson = new JSONObject(jsonStringBuilder.toString());
         JSONArray movieArray;
 
         //Append movieArray
