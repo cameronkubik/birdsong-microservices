@@ -50,25 +50,6 @@ public class AdminController {
         JSONObject responseJson = new JSONObject(jsonString);
         
         return getMovieListFromResponseJson(responseJson);
-        // loop through list
-        // JSONArray movieJSONArray = responseJson.getJSONArray("results");
-        // for (Object movieObject: movieJSONArray) {
-        //     JSONObject movieJson = (JSONObject) movieObject;
-        //     //extract values we need
-        //     String title = (String) movieJson.get("title");
-        //     long id = (long) movieJson.get("id");
-        //     String posterImagePath = (String) movieJson.get("poster_path");
-        //     String overview = (String) movieJson.get("overview");
-        //     String releaseDate = (String) movieJson.get("release_date");
-        //     String backdropImagePath = (String) movieJson.get("backdrop_path");
-        //     // create movie obj    
-        //     Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, -1);
-        //     // add to upcomingMovies Array
-        //     upcomingMovies.add(movieToAdd);
-        //     allMovies.add(movieToAdd);
-        // }
-        
-        //return upcomingMovies;
     }
 
     @RequestMapping("/admin/search-movie")
@@ -78,30 +59,6 @@ public class AdminController {
         JSONObject responseJson = new JSONObject(jsonString);
         
         return getMovieListFromResponseJson(responseJson);
-        // StringBuilder jsonStringBuilder = new StringBuilder();
-        // try {
-        //     URL requestUrl = new URL(requestUrlBase + searchUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
-        //     HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
-        //     connection.setDoOutput(false);
-        //     connection.setRequestMethod("GET");
-        //     connection.setRequestProperty("Content-Type", "application/json");
-
-        //     BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
-
-        //     String output;
-        //     System.out.println("Output from Server .... \n");
-        //     while ((output = reader.readLine()) != null) {
-        //         jsonStringBuilder.append(output);
-        //     }
-
-        // } catch (Exception exception) {
-        //     System.out.print(exception);
-        // }
-
-        // JSONObject responseJson = new JSONObject(jsonStringBuilder.toString());
-        // searchMovies = getMovieListFromResponseJson(responseJson);
-        
-        // return searchMovies;
     }
 
     @RequestMapping("/admin/save-movie")
@@ -150,10 +107,10 @@ public class AdminController {
         return true;
     }
 
-    public Movie getMovieFromJSON(JSONObject movieJson) throws Exception {
+    private Movie getMovieFromJSON(JSONObject movieJson) throws Exception {
         //extract values we need
         String title = (String) movieJson.get("title");
-        long id = (long) movieJson.get("id");
+        int id = (int) movieJson.get("id");
         String posterImagePath = (String) movieJson.get("poster_path");
         String overview = (String) movieJson.get("overview");
         String releaseDate = (String) movieJson.get("release_date");
@@ -162,7 +119,7 @@ public class AdminController {
         return new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, -1);
     }
 
-    public ArrayList<Movie> getMovieListFromResponseJson(JSONObject responseJson) throws Exception {
+    private ArrayList<Movie> getMovieListFromResponseJson(JSONObject responseJson) throws Exception {
         JSONArray movieListJson = responseJson.getJSONArray("results");
         ArrayList<Movie> movieList = new ArrayList<Movie>();
 
@@ -175,7 +132,7 @@ public class AdminController {
         return movieList;
     }
 
-    public String queryTmdbApiForJsonString(URL requestUrl) throws Exception {
+    private String queryTmdbApiForJsonString(URL requestUrl) throws Exception {
         StringBuilder jsonStringBuilder = new StringBuilder();
 
         try {
