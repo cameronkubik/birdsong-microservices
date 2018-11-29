@@ -45,7 +45,6 @@ public class AdminController {
     @RequestMapping("/admin/load-upcoming")
     public ArrayList<Movie> loadUpcomingMovies() throws Exception {
         URL requestUrl = new URL(requestUrlBase + upcomingUrlExtension + "api_key=" + apiKey + "&language=" + language + "&page=" + page + "&region=" + region);
-        
         String jsonString = queryTmdbApiForJsonString(requestUrl);
         JSONObject responseJson = new JSONObject(jsonString);
         
@@ -127,6 +126,7 @@ public class AdminController {
             JSONObject movieJSON = movieListJson.getJSONObject(i);
             Movie movie = getMovieFromJSON(movieJSON);
             movieList.add(movie);
+            allMovies.add(movie);
         }
 
         return movieList;
