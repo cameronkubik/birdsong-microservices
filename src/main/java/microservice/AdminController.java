@@ -99,7 +99,7 @@ public class AdminController {
     private Movie getMovieFromJSON(JSONObject movieJson) throws Exception {
         //extract values we need
         String title = (String) movieJson.get("title");
-        long id = (long) movieJson.get("id");
+        int id = (int) movieJson.get("id");
         String posterImagePath = (String) movieJson.get("poster_path");
         String overview = (String) movieJson.get("overview");
         String releaseDate = (String) movieJson.get("release_date");
