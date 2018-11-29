@@ -51,29 +51,6 @@ public class AdminController {
         
         return getMovieListFromResponseJson(responseJson);
         // loop through list
-<<<<<<< HEAD
-        JSONArray movieJSONArray = responseJson.getJSONArray("results");
-        for(int i = 0; i < movieJSONArray.length(); i++) {
-            JSONObject movieJSON = movieJSONArray.getJSONObject(i);
-            movieJSONObjects.add(movieJSON);
-        }
-        Array movieList = movieJSONObjects.toArray();
-        for (Object movieObject: movieList) {
-            JSONObject movieJson = (JSONObject) movieObject;
-            //extract values we need
-            String title = (String) movieJson.get("title");
-            int id = (int) movieJson.get("id");
-            String posterImagePath = (String) movieJson.get("poster_path");
-            String overview = (String) movieJson.get("overview");
-            String releaseDate = (String) movieJson.get("release_date");
-            String backdropImagePath = (String) movieJson.get("backdrop_path");
-            // create movie obj    
-            Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, -1);
-            // add to upcomingMovies Array
-            upcomingMovies.add(movieToAdd);
-            allMovies.add(movieToAdd);
-        }
-=======
         // JSONArray movieJSONArray = responseJson.getJSONArray("results");
         // for (Object movieObject: movieJSONArray) {
         //     JSONObject movieJson = (JSONObject) movieObject;
@@ -90,59 +67,12 @@ public class AdminController {
         //     upcomingMovies.add(movieToAdd);
         //     allMovies.add(movieToAdd);
         // }
->>>>>>> 7978487ca2b5bf8c1d1bcb0a51d8d97cde4b2351
         
         //return upcomingMovies;
     }
 
     @RequestMapping("/admin/search-movie")
     public ArrayList<Movie> loadSearch(@RequestParam(value="searchQuery", defaultValue="e404") String query) throws Exception {
-<<<<<<< HEAD
-        searchMovies.clear();
-        StringBuilder jsonStringBuilder = new StringBuilder();
-        try {
-            URL requestUrl = new URL(requestUrlBase + searchUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
-            HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
-            connection.setDoOutput(false);
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-Type", "application/json");
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader((connection.getInputStream())));
-
-            String output;
-            System.out.println("Output from Server .... \n");
-            while ((output = reader.readLine()) != null) {
-                jsonStringBuilder.append(output);
-            }
-
-        } catch (Exception exception) {
-            System.out.print(exception);
-        }
-
-        JSONObject responseJson = new JSONObject(jsonStringBuilder.toString());
-        JSONArray movieArray;
-
-        //Append movieArray
-        movieArray = (JSONArray) responseJson.get("results");
-
-        for (Object movieObject: movieArray) {
-            JSONObject movieJson = (JSONObject) movieObject;
-            //extract values we need
-            String title = (String) movieJson.get("title");
-            int id = (int) movieJson.get("id");
-            String posterImagePath = (String) movieJson.get("poster_path");
-            String overview = (String) movieJson.get("overview");
-            String releaseDate = (String) movieJson.get("release_date");
-            String backdropImagePath = (String) movieJson.get("backdrop_path");
-            // create movie obj    
-            Movie movieToAdd = new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, -1);
-            // add to upcomingMovies Array
-            searchMovies.add(movieToAdd);
-            allMovies.add(movieToAdd);
-        }
-        //Loop through movieArray, appending what we need to searchMovies
-        return searchMovies;
-=======
         URL requestUrl = new URL(requestUrlBase + searchUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
         String jsonString = queryTmdbApiForJsonString(requestUrl);
         JSONObject responseJson = new JSONObject(jsonString);
@@ -172,7 +102,6 @@ public class AdminController {
         // searchMovies = getMovieListFromResponseJson(responseJson);
         
         // return searchMovies;
->>>>>>> 7978487ca2b5bf8c1d1bcb0a51d8d97cde4b2351
     }
 
     @RequestMapping("/admin/save-movie")
