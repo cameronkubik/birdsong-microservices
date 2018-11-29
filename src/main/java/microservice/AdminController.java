@@ -82,13 +82,13 @@ public class AdminController {
         Class.forName("com.ibm.db2.jcc.DB2Driver");
 
         // Create the connection using the IBM Data Server Driver for JDBC and SQLJ
-        con = DriverManager.getConnection (url, user, password); 
+        con = DriverManager.getConnection(url, user, password); 
         // Commit changes manually
         con.setAutoCommit(false);
         // Create the Statement
-        stmt = con.createStatement();
+        stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         // Execute a query and generate a ResultSet instance
-        rs = stmt.executeQuery("SELECT *  FROM MOVIES");
+        rs = stmt.executeQuery("SELECT * FROM MOVIES");
         rs.moveToInsertRow();
         rs.updateInt("MOVIEID", saveMovie.getId());
         rs.updateString("TITLE", saveMovie.getTitle());

@@ -14,8 +14,6 @@ import org.json.*;
 
 @RestController
 public class ContentController {
-    @Value("${db2.privateKey}")
-    String privateKey;
     
     @RequestMapping("/content/get-home-screen")
     public HomeScreenContent getHomeScreenContent() {
