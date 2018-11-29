@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 public class Movie {
     
     private final String title;
-    private final long id;
+    private final int id;
     private final String posterImagePath;
     private final String overview;
     private final String releaseDate;
@@ -13,7 +13,7 @@ public class Movie {
     private final int screenShowingOn;
 
 
-    public Movie(String _title, long _id, String _posterImagePath, String _overview, String _releaseDate, String _backdropImagePath, int _screenShowingOn) {
+    public Movie(String _title, int _id, String _posterImagePath, String _overview, String _releaseDate, String _backdropImagePath, int _screenShowingOn) {
         title = _title;
         id = _id;
         posterImagePath = _posterImagePath;
@@ -28,7 +28,7 @@ public class Movie {
         return title;
     }
     @JsonGetter("id")
-    public long getId() {
+    public int getId() {
         return id;
     }
     @JsonGetter("posterImagePath")

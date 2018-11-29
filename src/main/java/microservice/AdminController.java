@@ -86,7 +86,7 @@ public class AdminController {
             JSONObject movieJson = (JSONObject) movieObject;
             //extract values we need
             String title = (String) movieJson.get("title");
-            long id = (long) movieJson.get("id");
+            int id = (int) movieJson.get("id");
             String posterImagePath = (String) movieJson.get("poster_path");
             String overview = (String) movieJson.get("overview");
             String releaseDate = (String) movieJson.get("release_date");
@@ -134,7 +134,7 @@ public class AdminController {
             JSONObject movieJson = (JSONObject) movieObject;
             //extract values we need
             String title = (String) movieJson.get("title");
-            long id = (long) movieJson.get("id");
+            int id = (int) movieJson.get("id");
             String posterImagePath = (String) movieJson.get("poster_path");
             String overview = (String) movieJson.get("overview");
             String releaseDate = (String) movieJson.get("release_date");
@@ -151,7 +151,7 @@ public class AdminController {
 
     @RequestMapping("/admin/save-movie")
     public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString) throws Exception {
-        Movie saveMovie;
+        Movie saveMovie = null;
         String url = db2Url;
         String user = db2User;
         String password = db2Pass;
@@ -177,7 +177,18 @@ public class AdminController {
         // Create the Statement
         stmt = con.createStatement();
         // Execute a query and generate a ResultSet instance
-        stmt.executeQuery("SELECT EMPNO FROM EMPLOYEE");
+        rs = stmt.executeQuery("SELECT *  FROM MOVIES");
+        rs.moveToInsertRow();
+        rs.updateInt("MOVIEID", saveMovie.getId());
+        rs.updateString("TITLE", saveMovie.getTitle());
+        rs.updateString("IMAGEURI", saveMovie.getPosterImagePath());
+        rs.insertRow();
+        rs.moveToCurrentRow();
+        rs.close();
+        stmt.close();
+        con.commit();
+        con.close();
+        
         // create query strings
         // execute queries
 
