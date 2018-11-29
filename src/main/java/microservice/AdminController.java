@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.sql.*;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -53,7 +54,7 @@ public class AdminController {
 
     @RequestMapping("/admin/search-movie")
     public ArrayList<Movie> loadSearch(@RequestParam(value="searchQuery", defaultValue="e404") String query) throws Exception {
-        URL requestUrl = new URL(requestUrlBase + searchUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + query + "&page=" + page + "&region=" + region);
+        URL requestUrl = new URL(requestUrlBase + searchUrlExtension + "api_key=" + apiKey + "&language=" + language + "&query=" + URLEncoder.encode(query, "UTF-8") + "&page=" + page + "&region=" + region);
         String jsonString = queryTmdbApiForJsonString(requestUrl);
         JSONObject responseJson = new JSONObject(jsonString);
         
@@ -73,13 +74,10 @@ public class AdminController {
         // Search movie on TMDB
         URL requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
         String jsonString = queryTmdbApiForJsonString(requestURL);
+
+        //Create JSON object from response, create movie object from JSON
         JSONObject responseJson = new JSONObject(jsonString);
-        
-        // for (Movie movieObject: allMovies) {
-        //     if (movieObject.getId() == Long.valueOf(movieIDString)) {
-        //         saveMovie = movieObject;
-        //     }
-        // }
+        saveMovie = getMovieFromJSON(responseJson);
 
         // get connection with DB2
         // Load the driver
@@ -103,9 +101,6 @@ public class AdminController {
         stmt.close();
         con.commit();
         con.close();
-        
-        // create query strings
-        // execute queries
 
         return true;
     }
