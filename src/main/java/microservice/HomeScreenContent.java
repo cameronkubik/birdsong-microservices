@@ -15,9 +15,17 @@ public class HomeScreenContent {
         movieShowingsList = dbManager.getNowShowingMovies();
     }
 
-    // @JsonGetter("title")
-    // public String getTitle() {
-    //     return title;
-    // }
+    @JsonGetter("movieShowingsList")
+    public ArrayList<Movie> getMovieShowingsListGetter() {
+        return movieShowingsList;
+    }
+    @JsonGetter("welcomeMessageText")
+    public String getWelcomeMessageTextGetter() {
+        return welcomeMessageText;
+    }
+    @JsonGetter("specialEventText")
+    public String getSpecialEventTextGetter() {
+        return specialEventText;
+    }
     
 }
