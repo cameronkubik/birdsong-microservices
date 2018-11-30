@@ -66,19 +66,17 @@ public class AdminController {
     }
 
     @RequestMapping("/admin/save-movie")
-    public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString) throws Exception {
-        URL requestURL;
-        String jsonString;
-        JSONObject responseJson;
+    public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString, @RequestParam(value="isUpcoming", defaultValue="false") String isUpcoming) throws Exception {
         Movie saveMovie = null;
+        boolean upcoming = Boolean.parseBoolean(isUpcoming);
 
         // Search movie on TMDB
-        requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
-        jsonString = queryTmdbApiForJsonString(requestURL);
+        URL requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
+        String jsonString = queryTmdbApiForJsonString(requestURL);
 
         //Create JSON object from response, create movie object from JSON
-        responseJson = new JSONObject(jsonString);
-        saveMovie = getMovieFromJSON(responseJson);
+        JSONObject responseJson = new JSONObject(jsonString);
+        saveMovie = getMovieFromExtendedJSON(responseJson, upcoming);
 
         if (saveMovie == null) {
             return false;
@@ -105,7 +103,31 @@ public class AdminController {
         String releaseDate = movieJson.getString("release_date");
         String backdropImagePath = movieJson.getString("backdrop_path");
         // create movie obj    
-        return new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, -1);
+        return new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath);
+    }
+
+    private Movie getMovieFromExtendedJSON(JSONObject movieJson, boolean isUpcoming) throws Exception {
+        //extract values we need
+        String title = movieJson.getString("title");
+        int id = movieJson.getInt("id");
+        String posterImagePath = movieJson.getString("poster_path");
+        String overview = movieJson.getString("overview");
+        String releaseDate = movieJson.getString("release_date");
+        String backdropImagePath = movieJson.getString("backdrop_path");
+        int duration = movieJson.getInt("runtime");
+        int upcoming;
+        int current;
+
+        if (isUpcoming == true) {
+            upcoming = 1;
+            current = 0;
+        } else {
+            upcoming = 0;
+            current = 1;
+        }
+
+        // create movie obj    
+        return new Movie(title, id, posterImagePath, overview, releaseDate, backdropImagePath, duration, current, upcoming);
     }
 
     private ArrayList<Movie> getMovieListFromResponseJson(JSONObject responseJson) throws Exception {

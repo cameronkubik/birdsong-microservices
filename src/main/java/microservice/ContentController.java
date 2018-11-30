@@ -29,7 +29,7 @@ public class ContentController {
 
     @RequestMapping("/content/get-concession-screen")
     public ConcessionScreenContent getConcessionScreenContent() {
-        return new ConcessionScreenContent("", (long) 1, "", "", "", "", 0);
+        return null;
     }
 
     @RequestMapping("/content/get-about-us-screen")

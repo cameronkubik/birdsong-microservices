@@ -66,7 +66,10 @@ public class Db2Manager {
             resultSet.moveToInsertRow();
             resultSet.updateInt("MOVIEID", movieToSave.getId());
             resultSet.updateString("TITLE", movieToSave.getTitle());
+            resultSet.updateInt("DURATION", movieToSave.getDuration());
             resultSet.updateString("IMAGEURI", movieToSave.getPosterImagePath());
+            resultSet.updateInt("ISCURRENT", movieToSave.getIsCurrentShowing());
+            resultSet.updateInt("ISUPCOMING", movieToSave.getIsUpcomingShowing());
             resultSet.insertRow();
             resultSet.moveToCurrentRow();
             // teardown
