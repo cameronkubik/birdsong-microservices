@@ -68,12 +68,6 @@ public class AdminController {
     @RequestMapping("/admin/save-movie")
     public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString) throws Exception {
         Movie saveMovie = null;
-        String url = db2Url;
-        String user = db2User;
-        String password = db2Pass;
-        Connection con;
-        Statement stmt;
-        ResultSet rs;
 
         // Search movie on TMDB
         URL requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
@@ -91,33 +85,6 @@ public class AdminController {
         boolean saveSuccessful = dbManager.saveMovie(saveMovie);
 
         return saveSuccessful;
-        // // get connection with DB2
-        // // Load the driver
-        // Class.forName("com.ibm.db2.jcc.DB2Driver");
-
-        // // Create the connection using the IBM Data Server Driver for JDBC and SQLJ
-        // con = DriverManager.getConnection(url, user, password); 
-        // // Commit changes manually
-        // con.setAutoCommit(false);
-        // // Create the Statement
-        // stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        // // Execute a query and generate a ResultSet instance
-        // rs = stmt.executeQuery("SELECT * FROM MOVIES");
-        // rs.moveToInsertRow();
-        // rs.updateInt("MOVIEID", saveMovie.getId());
-        // rs.updateString("TITLE", saveMovie.getTitle());
-        // rs.updateString("IMAGEURI", saveMovie.getPosterImagePath());
-        // rs.insertRow();
-        // rs.moveToCurrentRow();
-        // rs.close();
-        // stmt.close();
-        // con.commit();
-        // con.close();
-        
-        // // create query strings
-        // // execute queries
-
-        // return true;
     }
 
     private Movie getMovieFromJSON(JSONObject movieJson) throws Exception {
