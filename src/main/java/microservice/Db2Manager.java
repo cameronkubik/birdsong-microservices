@@ -91,10 +91,10 @@ public class Db2Manager {
         String query = "SELECT * FROM MOVIES WHERE isCurrent = TRUE";
         ResultSet movieResults = null;
         ArrayList<Movie> nowShowingMovies = new ArrayList<Movie>();
-        // Create the Statement
-        statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
         try {
+            // Create the Statement
+            statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             movieResults = statement.executeQuery(query);
             movieResults.first();
 
@@ -109,16 +109,16 @@ public class Db2Manager {
                 Movie nowShowingMovie = new Movie(title, id, imageUri, "", "", "", duration, isCurrent, isUpcoming);
                 nowShowingMovies.add(nowShowingMovie);
                 movieResults.next();
+        
+                if (movieResults != null) {
+                    movieResults.close();
+                }
+                
+                statement.close();
             }
         } catch (Exception e) {
             System.out.print(e);
         }
-        
-        if (movieResults != null) {
-            movieResults.close();
-        }
-        
-        statement.close();
 
         return nowShowingMovies;
     }
