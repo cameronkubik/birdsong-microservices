@@ -6,7 +6,9 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class Db2Manager {
 
     Connection databaseConnection;
@@ -30,6 +32,7 @@ public class Db2Manager {
         try {
             // Load the driver
             Class.forName("com.ibm.db2.jcc.DB2Driver");
+            System.out.print(url);
             // Create the connection using the IBM Data Server Driver for JDBC and SQLJ
             databaseConnection = DriverManager.getConnection(url, user, pass); 
             // Commit changes manually
