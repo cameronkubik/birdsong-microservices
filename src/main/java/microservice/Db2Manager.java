@@ -87,6 +87,7 @@ public class Db2Manager {
 
     public ArrayList<Movie> getNowShowingMovies() {
         String query = "SELECT * FROM MOVIES WHERE isCurrent = TRUE";
+
         ResultSet movieResults;
 
         try {
@@ -112,5 +113,21 @@ public class Db2Manager {
 
         ArrayList<Movie> nowShowingMovies = new ArrayList<Movie>();
         return nowShowingMovies;
+    }
+
+    public ArrayList<ConcessionItem> getConcessionLlist() {
+        String query = "SELECT * FROM MOVIES";
+        ResultSet concessionResults;
+        ArrayList<ConcessionItem> concessionList;
+        
+        try {
+            concessionResults = statement.executeQuery(query);
+
+            while(concessionResults.next()) {
+
+            }
+        } catch (Exception e) {
+            System.out.print(e);
+        }
     }
 }
