@@ -12,4 +12,9 @@ public class ConcessionScreenContent {
         dbManager = _dbManager;
         concessionList = dbManager.getConcessionList();
     }
+
+    @JsonGetter("concessionList")
+    public ArrayList<ConcessionItem> getConcessionList() {
+        return concessionList;
+    }
 }
