@@ -17,10 +17,7 @@ public class ContentController {
         dbManager.initializeConnection();
 
         HomeScreenContent homeScreen = new HomeScreenContent(dbManager);
-        // get now showing movies
-        // getWelcomeText
-        // get special event accouncements
-        // bundle together
+        
         return homeScreen;
     }
 

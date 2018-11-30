@@ -13,6 +13,8 @@ public class HomeScreenContent {
     public HomeScreenContent(Db2Manager _dbManager) {
         dbManager = _dbManager;
         movieShowingsList = dbManager.getNowShowingMovies();
+        welcomeMessageText = dbManager.getWelcomeMesssageText();
+        specialEventText = dbManager.getSpecialEventText();
     }
 
     @JsonGetter("movieShowingsList")

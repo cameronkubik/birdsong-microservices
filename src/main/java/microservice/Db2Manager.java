@@ -114,8 +114,11 @@ public class Db2Manager {
                     movieResults.close();
                 }
                 
-                statement.close();
             }
+
+            movieResults.close();
+            statement.close();
+
         } catch (Exception e) {
             System.out.print(e);
         }
@@ -150,5 +153,41 @@ public class Db2Manager {
         }
 
         return concessionList;
+    }
+
+
+    public String getSpecialEventText() {
+        String specialEventText = "There are no special events at this time";
+        return specialEventText;
+    }
+    public String getWelcomeMesssageText() {
+        String welcomeMessageText = "Welcome to Birdsong Theaters! We're a family owned and operated Drive-In movie theater located in Camden, Tennessee.";
+        return welcomeMessageText;
+
+        //String query = "SELECT * FROM THEATERINFO";
+        // ResultSet messageResults;
+
+        // try {
+        //     statement = databaseConnection.createStatement();
+        //     concessionResults = statement.executeQuery(query);
+
+        //     while(concessionResults.next()) {
+        //         int itemId = concessionResults.getInt("ITEMID");
+        //         int categoryId = concessionResults.getInt("CATEGORYID");
+        //         String item = concessionResults.getString("ITEM");
+        //         String cost = concessionResults.getString("COST");
+        //         String price = concessionResults.getString("PRICE");
+        //         String discount = concessionResults.getString("DISCOUNT_");
+        //         String imageUri = concessionResults.getString("IMAGEURI");
+
+        //         ConcessionItem itemToAdd = new ConcessionItem(itemId, categoryId, item, cost, price, discount, imageUri);
+        //         concessionList.add(itemToAdd);
+        //     }
+        //     statement.close();
+        // } catch (Exception e) {
+        //     System.out.print(e);
+        // }
+
+        // return concessionList;
     }
 }
