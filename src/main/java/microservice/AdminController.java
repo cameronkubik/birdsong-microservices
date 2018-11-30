@@ -77,33 +77,43 @@ public class AdminController {
             }
         }
 
-        // get connection with DB2
-        // Load the driver
-        Class.forName("com.ibm.db2.jcc.DB2Driver");
+        if (saveMovie == null) {
+            return false;
+        }
 
-        // Create the connection using the IBM Data Server Driver for JDBC and SQLJ
-        con = DriverManager.getConnection(url, user, password); 
-        // Commit changes manually
-        con.setAutoCommit(false);
-        // Create the Statement
-        stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        // Execute a query and generate a ResultSet instance
-        rs = stmt.executeQuery("SELECT * FROM MOVIES");
-        rs.moveToInsertRow();
-        rs.updateInt("MOVIEID", saveMovie.getId());
-        rs.updateString("TITLE", saveMovie.getTitle());
-        rs.updateString("IMAGEURI", saveMovie.getPosterImagePath());
-        rs.insertRow();
-        rs.moveToCurrentRow();
-        rs.close();
-        stmt.close();
-        con.commit();
-        con.close();
+        Db2Manager db2Manager = new Db2Manager();
         
-        // create query strings
-        // execute queries
+        boolean connectionSuccessful = db2Manager.initializeConnection();
+        boolean saveSuccessful = db2Manager.saveMovie(saveMovie);
 
-        return true;
+        return saveSuccessful;
+        // // get connection with DB2
+        // // Load the driver
+        // Class.forName("com.ibm.db2.jcc.DB2Driver");
+
+        // // Create the connection using the IBM Data Server Driver for JDBC and SQLJ
+        // con = DriverManager.getConnection(url, user, password); 
+        // // Commit changes manually
+        // con.setAutoCommit(false);
+        // // Create the Statement
+        // stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        // // Execute a query and generate a ResultSet instance
+        // rs = stmt.executeQuery("SELECT * FROM MOVIES");
+        // rs.moveToInsertRow();
+        // rs.updateInt("MOVIEID", saveMovie.getId());
+        // rs.updateString("TITLE", saveMovie.getTitle());
+        // rs.updateString("IMAGEURI", saveMovie.getPosterImagePath());
+        // rs.insertRow();
+        // rs.moveToCurrentRow();
+        // rs.close();
+        // stmt.close();
+        // con.commit();
+        // con.close();
+        
+        // // create query strings
+        // // execute queries
+
+        //return true;
     }
 
     private Movie getMovieFromJSON(JSONObject movieJson) throws Exception {
