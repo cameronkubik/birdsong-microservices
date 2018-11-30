@@ -66,12 +66,12 @@ public class AdminController {
     }
 
     @RequestMapping("/admin/save-movie")
-    public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString, boolean isUpcoming) throws Exception {
+    public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString, @RequestParam(value="isUpcoming", defaultValue="false") String isUpcoming) throws Exception {
         Movie saveMovie = null;
 
         // Search movie on TMDB
-        URL requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
-        String jsonString = queryTmdbApiForJsonString(requestURL);
+        requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
+        jsonString = queryTmdbApiForJsonString(requestURL);
 
         //Create JSON object from response, create movie object from JSON
         JSONObject responseJson = new JSONObject(jsonString);
@@ -81,10 +81,16 @@ public class AdminController {
             return false;
         }
         
-        boolean connectionSuccessful = dbManager.initializeConnection();
-        boolean saveSuccessful = dbManager.saveMovie(saveMovie);
+        boolean connectionStatus = dbManager.initializeConnection();
+        boolean saveStatus;
 
-        return saveSuccessful;
+        if (!connectionStatus) {
+            return false;
+        }
+
+        saveStatus = dbManager.saveMovie(saveMovie);
+
+        return saveStatus;
     }
 
     private Movie getMovieFromJSON(JSONObject movieJson) throws Exception {
