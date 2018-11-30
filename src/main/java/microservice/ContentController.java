@@ -17,13 +17,17 @@ public class ContentController {
         dbManager.initializeConnection();
 
         HomeScreenContent homeScreen = new HomeScreenContent(dbManager);
-        
+
         return homeScreen;
     }
 
     @RequestMapping("/content/get-box-office-screen")
     public BoxOfficeScreenContent getBoxOfficeScreenContent() {
-        return new BoxOfficeScreenContent("", (long) 1, "", "", "", "", 0);
+        dbManager.initializeConnection();
+
+        BoxOfficeScreenContent boxOfficeContent = new BoxOfficeScreenContent(dbManager);
+        
+        return boxOfficeContent;
     }
 
     @RequestMapping("/content/get-concession-screen")

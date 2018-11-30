@@ -4,51 +4,51 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 
 public class BoxOfficeScreenContent {
     
-    private final String title;
-    private final long id;
-    private final String posterImagePath;
-    private final String overview;
-    private final String releaseDate;
-    private final String backdropImagePath;
-    private final int screenShowingOn;
+    Db2Manager dbManager;
 
+    int adultTicketPrice;
+    int childTicketPrice;
+    
+    int boxOfficeOpenTime;
+    int firstMovieStartTime; 
 
-    public BoxOfficeScreenContent(String _title, long _id, String _posterImagePath, String _overview, String _releaseDate, String _backdropImagePath, int _screenShowingOn) {
-        title = _title;
-        id = _id;
-        posterImagePath = _posterImagePath;
-        overview = _overview;
-        releaseDate = _releaseDate;
-        backdropImagePath = _backdropImagePath;
-        screenShowingOn = _screenShowingOn;
+    String announcementsText;
+
+    public BoxOfficeScreenContent(Db2Manager _dbManager) {
+        dbManager = _dbManager;
+
+        adultTicketPrice = dbManager.getAdultTicketPrice();
+        childTicketPrice = dbManager.getChildTicketPrice();
+
+        boxOfficeOpenTime = dbManager.getBoxOfficeOpenTime();
+        firstMovieStartTime = dbManager.getFirstMovieStartTime();
+
+        announcementsText = dbManager.getAnnouncementsText();
     }
 
-    @JsonGetter("title")
-    public String getTitle() {
-        return title;
+    @JsonGetter("adultTicketPrice")
+    public int getAdultPriceGetter() {
+        return adultTicketPrice;
     }
-    @JsonGetter("id")
-    public long getId() {
-        return id;
+
+    @JsonGetter("childTicketPrice")
+    public int getChildPriceGetter() {
+        return childTicketPrice;
     }
-    @JsonGetter("posterImagePath")
-    public String getPosterImagePath() {
-        return posterImagePath;
+
+    @JsonGetter("boxOfficeOpenTime")
+    public int getBoxOfficeTimeGetter() {
+        return boxOfficeOpenTime;
     }
-    @JsonGetter("overview")
-    public String getOverview() {
-        return overview;
+
+    @JsonGetter("firstMovieStartTime")
+    public int getMovieStartTimeGetter() {
+        return firstMovieStartTime;
     }
-    @JsonGetter("releaseDate")
-    public String getReleaseDate() {
-        return releaseDate;
+
+    @JsonGetter("announcementsText")
+    public String getAnnouncementsTextGetter() {
+        return announcementsText;
     }
-    @JsonGetter("backdropImagePath")
-    public String getBackdropImagePath() {
-        return backdropImagePath;
-    }
-    @JsonGetter("screenShowingOn")
-    public int getScreenShowingOn() {
-        return screenShowingOn;
-    }
+    
 }

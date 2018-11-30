@@ -87,6 +87,7 @@ public class Db2Manager {
         return saveConfirmation;
     }
 
+    // Home screen content //
     public ArrayList<Movie> getNowShowingMovies() {
         String query = "SELECT * FROM MOVIES WHERE isCurrent = TRUE";
         ResultSet movieResults = null;
@@ -154,12 +155,38 @@ public class Db2Manager {
 
         return concessionList;
     }
+    
+    // TODO
+    public int getAdultTicketPrice() {    
+        return 7;
+    }
 
+    // TODO
+    public int getChildTicketPrice() {    
+        return 4;
+    }
+
+    // TODO
+    public int getBoxOfficeOpenTime() {    
+        return 6;
+    }
+
+    // TODO
+    public int getFirstMovieStartTime() {    
+        return 7;
+    }
+
+    // TODO
+    public String getAnnouncementsText() {    
+        // Could pass in page and use this for home too
+        return "Friday Special: Pay by the carload! Each car only $10 admission";
+    }
 
     public String getSpecialEventText() {
         String specialEventText = "There are no special events at this time";
         return specialEventText;
     }
+
     public String getWelcomeMesssageText() {
         String welcomeMessageText = "Welcome to Birdsong Theaters! We're a family owned and operated Drive-In movie theater located in Camden, Tennessee.";
         return welcomeMessageText;
