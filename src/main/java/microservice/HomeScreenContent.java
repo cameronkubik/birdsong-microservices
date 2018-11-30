@@ -13,11 +13,21 @@ public class HomeScreenContent {
     public HomeScreenContent(Db2Manager _dbManager) {
         dbManager = _dbManager;
         movieShowingsList = dbManager.getNowShowingMovies();
+        welcomeMessageText = dbManager.getWelcomeMesssageText();
+        specialEventText = dbManager.getSpecialEventText();
     }
 
-    // @JsonGetter("title")
-    // public String getTitle() {
-    //     return title;
-    // }
+    @JsonGetter("movieShowingsList")
+    public ArrayList<Movie> getMovieShowingsListGetter() {
+        return movieShowingsList;
+    }
+    @JsonGetter("welcomeMessageText")
+    public String getWelcomeMessageTextGetter() {
+        return welcomeMessageText;
+    }
+    @JsonGetter("specialEventText")
+    public String getSpecialEventTextGetter() {
+        return specialEventText;
+    }
     
 }
