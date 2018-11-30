@@ -42,8 +42,6 @@ public class Db2Manager {
             databaseConnection = DriverManager.getConnection(url, user, pass); 
             // Commit changes manually
             databaseConnection.setAutoCommit(false);
-            // Create the Statement
-            statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             isConnected = true;
 
         } catch (Exception e) {
@@ -57,6 +55,8 @@ public class Db2Manager {
     }
 
     public boolean saveMovie(Movie movieToSave) throws Exception {
+        // Create the Statement
+        statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         boolean saveConfirmation = true;
 
         try {
@@ -85,15 +85,18 @@ public class Db2Manager {
         return saveConfirmation;
     }
 
-    public ArrayList<Movie> getNowShowingMovies() {
+    public ArrayList<Movie> getNowShowingMovies() throws Exception {
         String query = "SELECT * FROM MOVIES WHERE isCurrent = TRUE";
-        ResultSet movieResults;
+        ResultSet movieResults = null;
+        ArrayList<Movie> nowShowingMovies = new ArrayList<Movie>();
+        // Create the Statement
+        statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
         try {
             movieResults = statement.executeQuery(query);
-            while (!movieResults.isAfterLast()) {
-                movieResults.first();
+            movieResults.first();
 
+            while (!movieResults.isAfterLast()) {
                 int id = movieResults.getInt("MOVIEID");
                 String title = movieResults.getString("TITLE");
                 int duration = movieResults.getInt("DURATION");
@@ -101,16 +104,20 @@ public class Db2Manager {
                 int isCurrent = movieResults.getInt("ISCURRENT");
                 int isUpcoming = movieResults.getInt("ISUPCOMING");
 
-                //Movie nowShowingMovie = new Movie()
+                Movie nowShowingMovie = new Movie(title, id, imageUri, "", "", "", duration, isCurrent, isUpcoming);
+                nowShowingMovies.add(nowShowingMovie);
+                movieResults.next();
             }
-            
-
         } catch (Exception e) {
             System.out.print(e);
         }
         
+        if (movieResults != null) {
+            movieResults.close();
+        }
+        
+        statement.close();
 
-        ArrayList<Movie> nowShowingMovies = new ArrayList<Movie>();
         return nowShowingMovies;
     }
 }
