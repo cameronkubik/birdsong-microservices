@@ -10,6 +10,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.sql.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,10 @@ import org.json.*;
 
 @RestController
 public class AdminController {
-    
+
+    @Autowired
+    private Db2Manager dbManager = new Db2Manager();
+
     private ArrayList<Movie> allMovies = new ArrayList<Movie>();
     private ArrayList<Movie> upcomingMovies = new ArrayList<Movie>();
     private ArrayList<Movie> searchMovies = new ArrayList<Movie>();
@@ -34,12 +38,12 @@ public class AdminController {
     String page;
     @Value("${tmdb.region}")
     String region;
-    @Value("${db2.url}")
-    String db2Url;
-    @Value("${db2.user}")
-    String db2User;
-    @Value("${db2.password}")
-    String db2Pass;
+    // @Value("${db2.url}")
+    // String db2Url;
+    // @Value("${db2.user}")
+    // String db2User;
+    // @Value("${db2.password}")
+    // String db2Pass;
     //https://api.themoviedb.org/3/movie/upcoming?api_key=12ab19db903903ba44c5e6bf73694e3c&language=en-US&page=1&region=US
     //https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&query=<<search_query>>&page=1&include_adult=false&region=<<region>>
     
@@ -64,12 +68,6 @@ public class AdminController {
     @RequestMapping("/admin/save-movie")
     public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString) throws Exception {
         Movie saveMovie = null;
-        String url = db2Url;
-        String user = db2User;
-        String password = db2Pass;
-        Connection con;
-        Statement stmt;
-        ResultSet rs;
 
         // Search movie on TMDB
         URL requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
@@ -82,40 +80,11 @@ public class AdminController {
         if (saveMovie == null) {
             return false;
         }
-
-        Db2Manager db2Manager = new Db2Manager();
         
-        boolean connectionSuccessful = db2Manager.initializeConnection();
-        boolean saveSuccessful = db2Manager.saveMovie(saveMovie);
+        boolean connectionSuccessful = dbManager.initializeConnection();
+        boolean saveSuccessful = dbManager.saveMovie(saveMovie);
 
         return saveSuccessful;
-        // // get connection with DB2
-        // // Load the driver
-        // Class.forName("com.ibm.db2.jcc.DB2Driver");
-
-        // // Create the connection using the IBM Data Server Driver for JDBC and SQLJ
-        // con = DriverManager.getConnection(url, user, password); 
-        // // Commit changes manually
-        // con.setAutoCommit(false);
-        // // Create the Statement
-        // stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        // // Execute a query and generate a ResultSet instance
-        // rs = stmt.executeQuery("SELECT * FROM MOVIES");
-        // rs.moveToInsertRow();
-        // rs.updateInt("MOVIEID", saveMovie.getId());
-        // rs.updateString("TITLE", saveMovie.getTitle());
-        // rs.updateString("IMAGEURI", saveMovie.getPosterImagePath());
-        // rs.insertRow();
-        // rs.moveToCurrentRow();
-        // rs.close();
-        // stmt.close();
-        // con.commit();
-        // con.close();
-        
-        // // create query strings
-        // // execute queries
-
-        //return true;
     }
 
     private Movie getMovieFromJSON(JSONObject movieJson) throws Exception {
