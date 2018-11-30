@@ -19,58 +19,14 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
-<script>
-	$(document).ready( function () {
-		$(".date").hide();
 
-		$(".future").click(function(){
-			$(".date").show();
-		});
-		$(".current").click(function(){
-			$(".date").hide();
-		});
-
-		$('#showingTable').DataTable({
-			"columnDefs": [
-    { "orderable": false, "targets": 3 },
-		{ "width": "15%", "targets": 3}
-  ]
-  });
-
-	var date_input=$('input[name="date"]'); //our date input has the name "date"
-	var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-	var options={
-		format: 'mm/dd/yyyy',
-		container: container,
-		todayHighlight: true,
-		autoclose: true,
-		orientation: 'top'
-	};
-
-	date_input.datepicker(options);
-	} );
-
-function httpGetAsync(theUrl, callback)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.response);
-    }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous
-    xmlHttp.send(null);
-}
-
-
-	</script>
-
-	<nav class="navbar">
-	  <a href="index.html">Home</a>
-	  <a href="boxoffice.html">Box Office</a>
-	  <a href="concessions.html">Concessions</a>
-	  <a href="aboutus.html">About Us</a>
-		<a href="footer.html">Footer</a>
-	</nav>
+<nav class="navbar">
+	<a href="index.html">Home</a>
+	<a href="boxoffice.html">Box Office</a>
+	<a href="concessions.html">Concessions</a>
+	<a href="aboutus.html">About Us</a>
+	<a href="footer.html">Footer</a>
+</nav>
 
 <div class = "container" id="welcome">
 <h1>Welcome</h1>
