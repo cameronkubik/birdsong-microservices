@@ -116,18 +116,31 @@ public class Db2Manager {
     }
 
     public ArrayList<ConcessionItem> getConcessionList() {
-        String query = "SELECT * FROM MOVIES";
+        String query = "SELECT * FROM SALEITEMS";
         ResultSet concessionResults;
-        ArrayList<ConcessionItem> concessionList;
+        ArrayList<ConcessionItem> concessionList = new ArrayList<ConcessionItem>();
 
         try {
+            statement = databaseConnection.createStatement();
             concessionResults = statement.executeQuery(query);
 
             while(concessionResults.next()) {
+                int itemId = concessionResults.getInt("ITEMID");
+                int categoryId = concessionResults.getInt("CATEGORYID");
+                String item = concessionResults.getString("ITEM");
+                String cost = concessionResults.getString("COST");
+                String price = concessionResults.getString("PRICE");
+                String discount = concessionResults.getString("DISCOUNT_");
+                String imageUri = concessionResults.getString("IMAGEURI");
 
+                ConcessionItem itemToAdd = new ConcessionItem(itemId, categoryId, item, cost, price, discount, imageUri);
+                concessionList.add(itemToAdd);
             }
+            statement.close();
         } catch (Exception e) {
             System.out.print(e);
         }
+
+        return concessionList;
     }
 }
