@@ -38,7 +38,9 @@ public class ContentController {
 
     @RequestMapping("/content/get-about-us-screen")
     public AboutUsScreenContent getAboutUsScreenContent() {
-        return new AboutUsScreenContent("", (long) 1, "", "", "", "", 0);
+        dbManager.initializeConnection();
+        AboutUsScreenContent aboutUsContent = new AboutUsScreenContent(dbManager);
+        return aboutUsContent;
     }
 
     @RequestMapping("/content/get-footer-screen")

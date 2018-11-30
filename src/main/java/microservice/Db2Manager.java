@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -136,11 +137,47 @@ public class Db2Manager {
                 ConcessionItem itemToAdd = new ConcessionItem(itemId, categoryId, item, cost, price, discount, imageUri);
                 concessionList.add(itemToAdd);
             }
+            // teardown
+            concessionResults.close();
             statement.close();
+            databaseConnection.commit();
         } catch (Exception e) {
             System.out.print(e);
         }
 
         return concessionList;
+    }
+
+    public ArrayList<String> getAboutUsInfo() {
+        String query = "SELECT * FROM CONTACTINFO";
+        ResultSet aboutUsResults;
+        ArrayList<String> info = new ArrayList<String>();
+
+        try {
+            statement = databaseConnection.createStatement();
+            aboutUsResults = statement.executeQuery(query);
+
+            while(aboutUsResults.next()) {
+                String address = aboutUsResults.getString("ADDRESS");
+                String phone = aboutUsResults.getString("PHONE");
+                String facebook = aboutUsResults.getString("FACEBOOK");
+                String twitter = aboutUsResults.getString("TWITTER");
+                String instagram = aboutUsResults.getString("INSTAGRAM");
+
+                info.add(address);
+                info.add(phone);
+                info.add(facebook);
+                info.add(twitter);
+                info.add(instagram);
+            }
+            // teardown
+            aboutUsResults.close();
+            statement.close();
+            databaseConnection.commit();
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+
+        return info;
     }
 }
