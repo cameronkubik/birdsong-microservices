@@ -3,6 +3,7 @@ package microservice;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.ResultSet;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,7 @@ public class Db2Manager {
 
     Connection databaseConnection;
     Statement statement;
+    boolean isConnected = false;
 
     @Value("${db2.url}")
     String urlEndpoint;
@@ -23,11 +25,14 @@ public class Db2Manager {
 
     public Db2Manager() {}
 
-    public boolean initializeConnection() throws Exception {
-        boolean connectionSuccessful = true;
+    public boolean initializeConnection() {
         String url = urlEndpoint;
         String user = username;
         String pass = password;
+
+        if (isConnected) {
+            return true;
+        }
 
         try {
             // Load the driver
@@ -39,15 +44,16 @@ public class Db2Manager {
             databaseConnection.setAutoCommit(false);
             // Create the Statement
             statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            isConnected = true;
 
         } catch (Exception e) {
             System.out.print(e);
             e.printStackTrace();
 
-            connectionSuccessful = false;
+            isConnected = false;
         }
 
-        return connectionSuccessful;
+        return isConnected;
     }
 
     public boolean saveMovie(Movie movieToSave) throws Exception {
@@ -67,7 +73,7 @@ public class Db2Manager {
             resultSet.close();
             statement.close();
             databaseConnection.commit();
-            databaseConnection.close();
+            //databaseConnection.close();
         } catch (Exception e) {
             System.out.print(e);
             saveConfirmation = false;
@@ -76,5 +82,32 @@ public class Db2Manager {
         return saveConfirmation;
     }
 
-    
+    public ArrayList<Movie> getNowShowingMovies() {
+        String query = "SELECT * FROM MOVIES WHERE isCurrent = TRUE";
+        ResultSet movieResults;
+
+        try {
+            movieResults = statement.executeQuery(query);
+            while (!movieResults.isAfterLast()) {
+                movieResults.first();
+
+                int id = movieResults.getInt("MOVIEID");
+                String title = movieResults.getString("TITLE");
+                int duration = movieResults.getInt("DURATION");
+                String imageUri = movieResults.getString("IMAGEURI");
+                int isCurrent = movieResults.getInt("ISCURRENT");
+                int isUpcoming = movieResults.getInt("ISUPCOMING");
+
+                //Movie nowShowingMovie = new Movie()
+            }
+            
+
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+        
+
+        ArrayList<Movie> nowShowingMovies = new ArrayList<Movie>();
+        return nowShowingMovies;
+    }
 }

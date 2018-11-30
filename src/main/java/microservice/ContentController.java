@@ -1,14 +1,20 @@
 package microservice;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ContentController {
-    
+
+    @Autowired
+    private Db2Manager dbManager = new Db2Manager();
+
     @RequestMapping("/content/get-home-screen")
     public HomeScreenContent getHomeScreenContent() {
-        HomeScreenContent homeScreen = new HomeScreenContent();
+        dbManager.initializeConnection();
+
+        HomeScreenContent homeScreen = new HomeScreenContent(dbManager);
         // get now showing movies
         // getWelcomeText
         // get special event accouncements
