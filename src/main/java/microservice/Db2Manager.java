@@ -115,11 +115,11 @@ public class Db2Manager {
         return nowShowingMovies;
     }
 
-    public ArrayList<ConcessionItem> getConcessionLlist() {
+    public ArrayList<ConcessionItem> getConcessionList() {
         String query = "SELECT * FROM MOVIES";
         ResultSet concessionResults;
         ArrayList<ConcessionItem> concessionList;
-        
+
         try {
             concessionResults = statement.executeQuery(query);
 
