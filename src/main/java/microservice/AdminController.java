@@ -68,14 +68,15 @@ public class AdminController {
     @RequestMapping("/admin/save-movie")
     public boolean saveMovieAsNowShowing(@RequestParam(value="movieId", defaultValue="-1") String movieIDString, @RequestParam(value="isUpcoming", defaultValue="false") String isUpcoming) throws Exception {
         Movie saveMovie = null;
+        boolean upcoming = Boolean.parseBoolean(isUpcoming);
 
         // Search movie on TMDB
-        requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
-        jsonString = queryTmdbApiForJsonString(requestURL);
+        URL requestURL = new URL(requestUrlBase + "/movie/" + movieIDString + "?" + "api_key=" + apiKey + "&language=" + language);
+        String jsonString = queryTmdbApiForJsonString(requestURL);
 
         //Create JSON object from response, create movie object from JSON
         JSONObject responseJson = new JSONObject(jsonString);
-        saveMovie = getMovieFromExtendedJSON(responseJson, isUpcoming);
+        saveMovie = getMovieFromExtendedJSON(responseJson, upcoming);
 
         if (saveMovie == null) {
             return false;
@@ -113,7 +114,7 @@ public class AdminController {
         String overview = movieJson.getString("overview");
         String releaseDate = movieJson.getString("release_date");
         String backdropImagePath = movieJson.getString("backdrop_path");
-        int duration = movieJson.getInt("duration");
+        int duration = movieJson.getInt("runtime");
         int upcoming;
         int current;
 

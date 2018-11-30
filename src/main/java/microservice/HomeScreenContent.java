@@ -16,7 +16,7 @@ public class HomeScreenContent {
 
     private ArrayList<Movie> getMovieShowingList() {
         movieShowingsList = new ArrayList<Movie>(4);
-        
+        return movieShowingsList;
     }
 
     // @JsonGetter("title")
