@@ -53,6 +53,11 @@
             <artifactId>db2jcc4</artifactId>
             <version>10.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <!-- <dependency>
             <groupId>com.ibm.db2</groupId>
             <artifactId>db2jcc_license_cu</artifactId>
