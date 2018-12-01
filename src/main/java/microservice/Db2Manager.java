@@ -111,11 +111,6 @@ public class Db2Manager {
                 Movie nowShowingMovie = new Movie(title, id, imageUri, "", "", "", duration, isCurrent, isUpcoming);
                 nowShowingMovies.add(nowShowingMovie);
                 movieResults.next();
-        
-                if (movieResults != null) {
-                    movieResults.close();
-                }
-                
             }
 
             movieResults.close();
