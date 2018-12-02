@@ -17,12 +17,12 @@ import com.birdsong.application.model.*;
 
 
 public class Db2Manager {
-    @Value("${db2.url}")
-    String urlEndpoint;
-    @Value("${db2.user}")
-    String username;
-    @Value("${db2.password}")
-    String password;
+    // @Value("${db2.url}")
+    // String urlEndpoint;
+    // @Value("${db2.user}")
+    // String username;
+    // @Value("${db2.password}")
+    // String password;
 
     // =========================================
     // The singleton instance.
@@ -38,6 +38,12 @@ public class Db2Manager {
     private static Vector<Connection> connectionPool = new Vector<Connection>();
     private final int MAX_POOL_SIZE = 40;
 
+    // DB2 Values
+    // TODO - should we remove these?
+    String dbUrl = "jdbc:db2://dashdb-txn-sbox-yp-dal09-03.services.dal.bluemix.net:50000/BLUDB";
+    String dbUser = "mbb24458";
+    String dbPass = "bbmxtfxx5541s@wv";
+
     /**
      *
      * Method Name: Db2Manager
@@ -48,12 +54,12 @@ public class Db2Manager {
      * @date        12/01/2018
      *   
      **/
-    private Db2Manager() {
+    public Db2Manager() {
 
         System.out.println("Entered DBManager::DBManager()");
-        String url = urlEndpoint;
-        String user = username;
-        String pass = password;
+        // String url = urlEndpoint;
+        // String user = username;
+        // String pass = password;
 
         try {
             //======================================
@@ -62,7 +68,7 @@ public class Db2Manager {
             Class.forName("com.ibm.db2.jcc.DB2Driver");
             // why is this bad... -cmk
             ///bad 		   jdbcClass = Class.forName("com.ibm.db2.jdbc.app.DB2Driver");
-            //		   System.out.println("Loaded the jdbc driver successfully");
+            System.out.println("Loaded the jdbc driver successfully");
 
             //====================================================================
             // Preload a connection into the pool.  We may want to increase this
@@ -70,7 +76,7 @@ public class Db2Manager {
             //====================================================================
             //	   System.out.println("Pre-loading connection into pool");
             //		DriverManager.getConnection("jdbc:odbc:duffelDB", "", "");
-            DriverManager.getConnection(url, user, pass);
+            DriverManager.getConnection(dbUrl, dbUser, dbPass);
             Connection tmp = getConnection();
             releaseConnection(tmp);
             //	   System.out.println("Finished pre-loading connection into pool");
@@ -133,14 +139,11 @@ public class Db2Manager {
         // a new connection.
         // =============================================================
         if (dbConn == null) {
-            String url = urlEndpoint;
-            String user = username;
-            String pass = password;
             try {
 
                 // System.out.println("Attempting to create a new connection");
                 // dbConn = DriverManager.getConnection("jdbc:odbc:duffelDB", "", "");
-                dbConn = DriverManager.getConnection(url, user, pass);
+                dbConn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
                 // System.out.println("Successfully got connection");
             } catch (Throwable e) {
                 e.printStackTrace();
@@ -283,7 +286,6 @@ public class Db2Manager {
             resultSet.close();
             statement.close();
             databaseConnection.commit();
-            //databaseConnection.close();
         } catch (Exception e) {
             System.out.print(e);
             saveConfirmation = false;
@@ -339,7 +341,7 @@ public class Db2Manager {
 
         try {
             // Create the Statement, not updatable
-            Statement statement = databaseConnection.createStatement();
+            Statement statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet concessionResults = statement.executeQuery(query);
             concessionResults.beforeFirst();
 

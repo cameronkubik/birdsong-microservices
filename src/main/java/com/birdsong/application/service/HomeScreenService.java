@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.birdsong.application.model.*;
+import com.birdsong.application.service.Db2Manager;
 
 // Service for Model
 @Service
 public class HomeScreenService {
+
+    private Db2Manager dbManager = new Db2Manager();
 
     static {
         // Collect db info here
@@ -19,8 +22,8 @@ public class HomeScreenService {
         return "Hello World!";
     }
 
-    public List<Movie> getNowShowingMovies() {
-        List<Movie> nowShowingMovies = new ArrayList<Movie>();
+    public ArrayList<Movie> getNowShowingMovies() {
+        ArrayList<Movie> nowShowingMovies = new ArrayList<Movie>();
         // call Db manager
         return nowShowingMovies;
     }

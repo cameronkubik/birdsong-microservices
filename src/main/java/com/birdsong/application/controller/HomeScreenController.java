@@ -1,7 +1,10 @@
 package com.birdsong.application.controller;
 
 import com.birdsong.application.service.*;
-//import com.birdsong.model.*;
+
+import java.util.ArrayList;
+
+import com.birdsong.application.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -19,7 +22,9 @@ public class HomeScreenController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String loadHomeScreen(ModelMap model) {
         String testData = service.getHelloWorld();
+        ArrayList<Movie> movieList = service.getNowShowingMovies();
         model.put("testData", testData);
+        model.put("movieList", movieList);
         return "homeScreen";
     }
 }
