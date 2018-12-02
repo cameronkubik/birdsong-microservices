@@ -24,7 +24,7 @@ public class HomeScreenController {
     @Autowired
     HomeScreenService service;
 
-    @RequestMapping("/")
+    @RequestMapping("/print-name")
     public String loadHomeScreen(ModelMap model, @RequestParam String name) {
         model.put("name", name);
         return "homeScreen";
