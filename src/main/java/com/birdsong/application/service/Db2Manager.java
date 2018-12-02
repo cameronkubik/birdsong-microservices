@@ -6,14 +6,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
-import org.json.JSONObject;
+//import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
+//import org.springframework.web.bind.annotation.RestController;
 
 import com.birdsong.application.model.*;
-import com.birdsong.application.controller.*;
+//import com.birdsong.application.controller.*;
 
-@RestController
+@Service
 public class Db2Manager {
 
     Connection databaseConnection;
