@@ -1,11 +1,12 @@
 package com.birdsong.application.service;
 
-import com.birdsong.application.model.SaleItem;
+import org.springframework.stereotype.Service;
+import java.util.List;
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Service;
+import com.birdsong.application.model.*;
 
-
+// Service for Model
 @Service
 public class ConcessionScreenService {
     
