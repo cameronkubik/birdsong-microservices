@@ -11,6 +11,7 @@ import com.birdsong.application.model.*;
 public class ConcessionScreenService {
     
     private ArrayList<SaleItem> saleItemsList;
+    Db2Manager dbManager = new Db2Manager();
  
     static {
         //System.out.print("Any static logic can be executed here...");
@@ -21,9 +22,11 @@ public class ConcessionScreenService {
     }
 
     public ArrayList<SaleItem> getSaleItemsList() {
+        this.saleItemsList = dbManager.getConcessionList();
         // make call to DB
         // ...logic...
         // assign to saleItemsList
+
         return this.saleItemsList;
     }
 }
