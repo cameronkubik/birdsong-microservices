@@ -10,18 +10,12 @@
 	<title>Birdsong Drive-In</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	
-	<%-- Load stylesheets, paths relative to src/main/resources/static/ --%>
-	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/main.css"/>
-
-	<%--
-		Alternative to load external files: fetch this url in value and store in variable
-		<c:url value="/css/main.css" var="jstlCss" />
-		Then use variable as pages stylesheet or other
+	<%-- 
+		Load stylesheets
+		paths relative to src/main/resources/static/ or using webjars defined in pom.xml 
 	--%>
-	<%-- <link href="${jstlCss}" rel="stylesheet" /> --%> --%>
-	
+	<link href="webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css"/>
 </head>
-
 <body>
 <%-- None of these tags are closed because the footer handles closing tags --%>
