@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeScreenController {
 
     @Autowired
-    HomeScreenService service;
+    HomeScreenService service = new HomeScreenService();
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String loadHomeScreen(ModelMap model) {
-        model.put("name", "TEST");
+        String testData = service.getHelloWorld();
+        model.put("testData", testData);
         return "homeScreen";
     }
 }

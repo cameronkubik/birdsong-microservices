@@ -15,8 +15,13 @@ public class HomeScreenService {
         System.out.print("Home Screen initialized!");
     }
 
-    public List<Movie> retrieveNowShowingMovies(boolean withUpcoming) {
+    public String getHelloWorld() {
+        return "Hello World!";
+    }
+
+    public List<Movie> getNowShowingMovies() {
         List<Movie> nowShowingMovies = new ArrayList<Movie>();
+        // call Db manager
         return nowShowingMovies;
     }
 }
