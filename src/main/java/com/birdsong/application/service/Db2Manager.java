@@ -304,7 +304,7 @@ public class Db2Manager {
     public ArrayList<Movie> getNowShowingMovies() {
         ArrayList<Movie> nowShowingMovies = new ArrayList<Movie>();
         Connection databaseConnection = getConnection();
-        String query = "SELECT * FROM MOVIES WHERE isCurrent = TRUE";
+        String query = "SELECT * FROM MOVIES WHERE ISCURRENT = TRUE";
 
         try {
             // Create the Statement, not updatable
@@ -313,7 +313,7 @@ public class Db2Manager {
             ResultSet movieResults = statement.executeQuery(query);
             movieResults.beforeFirst();
 
-            while (!movieResults.isAfterLast()) {
+            while (movieResults.next()) {
                 int id = movieResults.getInt("MOVIEID");
                 String title = movieResults.getString("TITLE");
                 int duration = movieResults.getInt("DURATION");
@@ -425,5 +425,52 @@ public class Db2Manager {
         sBuilder.append("Admission price by car! Pay only $10 for each carload.");
 
         return sBuilder.toString();
+    }
+
+    public OperationHours getOperationHours() {
+        OperationHours operationHours = new OperationHours(6, 7);
+
+        return operationHours;
+    }
+
+    public OperationHours getOperationHoursHOLD() {
+        OperationHours operationHours = null;
+        Connection databaseConnection = getConnection();
+        String query = "SELECT...";
+
+        try {
+            // Create the Statement, not updatable
+            Statement statement = databaseConnection.createStatement(SCROLLABLE, NON_UPDATABLE);
+
+            ResultSet operationHoursResults = statement.executeQuery(query);
+            operationHoursResults.beforeFirst();
+
+            while (operationHoursResults.next()) {
+                // get column data logic
+            }
+
+            operationHoursResults.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+
+        releaseConnection(databaseConnection);
+
+        return operationHours;
+    }
+
+    public Admission getAdmissionInfo() {
+        Admission admissionInfo = new Admission(7, 4, 0);
+        return admissionInfo;
+    }
+
+    public Notice getNotice() {
+        String mainNotice = "Our sound is FM Stereo transmitted through your vehicles stereo system or any handheld radio.";
+        String subNotice = "If you experience any hum or buzz, adjusting your trebble to the lowest setting will usually stop this.";
+
+        Notice notice = new Notice(mainNotice, subNotice);
+        return notice;
     }
 }

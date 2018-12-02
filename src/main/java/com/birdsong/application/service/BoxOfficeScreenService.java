@@ -1,24 +1,28 @@
 package com.birdsong.application.service;
 
+import com.birdsong.application.model.Admission;
+import com.birdsong.application.model.OperationHours;
+import com.birdsong.application.model.Notice;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public class BoxOfficeScreenService {
 
-    private String ticketPrice;
+    private Db2Manager dbManager = Db2Manager.getInstance();
 
-    static {
-        // System.out.print("Any static logic can be executed here...");
+    public OperationHours getOperationHours() {
+        OperationHours operationHours = dbManager.getOperationHours();
+        return operationHours;
     }
 
-    public BoxOfficeScreenService() {
-        this.ticketPrice = "$10";
+    public Admission getAdmissionInfo() {
+        Admission admission = dbManager.getAdmissionInfo();
+        return admission;
     }
 
-    public String getAboutUs() {
-        // make call to DB
-        // ...logic...
-        // assign to ticketPrice
-        return this.ticketPrice;
+    public Notice getNotice() {
+        Notice notice = dbManager.getNotice();
+        return notice;
     }
 }

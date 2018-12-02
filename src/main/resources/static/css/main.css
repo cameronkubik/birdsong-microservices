@@ -1,4 +1,4 @@
-/* style.css
+/* main.css
  * This file provides css styles.
  */
 body, html {
@@ -55,6 +55,14 @@ body, html {
 .carousel{
 	margin: auto;
 	width: 700px;
+}
+
+.carousel-inner .item {
+	display: none;
+}
+
+.carousel-inner .item.active {
+	display: block;
 }
 
 .elementdark{

@@ -35,7 +35,7 @@ public class Movie {
         isCurrentShowing = _isCurrentShowing;
         isUpcomingShowing = _isUpcomingShowing;
     }
-
+    // TODO - need to add showingTime & screenShowingOn to DB and add accompanying logic
     @JsonGetter("title")
     public String getTitle() {
         return title;
@@ -47,6 +47,10 @@ public class Movie {
     @JsonGetter("posterImagePath")
     public String getPosterImagePath() {
         return posterImagePath;
+    }
+
+    public String getEntireImagePath() {
+        return "http://image.tmdb.org/t/p/w500" + posterImagePath;
     }
     @JsonGetter("overview")
     public String getOverview() {
