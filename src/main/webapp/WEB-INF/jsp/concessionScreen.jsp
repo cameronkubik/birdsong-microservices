@@ -4,9 +4,7 @@
 
 <%-- This page/components HTML --%>
 <div class="container">
-    Concession Screen
-    <br />
-    Value of data: <% ${testData} %>
+    Concession screen: testData = ${testData}
 </div>
 
 <%-- Footer HTML --%>

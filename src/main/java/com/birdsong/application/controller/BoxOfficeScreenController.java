@@ -1,7 +1,6 @@
 package com.birdsong.application.controller;
 
-//import com.birdsong.model.*;
-import com.birdsong.application.service.BoxOfficeScreenService;//import com.birdsong.model.*;
+import com.birdsong.application.service.BoxOfficeScreenService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +15,7 @@ public class BoxOfficeScreenController {
     @Autowired
     BoxOfficeScreenService service = new BoxOfficeScreenService();
 
-    @RequestMapping(value = "/box-office", method = RequestMethod.GET)
+    @RequestMapping(value="/box-office", method = RequestMethod.GET)
     public String loadBoxOffice(ModelMap model) {
         String testData = service.getAboutUs();
         model.put("testData", testData);

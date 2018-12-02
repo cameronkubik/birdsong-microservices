@@ -4,9 +4,7 @@
 
 <%-- This page/components HTML --%>
 <div class="container">
-    About Us Screen
-    <br />
-    Value of data: <% ${testData} %>
+    About Us screen: testData = ${testData}
 </div>
 
 <%-- Footer HTML --%>

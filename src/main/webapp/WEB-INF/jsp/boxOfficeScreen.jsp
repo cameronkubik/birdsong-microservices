@@ -4,9 +4,7 @@
 
 <%-- This page/components HTML --%>
 <div class="container">
-    Box Office screen
-    <br />
-    Value of data: <% ${testData} %>
+    Box Office screen: testData = ${testData}
 </div>
 
 <%-- Footer HTML --%>
