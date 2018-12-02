@@ -21,10 +21,15 @@ public class HomeScreenController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String loadHomeScreen(ModelMap model) {
-        String testData = service.getHelloWorld();
+        // Gather data from controller service object
+        WelcomeMessage welcomeMessage = service.getWelcomeMessage();
+        String specialAnnouncements = service.getSpecialAnnouncements();
         ArrayList<Movie> movieList = service.getNowShowingMovies();
-        model.put("testData", testData);
+
+        model.put("welcomeMessage", welcomeMessage);
+        model.put("specialAnnouncements", specialAnnouncements);
         model.put("movieList", movieList);
+
         return "homeScreen";
     }
 }
