@@ -12,11 +12,6 @@ public class HomeScreenService {
 
     private Db2Manager dbManager = Db2Manager.getInstance();
 
-    // static {
-    //     // Collect db info here
-    //     System.out.print("Home Screen initialized!");
-    // }
-
     public ArrayList<Movie> getNowShowingMovies() {
         ArrayList<Movie> nowShowingMovies = dbManager.getNowShowingMovies();
         return nowShowingMovies;
