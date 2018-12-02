@@ -10,7 +10,7 @@ import com.birdsong.application.service.Db2Manager;
 @Service
 public class HomeScreenService {
 
-    private Db2Manager dbManager = new Db2Manager();
+    private Db2Manager dbManager = Db2Manager.getInstance();
 
     // static {
     //     // Collect db info here

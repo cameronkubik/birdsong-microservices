@@ -4,7 +4,15 @@
 
 <%-- This page/components HTML --%>
 <div class="container">
-    About Us screen: testData = ${testData}
+    <h1>
+        ${content.getHeader()}
+    </h1>
+    <h2>
+        ${content.getSubHeader()}
+    </h2>
+    <h3>
+        ${content.getBody()}
+    </h3>
 </div>
 
 <%-- Footer HTML --%>

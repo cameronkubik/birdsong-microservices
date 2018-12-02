@@ -18,8 +18,8 @@ public class AboutUsScreenController {
 
     @RequestMapping(value = "/about-us", method = RequestMethod.GET)
     public String loadAboutUs(ModelMap model) {
-        AboutUsContent testData = service.getAboutUs();
-        model.put("testData", testData);
+        AboutUsContent content = service.getAboutUs();
+        model.put("content", content);
         return "aboutUsScreen";
     }
 }

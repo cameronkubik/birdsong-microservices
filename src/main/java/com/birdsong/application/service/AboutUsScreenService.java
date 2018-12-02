@@ -1,7 +1,6 @@
 package com.birdsong.application.service;
 
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 
 import com.birdsong.application.model.*;
 import com.birdsong.application.service.Db2Manager;
@@ -9,7 +8,7 @@ import com.birdsong.application.service.Db2Manager;
 @Service
 public class AboutUsScreenService {
 
-    private Db2Manager dbManager = new Db2Manager();
+    private Db2Manager dbManager = Db2Manager.getInstance();
 
     static {
         //System.out.print("Any static logic can be executed here...");

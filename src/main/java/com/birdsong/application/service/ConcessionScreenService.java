@@ -11,7 +11,7 @@ import com.birdsong.application.model.*;
 public class ConcessionScreenService {
     
     private ArrayList<SaleItem> saleItemsList;
-    Db2Manager dbManager = new Db2Manager();
+    private Db2Manager dbManager = Db2Manager.getInstance();
  
     static {
         //System.out.print("Any static logic can be executed here...");
