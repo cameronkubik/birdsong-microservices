@@ -1,13 +1,26 @@
+<%-- Framework & Libraries --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+<%-- Header HTML --%>
 <html>
-
 <head>
-	<title>BSONG WEBAPP</title>
-	<%-- Load sytlesheets
-	<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> --%>
+	
+	<title>Birdsong Drive-In</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<%-- Load stylesheets, paths relative to src/main/resources/static/ --%>
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/main.css"/>
+
+	<%--
+		Alternative to load external files: fetch this url in value and store in variable
+		<c:url value="/css/main.css" var="jstlCss" />
+		Then use variable as pages stylesheet or other
+	--%>
+	<%-- <link href="${jstlCss}" rel="stylesheet" /> --%> --%>
+	
 </head>
 
 <body>
