@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.web.bind.annotation.RestController;
 
 import com.birdsong.application.model.*;
@@ -44,6 +44,10 @@ public class Db2Manager {
     String dbUser = "mbb24458";
     String dbPass = "bbmxtfxx5541s@wv";
 
+    final int SCROLLABLE = ResultSet.TYPE_SCROLL_SENSITIVE;
+    final int NON_UPDATABLE = ResultSet.CONCUR_READ_ONLY;
+    final int UPDATABLE = ResultSet.CONCUR_UPDATABLE;
+    ;
     /**
      *
      * Method Name: Db2Manager
@@ -56,7 +60,7 @@ public class Db2Manager {
      **/
     public Db2Manager() {
 
-        System.out.println("Entered DBManager::DBManager()");
+        //System.out.println("Entered DBManager::DBManager()");
         // String url = urlEndpoint;
         // String user = username;
         // String pass = password;
@@ -79,7 +83,7 @@ public class Db2Manager {
             DriverManager.getConnection(dbUrl, dbUser, dbPass);
             Connection tmp = getConnection();
             releaseConnection(tmp);
-            //	   System.out.println("Finished pre-loading connection into pool");
+            System.out.println("Finished pre-loading connection into pool");
 
         } catch (java.lang.ClassNotFoundException e) {
             System.err.print("ClassNotFoundException : ");
@@ -304,7 +308,7 @@ public class Db2Manager {
 
         try {
             // Create the Statement, not updatable
-            Statement statement = databaseConnection.createStatement();
+            Statement statement = databaseConnection.createStatement(SCROLLABLE, NON_UPDATABLE);
             
             ResultSet movieResults = statement.executeQuery(query);
             movieResults.beforeFirst();
@@ -403,5 +407,23 @@ public class Db2Manager {
         releaseConnection(databaseConnection);
 
         return info;
+    }
+
+    public WelcomeMessage getWelcomeMessage() {
+        // TODO
+        String header = "Welcome to Birdsong Drive-In!\n";
+        String subHeader = "Located in Camden, TN, we are a family owned and operated old-school drive-in theater.";
+        WelcomeMessage welcomeMessage = new WelcomeMessage(header, subHeader);
+
+        return welcomeMessage;
+    }
+    
+    public String getSpecialAnnouncements() {
+        // TODO
+        StringBuilder sBuilder = new StringBuilder();
+        sBuilder.append("Friday Night Special:\t");
+        sBuilder.append("Admission price by car! Pay only $10 for each carload.");
+
+        return sBuilder.toString();
     }
 }

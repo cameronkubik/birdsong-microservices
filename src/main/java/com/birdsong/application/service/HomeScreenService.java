@@ -1,7 +1,6 @@
 package com.birdsong.application.service;
 
 import org.springframework.stereotype.Service;
-import java.util.List;
 import java.util.ArrayList;
 
 import com.birdsong.application.model.*;
@@ -13,18 +12,23 @@ public class HomeScreenService {
 
     private Db2Manager dbManager = new Db2Manager();
 
-    static {
-        // Collect db info here
-        System.out.print("Home Screen initialized!");
-    }
-
-    public String getHelloWorld() {
-        return "Hello World!";
-    }
+    // static {
+    //     // Collect db info here
+    //     System.out.print("Home Screen initialized!");
+    // }
 
     public ArrayList<Movie> getNowShowingMovies() {
-        ArrayList<Movie> nowShowingMovies = new ArrayList<Movie>();
-        // call Db manager
+        ArrayList<Movie> nowShowingMovies = dbManager.getNowShowingMovies();
         return nowShowingMovies;
+    }
+
+    public WelcomeMessage getWelcomeMessage() {
+        WelcomeMessage welcomeMessage = dbManager.getWelcomeMessage();
+        return welcomeMessage;
+    }
+
+    public String getSpecialAnnouncements() {
+        String specialAnnouncements = dbManager.getSpecialAnnouncements();
+        return specialAnnouncements;
     }
 }
