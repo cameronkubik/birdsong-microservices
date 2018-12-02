@@ -20,11 +20,11 @@ public class SaleItem {
         imageUri = _imageUri;
     }
 
-    public int itemId() {
+    public int getItemId() {
         return itemId;
     }
 
-    public int categoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
 

@@ -3,7 +3,7 @@ package com.birdsong.application.controller;
 import java.util.ArrayList;
 
 import com.birdsong.application.service.*;
-//import com.birdsong.model.*;
+import com.birdsong.application.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -20,8 +20,8 @@ public class ConcessionScreenController {
 
     @RequestMapping(value = "/concession", method = RequestMethod.GET)
     public String loadConcessionItems(ModelMap model) {
-        String testData = service.getSaleItemsList().toString();
-        model.put("testData", testData);
+        //ArrayList<SaleItem> testData = service.getSaleItemsList();
+        model.addAttribute("testData", service.getSaleItemsList());
         return "concessionScreen";
     }
 }
