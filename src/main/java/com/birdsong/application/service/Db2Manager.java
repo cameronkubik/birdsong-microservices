@@ -1,4 +1,4 @@
-package microservice;
+package com.birdsong.application.service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.birdsong.application.model.*;
+import com.birdsong.application.controller.*;
 
 @RestController
 public class Db2Manager {

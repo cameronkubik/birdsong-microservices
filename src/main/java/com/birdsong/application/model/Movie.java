@@ -1,4 +1,5 @@
-package microservice;
+package com.birdsong.application.model;
+
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 
