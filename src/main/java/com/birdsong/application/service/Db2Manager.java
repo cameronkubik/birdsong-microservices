@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import com.birdsong.application.model.*;
 //import com.birdsong.application.controller.*;
 
-
 public class Db2Manager {
     // @Value("${db2.url}")
     // String urlEndpoint;
@@ -473,7 +472,7 @@ public class Db2Manager {
         Notice notice = new Notice(mainNotice, subNotice);
         return notice;
     }
-    
+
     public AboutUsContent getAboutUsContent()  {
         String header = "About Us";
         String subHeader = "Movies are our passion!";
