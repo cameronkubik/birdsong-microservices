@@ -426,4 +426,14 @@ public class Db2Manager {
 
         return sBuilder.toString();
     }
+
+    public AboutUsContent getAboutUsContent()  {
+        String header = "About Us";
+        String subHeader = "Movies are our passion!";
+        String body = "Our goal is to provide you a clean, comfortable and friendly atmosphere for the entire family to enjoy. We have stadium type parking, a 30' x 60' screen with stereo sound, concession and clean rest room facilities.";
+
+        AboutUsContent returnContent =  new AboutUsContent(header, subHeader, body);
+
+        return returnContent;
+    }
 }
