@@ -12,8 +12,9 @@ public class FooterService {
 
     private Db2Manager dbManager = Db2Manager.getInstance();
 
-    public String get() {
-        return "todo";
+    public boolean postFooterData(Footer footer) {
+        //return "todo";
+        return true;
     }
 
 }
