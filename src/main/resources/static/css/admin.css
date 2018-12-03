@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-/* admin.css
- * This file provides css styles for the admin site.
-=======
 /* style.css
  * This file provides css styles.
->>>>>>> aa8aa0495c7ecdb04ba97f9c348969eae5ed6b01
  */
 body, html {
 	background-color: #F5EFE3 !important;
@@ -95,8 +90,4 @@ button.btn.add{
 
 #zip{
 	padding-right: 0px;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> aa8aa0495c7ecdb04ba97f9c348969eae5ed6b01
