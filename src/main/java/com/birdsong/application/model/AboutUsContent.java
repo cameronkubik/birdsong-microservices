@@ -22,6 +22,10 @@ public class AboutUsContent {
         return this.header;
     }
 
+    public void setHeader(String _header) {
+        this.header = _header;
+    }
+
     public String getSubHeader() {
         return this.subHeader;
     }
