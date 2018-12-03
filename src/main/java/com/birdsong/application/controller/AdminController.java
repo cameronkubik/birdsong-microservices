@@ -20,9 +20,12 @@ public class AdminController {
     @Autowired
     ConcessionScreenService concessionService = new ConcessionScreenService();
 
+    @Autowired
+    AboutUsScreenService aboutUsService = new AboutUsScreenService();
+
     @RequestMapping(value = "/admin/", method = RequestMethod.GET)
     public String loadAdminHome(ModelMap model) {
-        
+
         return "adminHome";
     }
 
@@ -61,8 +64,9 @@ public class AdminController {
         return "adminAboutUs";
     }
 
-    @RequestMapping(value = "/admin/about-us", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/about-us/postAboutUs", method = RequestMethod.POST)
     public String postAdminAboutUs(ModelMap model) {
+        
         return "adminAboutUs";
     }
 }
