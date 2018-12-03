@@ -79,3 +79,22 @@ body, html {
 .carousel-caption{
 	background: rgba(0, 0, 0, 0.5);
 }
+
+#boxOffice{
+	background-color:#E1D8C6;
+	padding: 15px;
+	border-radius: 25px;
+	font-size: 25px;
+	text-align: center;
+}
+
+#aboutUs{
+	background-color:#E1D8C6;
+	padding: 15px;
+	border-radius: 25px;
+	text-align: center;
+}
+
+#aboutUsTitle{
+	font-size: 50px;
+}
