@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="images/boxoffice.jpeg" class"img-thumbnail">
+                <img src="images/boxoffice.jpeg" class= "img-thumbnail">
             </div>
 
             <div class="col-md-6" id="boxOffice">
