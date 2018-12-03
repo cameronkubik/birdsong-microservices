@@ -20,14 +20,7 @@ public class AdminController {
     @Autowired
     ConcessionScreenService concessionService = new ConcessionScreenService();
 
-<<<<<<< HEAD
-    @Autowired
-    AboutUsScreenService aboutUsService = new AboutUsScreenService();
-
-    @RequestMapping(value = "/admin/", method = RequestMethod.GET)
-=======
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
->>>>>>> eb07df4714567b8ca52aaf6533902b7d4dbaa51a
     public String loadAdminHome(ModelMap model) {
 
         return "adminHome";

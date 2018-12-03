@@ -1,6 +1,6 @@
 <%-- Include header components --%>
-<%@ include file="common/header.jspf"%>
-<%@ include file="common/navigation.jspf"%>
+<%@ include file="admin/header.jspf"%>
+<%@ include file="admin/navigation.jspf"%>
 
 	<script src="DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
@@ -150,3 +150,6 @@ date_input.datepicker(options);
 </div>
 </div>
 </body>
+
+<%-- Footer HTML --%>
+<%@ include file="admin/footer.jspf"%>
