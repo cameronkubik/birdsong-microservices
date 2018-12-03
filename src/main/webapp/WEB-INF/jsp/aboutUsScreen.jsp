@@ -3,8 +3,8 @@
 <%@ include file="common/navigation.jspf"%>
 
 <%-- This page/components HTML --%>
-<div class="container">
-    <h1>
+<div class="container" id="aboutUs">
+    <h1 id="aboutUsTitle">
         ${content.getHeader()}
     </h1>
     <h2>

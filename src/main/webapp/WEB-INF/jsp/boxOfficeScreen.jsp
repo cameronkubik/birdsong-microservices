@@ -7,18 +7,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <p>TODO - image</p> 
+                <p>TODO - image</p>
                 <img src="images/newapp-icon.png" class"img-thumbnail">
             </div>
 
-            <div class="col-md-6">
-                <h2>Box Office</h2>
-                <p>Office opens at ${opHours.getOpenTime()} PM</p>
-                <p>Movie showings start at ${opHours.getShowingsStartTime()} PM</p>
+            <div class="col-md-6" id="boxOffice">
+                <h1>BOX OFFICE</h1>
+                <p>Office opens at ${opHours.getOpenTime()} PM<br>Movie showings start at ${opHours.getShowingsStartTime()} PM</p>
                 <h2>Admissions:</h2>
-                <p>Adult: ${admission.getAdultTicketPrice()}</p>
-                <p>Ages 6 to 11: ${admission.getChildTicketPrice()}</p>
-                <p>Ages 5 & under: ${admission.getInfantTicketPrice()}</p>
+                Adult: ${admission.getAdultTicketPrice()}<br>
+                Ages 6 to 11: ${admission.getChildTicketPrice()}<br>
+                Ages 5 & under: ${admission.getInfantTicketPrice()}</p>
 
                 <%-- <form class="form-inline" action="/action_page.php">
                     <div class="form-group">
