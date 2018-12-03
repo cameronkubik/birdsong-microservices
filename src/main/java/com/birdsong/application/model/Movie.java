@@ -52,6 +52,10 @@ public class Movie {
     public String getEntireImagePath() {
         return "http://image.tmdb.org/t/p/w500" + posterImagePath;
     }
+
+    public String getEntireImagePath(String size) {
+        return "http://image.tmdb.org/t/p/" + size + "/" + posterImagePath;
+    }
     @JsonGetter("overview")
     public String getOverview() {
         return overview;
