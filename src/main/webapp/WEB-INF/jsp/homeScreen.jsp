@@ -13,7 +13,7 @@
 <%-- This page/components HTML --%>
 <div class = "container" id="welcome">
     <h1>${welcomeMessage.getHeader()}</h1>
-    <p>We're glad you're here!</p>
+    <p class="main-text">We're glad you're here!</p>
     <p class="main-text">${welcomeMessage.getSubHeader()}</p>
     <a class="btn btn-primary" href="/about-us">Learn More</a>
 </div>
