@@ -488,8 +488,33 @@ public class Db2Manager {
         return false;
     }
 
-    public boolean postTicketPrices() {
-        return false;
+    public boolean postTicketPrices(String type, Float price) {
+        boolean isSaved = true;
+        Connection dbC = getConnection();
+
+        try {
+            // prepare statement
+            PreparedStatement prep = dbC.prepareStatement("INSERT INTO tickets(type, price) VALUES(?, ?)");
+
+            // missing parameters
+            prep.setString(1, type);
+            prep.setFloat(2, price);
+
+            // execute
+            prep.execute();
+            
+            // closing
+            prep.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            isSaved = false;
+        }
+
+        releaseConnection(dbC);
+
+        return isSaved;
     }
 
     public boolean postOperationHours() {
