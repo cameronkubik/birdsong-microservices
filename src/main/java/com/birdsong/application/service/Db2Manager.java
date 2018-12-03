@@ -427,6 +427,36 @@ public class Db2Manager {
         return sBuilder.toString();
     }
 
+    public AboutUsContent getAboutUsContent() {
+        AboutUsContent content = new AboutUsContent("", "", "");
+        Connection databaseConnection = getConnection();
+        String query = "SELECT * FROM ABOUTUS";
+
+        try {
+            // Create the Statement, not updatable
+            Statement statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet contentResults = statement.executeQuery(query);
+            contentResults.beforeFirst();
+            while(contentResults.next()) {
+                String header = contentResults.getString("HEADER");
+                String subheader = contentResults.getString("SUB");
+                String body = contentResults.getString("BODY");
+                content = new AboutUsContent(header, subheader, body);
+            }
+
+            // teardown
+            contentResults.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+
+        releaseConnection(databaseConnection);
+
+        return content;
+    }
+
     public OperationHours getOperationHours() {
         OperationHours operationHours = new OperationHours(6, 7);
 
@@ -472,12 +502,6 @@ public class Db2Manager {
 
         Notice notice = new Notice(mainNotice, subNotice);
         return notice;
-    }
-
-    public AboutUsContent getAboutUsContent()  {
-        AboutUsContent returnContent =  new AboutUsContent();
-
-        return returnContent;
     }
 
     public boolean postWelcomeMessage() {

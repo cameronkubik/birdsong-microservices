@@ -11,11 +11,15 @@ public class AboutUsContent {
     private String body;
 
     public AboutUsContent() {
-        this.header = service.getHeaderFromDb();
-        this.subHeader = service.getSubHeaderFromDb();
-        this.body = service.getBodyFromDb();
-        // this.subHeader = _subHeader;
-        // this.body = _body;
+        this.header = service.getAboutUs().getHeader();
+        this.subHeader = service.getAboutUs().getSubHeader();
+        this.body = service.getAboutUs().getBody();
+    }
+
+    public AboutUsContent(String _header, String _subHeader, String _body) {
+        this.header = _header;
+        this.subHeader = _subHeader;
+        this.body = _body;
     }
 
     public String getHeader() {
