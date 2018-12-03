@@ -88,7 +88,7 @@ public class AdminController {
         return new ModelAndView("adminAboutUs", "aboutUsContent", new AboutUsContent());
     }
 
-    @RequestMapping(value = "/admin/about-us/postAboutUs", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/post-about-us", method = RequestMethod.POST)
     public String postAdminAboutUs(@Valid @ModelAttribute("aboutUsContent") AboutUsContent aboutUsContent, 
         BindingResult result, ModelMap model) {
         model.addAttribute("header", aboutUsContent.getHeader());

@@ -2,7 +2,7 @@
 <%@ include file="admin/header.jspf"%>
 <%@ include file="admin/navigation.jspf"%>
 
-<form:form method="POST" action="/admin/about-us/postAboutUs" modelAttribute="aboutUsContent">
+<form:form method="POST" action="/admin/post-about-us" modelAttribute="aboutUsContent">
     
     <div class = "container" id="headerContainer">
         <form:label path="header">Header</form:label>
