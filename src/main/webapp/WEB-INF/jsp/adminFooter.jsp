@@ -2,7 +2,12 @@
 <%@ include file="admin/header.jspf"%>
 <%@ include file="admin/navigation.jspf"%>
 
-
+<style>
+#adminFooter{
+  background-color: #E1D8C6;
+  color: #707070
+}
+</style>
 
 <div class = "container" id="location">
     <h1>Location</h1>
