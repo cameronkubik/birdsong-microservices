@@ -36,7 +36,7 @@ public class Db2Manager {
     // though.
     // ===================================================
     private static Vector<Connection> connectionPool = new Vector<Connection>();
-    private final int MAX_POOL_SIZE = 40;
+    private final int MAX_POOL_SIZE = 5;
 
     // DB2 Values
     // TODO - should we remove these?
