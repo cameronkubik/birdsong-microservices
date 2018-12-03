@@ -7,11 +7,11 @@
     <h1>${welcomeMessage.getHeader()}</h1>
     <p>We're glad you're here!</p>
     <p class="main-text">${welcomeMessage.getSubHeader()}</p>
-    <button type="button" class="btn btn-primary"><a href="/about-us">Learn More</a></button>
+    <a class="btn btn-primary" href="/about-us">Learn More</a>
 </div>
 
-<div class="container">
-  <h2 style="text-align: center; color: white;">Current Showings</h2>
+<div class="container" id="showings">
+  <h2>Current Showings</h2>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -40,21 +40,21 @@
         <c:forEach items="${movieList}" var="movieItem">
             <c:choose>
                 <c:when test="${index == 0}">
-                    <div class="item active">
+                    <div class="carousel-item active">
                 </c:when>
 
                 <c:otherwise>
-                    <div class="item">
+                    <div class="carousel-item">
                 </c:otherwise>
             </c:choose>
 
-                <img src="${movieItem.getEntireImagePath()}" />
+                <img src="${movieItem.getEntireImagePath()}">
                 <div class="carousel-caption">
                     <h3>${movieItem.getTitle()}</h3>
                     <h5>${movieItem.getOverview()}</h5>
                     <p>Showing Times: TODO!!</p>
                     <p>Screen: TODO!!</p>
-					<button type="button" class="btn btn-warning"><a href="https://www.imdb.com">IMBD</a></button>
+					<a class="btn btn-warning" href="https://www.imdb.com">IMBD</a>
                 </div>
             </div>
             <c:set var="index" value="${index + 1}"/>
@@ -62,13 +62,13 @@
     </div>
 
     <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
     </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
     </a>
 
   </div>

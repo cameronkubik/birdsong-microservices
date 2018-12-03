@@ -1,6 +1,6 @@
 <%-- Footer HTML --%>
 <footer class="navbar" id="footer">
-	<div class="container">
+	<div class="container" id="footerContainer">
 		<div class="row">
 			<div class="col-md-4">
 			<h3>Find Us!</h3>
