@@ -14,7 +14,7 @@
     <form>
         <div class="form-group">
             <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="${address}"">
+            <form:input type="text" class="form-control" id="inputAddress" placeholder="${footerContent.getAddress()}"">
         </div>
         <div class="form-group">
             <label for="inputAddress2">Address 2</label>
