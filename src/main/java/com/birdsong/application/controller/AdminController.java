@@ -22,7 +22,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/", method = RequestMethod.GET)
     public String loadAdminHome(ModelMap model) {
-
+        
         return "adminHome";
     }
 
