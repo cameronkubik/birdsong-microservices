@@ -482,4 +482,40 @@ public class Db2Manager {
 
         return returnContent;
     }
+
+    public boolean postWelcomeMessage() {
+        return false;
+    }
+
+    public boolean postSpecialAnnouncements() {
+        return false;
+    }
+
+    public boolean postTicketPrices() {
+        return false;
+    }
+
+    public boolean postOperationHours() {
+        return false;
+    }
+
+    public boolean postAdmissionHours() {
+        return false;
+    }
+
+    public boolean postNotice() {
+        return false;
+    }
+
+    public boolean postConcessionItem() {
+        return false;
+    }
+
+    public boolean postLocation() {
+        return false;
+    }
+
+    public boolean postContacts() {
+        return false;                
+    }
 }

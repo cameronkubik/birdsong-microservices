@@ -29,4 +29,8 @@ public class ConcessionScreenService {
 
         return this.saleItemsList;
     }
+
+    public boolean postSaleItemsList()  {
+        return false;
+    }
 }
