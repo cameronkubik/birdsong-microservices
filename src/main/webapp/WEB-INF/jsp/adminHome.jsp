@@ -149,4 +149,5 @@
 </div>
 
 <%-- Footer HTML --%>
+<%@ include file="admin/dependencies.jspf"%>
 <%@ include file="admin/footer.jspf"%>
