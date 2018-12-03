@@ -13,14 +13,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class AdminConcessionController {
+public class AdminController {
 
+    
+
+    // Pre load Classes for spring boot
     @Autowired
     ConcessionScreenService service = new ConcessionScreenService();
 
     @RequestMapping(value = "/admin/concession", method = RequestMethod.GET)
     public String loadConcessionItems(ModelMap model) {
-        //ArrayList<SaleItem> testData = service.getSaleItemsList();
+        // ArrayList<SaleItem> testData = service.getSaleItemsList();
         model.addAttribute("testData", service.getSaleItemsList());
         return "adminConcession";
     }
