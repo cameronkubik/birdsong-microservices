@@ -1,5 +1,5 @@
 <%-- Navigation bar HTML --%>
-<nav role="navigation" class="navbar navbar-default">
+<nav role="navigation" class="navbar navbar-default" id="topNavbar">
 	<a href="/">Home</a>
 	<a href="box-office">Box Office</a>
 	<a href="concession">Concessions</a>

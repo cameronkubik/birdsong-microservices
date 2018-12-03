@@ -7,26 +7,30 @@
 	<h1>Tickets</h1>
 		<button type="button" class="btn add" data-toggle="modal" data-target="#addModal">Click to Add Ticket...</button>
 	<table class="table" id="ticketTable">
-	<thead>
-		<tr>
-			<th>Tickets</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Adult</td>
-			<td class="buttons"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-		</tr>
-		<tr>
-			<td>Child</td>
-			<td class="buttons"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-		</tr>
-		<tr>
-			<td>Senior</td>
-			<td class="buttons"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-		</tr>
-	</tbody>
+		<thead>
+			<tr>
+				<th>Tickets</th>
+				<th>Price</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Adult</td>
+				<td>${admission.getAdultTicketPrice()}</td>
+				<td class="buttons goRight"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
+			</tr>
+			<tr>
+				<td>Child</td>
+				<td>${admission.getChildTicketPrice()}</td>
+				<td class="buttons goRight"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
+			</tr>
+			<tr>
+				<td>Senior</td>
+				<td>${admission.getInfantTicketPrice()}</td>
+				<td class="buttons goRight"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
+			</tr>
+		</tbody>
 	</table>
 	</div>
 
@@ -35,9 +39,9 @@
 	<form>
 		<div class="form-row">
 			<div class="form-group col-md-6" id="boxOfficeHours">
-				<label for="inputBoxOfficeHours">Box Office Open Time</label>
+				<label for="inputBoxOfficeHours">Box Office Opens at</label>
 					<div class="input-append bootstrap-timepicker-component">
-    			<input class="timepicker-1 input-small" type="text">
+    			<input class="timepicker-1 input-small" type="text" placeholder="${opHours.getOpenTime()}">
     			<span class="add-on">
         	<i class="icon-time"></i>
     			</span>
@@ -46,7 +50,7 @@
 				<div class="form-group col-md-6" id="movieStart">
 					<label for="inputMovieStart">Movie Start Time</label>
 						<div class="input-append bootstrap-timepicker-component">
-						<input class="timepicker-2 input-small" type="text">
+						<input class="timepicker-2 input-small" type="text" placeholder="${opHours.getShowingsStartTime()}">
 						<span class="add-on">
 						<i class="icon-time"></i>
 						</span>
@@ -61,7 +65,7 @@
 <h1>Announcements</h1>
 <form>
 <div class="form-group">
-	<textarea class="form-control" rows="5" id="announcements-edit"></textarea>
+	<textarea class="form-control" rows="5" id="announcements-edit">${notice.getMainNotice()}${"\n"}${notice.getSubNotice()}</textarea>
 </div>
 <button type="submit" class="btn btn-default">Submit</button>
 </form>
@@ -98,7 +102,7 @@
 
   </div>
 </div>
-
+<%-- 
 <!-- Add Modal -->
 <div id="addModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -128,7 +132,7 @@
 </div>
 
 </div>
-</div>
+</div> --%>
 
 <%@ include file="admin/dependencies.jspf"%>
 

@@ -1,11 +1,11 @@
-	<%-- Footer HTML --%>
-	<footer class="navbar" id="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-				<h3>Find Us!</h3>
-					<p>907 Shiloh Church Rd, Camden, TN 38320</p>
-				</div>
+<%-- Footer HTML --%>
+<footer class="navbar" id="footer">
+	<div class="container" id="footerContainer">
+		<div class="row">
+			<div class="col-md-4">
+			<h3>Find Us!</h3>
+				<p>907 Shiloh Church Rd, Camden, TN 38320</p>
+			</div>
 
 				<div class="col-md-4">
 						<h3>Contacts</h3>
