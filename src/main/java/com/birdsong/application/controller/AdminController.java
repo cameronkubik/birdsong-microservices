@@ -26,8 +26,6 @@ public class AdminController {
 
     // Pre load Classes for spring boot
     @Autowired
-    ConcessionScreenService concessionService = new ConcessionScreenService();
-    AboutUsScreenService aboutUsService = new AboutUsScreenService();
     FooterService footerService = new FooterService();
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -67,18 +65,20 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/box-office", method = RequestMethod.POST)
     public String postAdminBoxOffice(ModelMap model) {
-
+        BoxOfficeScreenService boxOfficeService = new BoxOfficeScreenService();
         return "adminBoxOffice";
     }    
 
     @RequestMapping(value = "/admin/concession", method = RequestMethod.GET)
     public String loadConcessionItems(ModelMap model) {
+        ConcessionScreenService concessionService = new ConcessionScreenService();
         model.addAttribute("testData", concessionService.getSaleItemsList());
         return "adminConcession";
     }
 
     @RequestMapping(value = "/admin/concession", method = RequestMethod.POST)
     public String postConcessionItems(ModelMap model) {
+        ConcessionScreenService concessionService = new ConcessionScreenService();
         model.addAttribute("testData", concessionService.postSaleItemsList());
         return "adminConcession";
     } 
@@ -91,6 +91,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/post-about-us", method = RequestMethod.POST)
     public String postAdminAboutUs(@Valid @ModelAttribute("aboutUsContent") AboutUsContent aboutUsContent, 
             BindingResult result, ModelMap model) {
+        AboutUsScreenService aboutUsService = new AboutUsScreenService();
 
         model.addAttribute("header", aboutUsContent.getHeader());
         model.addAttribute("subHeader", aboutUsContent.getSubHeader());
@@ -107,6 +108,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/post-footer", method = RequestMethod.POST)
     public String postAdminFooter(@Valid @ModelAttribute("footerContent") Footer footer,
             BindingResult result, ModelMap model) {
+        FooterService service = new FooterService();
 
         model.addAttribute("address", footer.getAddress());
         model.addAttribute("address2", footer.getAddress2());
@@ -120,6 +122,8 @@ public class AdminController {
         model.addAttribute("instagram", footer.getInstagram());
         model.addAttribute("youtube", footer.getYoutube());
 
+        service.postFooterData(footer);
+        
         return "adminFooter";
     }
 }
