@@ -9,7 +9,7 @@ var Page = {
             });
         }
     },
-    
+
     load: function () {
         this.Events.bindEventHandlers();
     }
