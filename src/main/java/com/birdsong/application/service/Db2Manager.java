@@ -409,22 +409,30 @@ public class Db2Manager {
         return info;
     }
 
-    public WelcomeMessage getWelcomeMessage() {
-        // TODO
-        String header = "Welcome to Birdsong Drive-In!\n\n";
-        String subHeader = "Located in Camden, TN, we are a family owned and operated old-school drive-in theater.";
-        WelcomeMessage welcomeMessage = new WelcomeMessage(header, subHeader);
+    public HomeContent getHomeContent() {
+        Connection dbC = getConnection();
+        HomeContent HC = new HomeContent();
+        String q = "SELECT * FROM home;";
+        try {
+            Statement st = dbC.createStatement();
+            ResultSet rs = st.executeQuery(q);
 
-        return welcomeMessage;
-    }
-    
-    public String getSpecialAnnouncements() {
-        // TODO
-        StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("Friday Night Special: ");
-        sBuilder.append("Admission price by car! Pay only $10 for each carload.");
+            String w = rs.getString("Welcome");
+            String s = rs.getString("Special");
 
-        return sBuilder.toString();
+            HC.setwelcome(w);
+            HC.setspecialEvents(s);
+
+            st.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+
+        releaseConnection(dbC);
+
+        return HC;
     }
 
     public OperationHours getOperationHours() {
@@ -481,12 +489,24 @@ public class Db2Manager {
         return returnContent;
     }
 
-    public boolean postWelcomeMessage() {
-        return false;
-    }
+    public boolean postHomeContent(String welcome, String special) {
+        boolean isSaved = true;
+        Connection dbC = getConnection();
+        try {
+            PreparedStatement prep = dbC.prepareStatement("UPDATE Home SET welcome = ?, special = ?;");
 
-    public boolean postSpecialAnnouncements() {
-        return false;
+            prep.setString(1, welcome);
+            prep.setString(2, special);
+
+            prep.executeUpdate();
+            prep.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            isSaved = false;
+        }
+        return isSaved;
     }
 
     public boolean postTicketPrices(String type, Float price) {
