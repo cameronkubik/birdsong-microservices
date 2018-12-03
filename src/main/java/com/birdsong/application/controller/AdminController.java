@@ -96,11 +96,7 @@ public class AdminController {
         model.addAttribute("header", aboutUsContent.getHeader());
         model.addAttribute("subHeader", aboutUsContent.getSubHeader());
         model.addAttribute("body", aboutUsContent.getBody());
-<<<<<<< HEAD
         aboutUsService.postAboutUs(aboutUsContent);
-=======
-        
->>>>>>> e4f06f3efef27b0544e7356d03e71ed480d91304
         return "adminAboutUs";
     }
 
@@ -127,7 +123,7 @@ public class AdminController {
         model.addAttribute("youtube", footer.getYoutube());
 
         service.postFooterData(footer);
-        
+
         return "adminFooter";
     }
 }
