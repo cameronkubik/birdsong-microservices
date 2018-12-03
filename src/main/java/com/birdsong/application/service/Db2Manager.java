@@ -413,7 +413,7 @@ public class Db2Manager {
         Connection dbC = getConnection();
         HomeContent HC = null;
         String q = "SELECT * FROM home;";
-        try {}
+        try {
 
             Statement st = dbC.createStatement();
             ResultSet rs = st.executeQuery(q);
@@ -736,6 +736,7 @@ public class Db2Manager {
     public Footer getFooter() {
         Footer FT = new Footer();
         Connection dbC = getConnection();
+        //TODO
         releaseConnection(dbC);
         return FT;
     }
@@ -751,7 +752,12 @@ public class Db2Manager {
             prep.setString(4, t);
             prep.setString(5, f);
             prep.setString(6, i);
-
+            prep.executeUpdate();
+            prep.close();
+            dbC.commit();
+        } catch (Exception b) {
+            System.out.print(b);
+            isSaved = false;
         }
         releaseConnection(dbC);
         return isSaved;
