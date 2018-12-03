@@ -7,11 +7,11 @@
     <h1>${welcomeMessage.getHeader()}</h1>
     <p>We're glad you're here!</p>
     <p class="main-text">${welcomeMessage.getSubHeader()}</p>
-    <button type="button" class="btn btn-primary"><a href="/about-us">Learn More</a></button>
+    <a class="btn btn-primary" href="/about-us">Learn More</a>
 </div>
 
-<div class="container">
-  <h2 style="text-align: center; color: white;">Current Showings</h2>
+<div class="container" id="showings">
+  <h2>Current Showings</h2>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -48,13 +48,13 @@
                 </c:otherwise>
             </c:choose>
 
-                <img src="${movieItem.getEntireImagePath()}" />
+                <img src="${movieItem.getEntireImagePath()}">
                 <div class="carousel-caption">
                     <h3>${movieItem.getTitle()}</h3>
                     <h5>${movieItem.getOverview()}</h5>
                     <p>Showing Times: TODO!!</p>
                     <p>Screen: TODO!!</p>
-					<button type="button" class="btn btn-warning"><a href="https://www.imdb.com">IMBD</a></button>
+					<a class="btn btn-warning" href="https://www.imdb.com">IMBD</a>
                 </div>
             </div>
             <c:set var="index" value="${index + 1}"/>

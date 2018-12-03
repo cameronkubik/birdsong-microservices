@@ -2,20 +2,19 @@
  * This file provides css styles.
  */
 body, html {
-	background-color: #3b4b54 !important;
+	background-color: #F5EFE3 !important;
 	width: 100%;
 	height: 100%;
 	margin: 0 auto;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light",
 		"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-	color: #ffffff;
+	color: #707070;
 }
 /* Style the top navigation bar */
 .navbar {
     overflow: hidden; /* Hide overflow */
-    background-color: #333; /* Dark background color */
+    background-color: #384567;
 		text-align: center;
-		margin-bottom: 0px !important;
 }
 
 /* Style the navigation bar links */
@@ -37,24 +36,36 @@ body, html {
     color: black; /* Black text color */
 }
 
+#topNavbar{
+	margin-bottom: 30px;
+}
+
 #footer{
+	margin-top: 30px;
 	color: white;
+	margin-bottom: 0px;
+}
+
+#footerContainer{
+	width:auto;
 }
 
 #welcome {
-	background-color:#18171C;
-	color: #ffffff;
+	background-color:#E1D8C6;
+	color: #707070;
 	text-align: center;
-	padding-bottom: 15px;
+	padding: 15px;
+	border-radius: 25px;
+	margin-bottom: 30px;
 }
 
-.main-text{
-	text-align: justify;
+#showings{
+	text-align: center;
 }
 
 .carousel{
 	margin: auto;
-	width: 700px;
+	width: 500px;
 }
 
 .carousel-inner .item {
@@ -65,12 +76,6 @@ body, html {
 	display: block;
 }
 
-.elementdark{
-	background-color:#18171C;
-	color: #ffffff;
-}
-
-.elementlight{
-	background-color: #736E67;
-	color: #ffffff;
+.carousel-caption{
+	background: rgba(0, 0, 0, 0.5);
 }
