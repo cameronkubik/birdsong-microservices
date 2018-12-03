@@ -90,21 +90,40 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/post-about-us", method = RequestMethod.POST)
     public String postAdminAboutUs(@Valid @ModelAttribute("aboutUsContent") AboutUsContent aboutUsContent, 
-        BindingResult result, ModelMap model) {
+            BindingResult result, ModelMap model) {
+
         model.addAttribute("header", aboutUsContent.getHeader());
         model.addAttribute("subHeader", aboutUsContent.getSubHeader());
         model.addAttribute("body", aboutUsContent.getBody());
+<<<<<<< HEAD
         aboutUsService.postAboutUs(aboutUsContent);
+=======
+        
+>>>>>>> e4f06f3efef27b0544e7356d03e71ed480d91304
         return "adminAboutUs";
     }
 
     @RequestMapping(value = "/admin/footer", method = RequestMethod.GET)
-    public String loadAdminFooter(ModelMap model) {
-        return "adminFooter";
+    public ModelAndView loadAdminFooter() {
+        return new ModelAndView("adminFooter", "footerContent", new Footer());
     }
 
-    @RequestMapping(value = "/admin/footer", method = RequestMethod.POST)
-    public String postAdminFooter(ModelMap model) {
+    @RequestMapping(value = "/admin/post-footer", method = RequestMethod.POST)
+    public String postAdminFooter(@Valid @ModelAttribute("footerContent") Footer footer,
+            BindingResult result, ModelMap model) {
+
+        model.addAttribute("address", footer.getAddress());
+        model.addAttribute("address2", footer.getAddress2());
+        model.addAttribute("city", footer.getCity());
+        model.addAttribute("state", footer.getState());
+        model.addAttribute("zip", footer.getZip());
+        model.addAttribute("email", footer.getEmail());
+        model.addAttribute("phone", footer.getPhone());
+        model.addAttribute("twitter", footer.getTwitter());
+        model.addAttribute("facebook", footer.getFacebook());
+        model.addAttribute("instagram", footer.getInstagram());
+        model.addAttribute("youtube", footer.getYoutube());
+
         return "adminFooter";
     }
 }

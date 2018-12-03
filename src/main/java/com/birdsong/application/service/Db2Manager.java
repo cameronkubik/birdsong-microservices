@@ -36,7 +36,7 @@ public class Db2Manager {
     // though.
     // ===================================================
     private static Vector<Connection> connectionPool = new Vector<Connection>();
-    private final int MAX_POOL_SIZE = 40;
+    private final int MAX_POOL_SIZE = 4;
 
     // DB2 Values
     // TODO - should we remove these?
@@ -488,8 +488,33 @@ public class Db2Manager {
         return false;
     }
 
-    public boolean postTicketPrices() {
-        return false;
+    public boolean postTicketPrices(String type, Float price) {
+        boolean isSaved = true;
+        Connection dbC = getConnection();
+
+        try {
+            // prepare statement
+            PreparedStatement prep = dbC.prepareStatement("INSERT INTO tickets(type, price) VALUES(?, ?)");
+
+            // missing parameters
+            prep.setString(1, type);
+            prep.setFloat(2, price);
+
+            // execute
+            prep.execute();
+            
+            // closing
+            prep.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            isSaved = false;
+        }
+
+        releaseConnection(dbC);
+
+        return isSaved;
     }
 
     public boolean postOperationHours() {
@@ -507,7 +532,7 @@ public class Db2Manager {
     public boolean postConcessionItem(SaleItem itemToSell) {
         boolean saveConfirmation = true;
         Connection databaseConnection = getConnection();
-        String query = "SELECT * FROM BirdSong_SaleItem";
+        String query = "SELECT * FROM SaleItem";
         
         try {
 
@@ -551,7 +576,7 @@ public class Db2Manager {
         
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE BIRDSONG_CONTACTINFO SET Address = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET Address = ?");
 
             //set missing parameter
             prep.setString(1, locate);
@@ -573,18 +598,18 @@ public class Db2Manager {
     }
 
 
-    public boolean postContacts(String email, String phone) {
+    public boolean postContacts(String chewtoy, String dogbone) {
         boolean saveConfirmation = true;
         //make connection
         Connection dbC = getConnection();
 
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE BIRDSONG_CONTACTINFO SET email = ?, phone = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET email = ?, phone = ?");
 
             //set missing parameters
-            prep.setString(1, email);
-            prep.setString(2, phone);
+            prep.setString(1, chewtoy);
+            prep.setString(2, dogbone);
 
             //execute
             prep.executeUpdate();
