@@ -4,19 +4,20 @@
 
 <form:form method="POST" action="/admin/post-about-us" modelAttribute="aboutUsContent">
     
+    <h1>Header</h1>
     <div class = "container" id="headerContainer">
-        <form:label path="header">Header</form:label>
-        <form:input path="header"/>
+        <%-- <form:label path="header"><h1>Header</h1></form:label> --%>
+        <form:textarea path="header" rows="5"/>
     </div>
-
+    <h1>Subheader</h1>
     <div class = "container" id="subheaderContainer">
-        <form:label path="subHeader">Subheader</form:label>
-        <form:input path="subHeader"/>
+        <%-- <form:label path="subHeader"><h1>Subheader</h1></form:label> --%>
+        <form:textarea path="subHeader" rows="5"/>
     </div>
-
+    <h1>Body</h1>
     <div class = "container" id="bodyContainer">
-        <form:label path="body">Body</form:label>
-        <form:input path="body"/>
+        <%-- <form:label path="body"><h1>Body</h1></form:label> --%>
+        <form:textarea path="body" rows="5"/>
     </div>
     <input type="submit" value="Submit"/>
 </form:form>

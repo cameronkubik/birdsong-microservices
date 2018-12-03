@@ -598,7 +598,7 @@ public class Db2Manager {
     }
 
 
-    public boolean postContacts(String email, String phone) {
+    public boolean postContacts(String chewtoy, String dogbone) {
         boolean saveConfirmation = true;
         //make connection
         Connection dbC = getConnection();
@@ -608,8 +608,8 @@ public class Db2Manager {
             PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET email = ?, phone = ?");
 
             //set missing parameters
-            prep.setString(1, email);
-            prep.setString(2, phone);
+            prep.setString(1, chewtoy);
+            prep.setString(2, dogbone);
 
             //execute
             prep.executeUpdate();
@@ -685,5 +685,41 @@ public class Db2Manager {
         releaseConnection(dbC);
 
         return isSaved;
+    }
+
+    public boolean postAboutUs(AboutUsContent content) {
+        boolean saveConfirmation = true;
+        String header = content.getHeader();
+        String subheader = content.getSubHeader();
+        String body = content.getBody();
+
+        //make connection
+        Connection dbC = getConnection();
+
+        try {
+            //prepare statement
+            PreparedStatement prep = dbC.prepareStatement("UPDATE ABOUTUS SET header = ?, sub = ?, body = ?");
+
+            //set missing parameters
+            prep.setString(1, header);
+            prep.setString(2, subheader);
+            prep.setString(3, body);
+
+            //execute
+            prep.executeUpdate();
+
+            //close
+            prep.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            saveConfirmation = false;
+        }
+
+        //close connection
+        releaseConnection(dbC);
+
+        return saveConfirmation; 
     }
 }
