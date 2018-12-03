@@ -5,10 +5,14 @@ import com.birdsong.application.service.*;
 
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+
 import com.birdsong.application.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
@@ -84,8 +88,11 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/about-us/postAboutUs", method = RequestMethod.POST)
-    public String postAdminAboutUs(ModelMap model) {
-        
+    public String postAdminAboutUs(@Valid @ModelAttribute("aboutUsContent") AboutUsContent aboutUs, 
+        BindingResult result, ModelMap model) {
+        model.addAttribute("header", aboutUs.getHeader());
+        model.addAttribute("subheader", aboutUs.getSubHeader());
+        model.addAttribute("body", aboutUs.getBody());
         return "adminAboutUs";
     }
 

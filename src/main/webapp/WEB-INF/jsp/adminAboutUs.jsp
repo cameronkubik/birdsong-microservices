@@ -1,23 +1,24 @@
 <%-- Include header components --%>
 <%@ include file="admin/header.jspf"%>
 <%@ include file="admin/navigation.jspf"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<form:form method="POST" action="/change-about-us">
-    <div class = "container" id="subheader">
-        <h1>Subheader</h1>
-            <div class="form-group">
-                <form:textarea path="subheader" modelAttribute="content" rows="5"></form:textarea>
-            </div>
+<form:form method="POST" action="/admin/about-us/postAboutUs" modelAttribute="aboutUsContent">
+    
+    <div class = "container" id="headerContainer">
+        <form:label path="header">Header</form:label>
+        <form:input path="header"/>
     </div>
 
-    <div class = "container" id="body">
-        <h1>Body</h1>
-            <div class="form-group">
-                <form:textarea path="body" modelAttribute="content" rows="5"></form:textarea>
-            </div>
-        <input type="submit" value="Submit" />
+    <div class = "container" id="subheaderContainer">
+        <form:label path="subHeader">Subheader</form:label>
+        <form:input path="subHeader"/>
     </div>
+
+    <div class = "container" id="bodyContainer">
+        <form:label path="body">Body</form:label>
+        <form:input path="body"/>
+    </div>
+    <input type="submit" value="Submit"/>
 </form:form>
 <%-- Footer HTML --%>
 <%@ include file="admin/footer.jspf"%>
