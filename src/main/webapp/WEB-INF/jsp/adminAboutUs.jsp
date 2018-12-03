@@ -21,4 +21,5 @@
     <input type="submit" value="Submit"/>
 </form:form>
 <%-- Footer HTML --%>
+<%@ include file="admin/dependencies.jspf"%>
 <%@ include file="admin/footer.jspf"%>
