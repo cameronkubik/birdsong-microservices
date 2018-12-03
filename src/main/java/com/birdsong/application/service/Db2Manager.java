@@ -532,7 +532,7 @@ public class Db2Manager {
     public boolean postConcessionItem(SaleItem itemToSell) {
         boolean saveConfirmation = true;
         Connection databaseConnection = getConnection();
-        String query = "SELECT * FROM BirdSong_SaleItem";
+        String query = "SELECT * FROM SaleItem";
         
         try {
 
@@ -576,7 +576,7 @@ public class Db2Manager {
         
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE BIRDSONG_CONTACTINFO SET Address = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET Address = ?");
 
             //set missing parameter
             prep.setString(1, locate);
@@ -605,7 +605,7 @@ public class Db2Manager {
 
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE BIRDSONG_CONTACTINFO SET email = ?, phone = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET email = ?, phone = ?");
 
             //set missing parameters
             prep.setString(1, email);
