@@ -1,4 +1,93 @@
-/* 
-    
+/* admin.css
+ * This file provides css styles for the admin site.
+ */
+body, html {
+	background-color: #F5EFE3 !important;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light",
+		"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: #707070;
+}
+/* Style the top navigation bar */
+.navbar {
+    overflow: hidden; /* Hide overflow */
+    background-color: #384567; /* Dark background color */
+		text-align: center;
+		margin-bottom: 0px !important;
+}
 
-**/
+/* Style the navigation bar links */
+.navbar a {
+    display: inline-flex; /* Change the display to block, for responsive reasons (see below) */
+    color: #FFFFFF; /* White text color */
+    padding: 14px 20px; /* Add some padding */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Right-aligned link */
+.navbar a.right {
+    float: right; /* Float a link to the right */
+}
+
+/* Change color on hover/mouse-over */
+.navbar a:hover {
+    background-color: #ddd; /* Grey background color */
+    color: black; /* Black text color */
+}
+
+h1{
+	text-align: center;
+}
+
+button[type="submit"]{
+	float: right;
+	background-color: #80C4B0;
+	color: #ffffff;
+}
+
+button.btn.add{
+	margin-bottom: 20px;
+	color: #ffffff;
+	background-color: #799DA0;
+}
+
+/*Index*/
+#welcome-edit{
+	max-width: 100%;
+}
+
+#events-edit{
+	max-width: 100%;
+}
+
+/*Box Office*/
+#announcements-edit{
+	max-width: 100%;
+}
+
+#description{
+	max-width: 100%;
+}
+
+#hours{
+	margin-bottom: 30px;
+}
+
+#boxOfficeHours{
+	text-align: right;
+}
+
+#movieStart{
+	text-align: left;
+}
+
+/*Footer*/
+#city{
+	padding-left: 0px;
+}
+
+#zip{
+	padding-right: 0px;
+}
