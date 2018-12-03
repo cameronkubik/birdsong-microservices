@@ -11,10 +11,10 @@
 </style>
 
 <%-- This page/components HTML --%>
-<h1>Concessions</h1>
+<h1 class="concessionTitle">Concessions</h1>
 <div class="food-table" id="2">
-    <h1>Food</h1>
-    <table style="width:100%">
+    <h2 class="concessionTitle">Food</h2>
+    <table>
         <tr>
             <th>Item</th>
             <th>Cost</th>
@@ -30,8 +30,8 @@
     </table>
 </div>
 <div class="drinks-table" id="3">
-    <h1>Drinks</h1>
-    <table style="width:100%">
+    <h2 class="concessionTitle">Drinks</h2>
+    <table>
         <tr>
             <th>Item</th>
             <th>Cost</th>
@@ -47,8 +47,8 @@
     </table>
 </div>
 <div class="snacks-table" id="4">
-    <h1>Snacks</h1>
-    <table style="width:100%">
+    <h2 class="concessionTitle">Snacks</h2>
+    <table>
         <tr>
             <th>Item</th>
             <th>Cost</th>

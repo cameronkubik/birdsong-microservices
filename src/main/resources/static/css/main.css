@@ -68,16 +68,13 @@ body, html {
 	width: 500px;
 }
 
-.carousel-inner .item {
-	display: none;
-}
-
 .carousel-inner .item.active {
 	display: block;
 }
 
 .carousel-caption{
 	background: rgba(0, 0, 0, 0.5);
+	border-radius: 25px;
 }
 
 #boxOffice{
@@ -97,4 +94,29 @@ body, html {
 
 #aboutUsTitle{
 	font-size: 50px;
+}
+
+.concessionTitle{
+	text-align: center;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+		margin: 0px auto;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #F5EFE3;
+}
+
+tr:nth-child(odd) {
+    background-color: #E1D8C6;
 }
