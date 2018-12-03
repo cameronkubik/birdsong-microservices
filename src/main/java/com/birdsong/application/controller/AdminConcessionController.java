@@ -18,7 +18,7 @@ public class AdminConcessionController {
     @Autowired
     ConcessionScreenService service = new ConcessionScreenService();
 
-    @RequestMapping(value = "/adminConcession", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/concession", method = RequestMethod.GET)
     public String loadConcessionItems(ModelMap model) {
         //ArrayList<SaleItem> testData = service.getSaleItemsList();
         model.addAttribute("testData", service.getSaleItemsList());
