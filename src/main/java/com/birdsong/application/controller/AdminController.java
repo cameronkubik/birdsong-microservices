@@ -94,6 +94,7 @@ public class AdminController {
         model.addAttribute("header", aboutUsContent.getHeader());
         model.addAttribute("subHeader", aboutUsContent.getSubHeader());
         model.addAttribute("body", aboutUsContent.getBody());
+        aboutUsService.postAboutUs(aboutUsContent);
         return "adminAboutUs";
     }
 

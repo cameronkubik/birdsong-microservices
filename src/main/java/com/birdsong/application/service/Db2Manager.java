@@ -603,4 +603,40 @@ public class Db2Manager {
 
         return saveConfirmation;                
     }
+
+    public boolean postAboutUs(AboutUsContent content) {
+        boolean saveConfirmation = true;
+        String header = content.getHeader();
+        String subheader = content.getSubHeader();
+        String body = content.getBody();
+
+        //make connection
+        Connection dbC = getConnection();
+
+        try {
+            //prepare statement
+            PreparedStatement prep = dbC.prepareStatement("UPDATE ABOUTUS SET header = ?, sub = ?, body = ?");
+
+            //set missing parameters
+            prep.setString(1, header);
+            prep.setString(2, subheader);
+            prep.setString(3, body);
+
+            //execute
+            prep.executeUpdate();
+
+            //close
+            prep.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            saveConfirmation = false;
+        }
+
+        //close connection
+        releaseConnection(dbC);
+
+        return saveConfirmation; 
+    }
 }

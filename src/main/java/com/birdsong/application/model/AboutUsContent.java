@@ -12,7 +12,7 @@ public class AboutUsContent {
 
     public AboutUsContent() {
         this.header = service.getHeaderFromDb();
-        this.subHeader = service.getBodyFromDb();
+        this.subHeader = service.getSubHeaderFromDb();
         this.body = service.getBodyFromDb();
         // this.subHeader = _subHeader;
         // this.body = _body;

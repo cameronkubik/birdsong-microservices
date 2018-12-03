@@ -31,7 +31,7 @@ public class AboutUsScreenService {
     }
 
     public boolean postAboutUs(AboutUsContent _content) {
-        System.out.print(_content);
+        dbManager.postAboutUs(_content);
         return false;
     }
 }
