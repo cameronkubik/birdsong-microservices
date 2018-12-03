@@ -598,7 +598,7 @@ public class Db2Manager {
     }
 
 
-    public boolean postContacts(String email, String phone) {
+    public boolean postContacts(String chewtoy, String dogbone) {
         boolean saveConfirmation = true;
         //make connection
         Connection dbC = getConnection();
@@ -608,8 +608,8 @@ public class Db2Manager {
             PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET email = ?, phone = ?");
 
             //set missing parameters
-            prep.setString(1, email);
-            prep.setString(2, phone);
+            prep.setString(1, chewtoy);
+            prep.setString(2, dogbone);
 
             //execute
             prep.executeUpdate();
