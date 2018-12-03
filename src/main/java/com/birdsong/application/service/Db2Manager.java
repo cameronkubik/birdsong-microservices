@@ -409,22 +409,30 @@ public class Db2Manager {
         return info;
     }
 
-    public WelcomeMessage getWelcomeMessage() {
-        // TODO
-        String header = "Welcome to Birdsong Drive-In!\n\n";
-        String subHeader = "Located in Camden, TN, we are a family owned and operated old-school drive-in theater.";
-        WelcomeMessage welcomeMessage = new WelcomeMessage(header, subHeader);
+    public HomeContent getHomeContent() {
+        Connection dbC = getConnection();
+        HomeContent HC = null;
+        String q = "SELECT * FROM home;";
+        try {
 
-        return welcomeMessage;
-    }
-    
-    public String getSpecialAnnouncements() {
-        // TODO
-        StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("Friday Night Special: ");
-        sBuilder.append("Admission price by car! Pay only $10 for each carload.");
+            Statement st = dbC.createStatement();
+            ResultSet rs = st.executeQuery(q);
 
-        return sBuilder.toString();
+            String w = rs.getString("Welcome");
+            String s = rs.getString("Special");
+
+            HC = new HomeContent(w, s);
+
+            st.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+
+        releaseConnection(dbC);
+
+        return HC;
     }
 
     public AboutUsContent getAboutUsContent() {
@@ -504,12 +512,39 @@ public class Db2Manager {
         return notice;
     }
 
+<<<<<<< HEAD
     public boolean postWelcomeMessage() {
         return false;
     }
+=======
+    public AboutUsContent getAboutUsContent()  {
 
-    public boolean postSpecialAnnouncements() {
-        return false;
+        AboutUsContent returnContent =  new AboutUsContent();
+
+        return returnContent;
+    }
+
+    public boolean postHomeContent(HomeContent home) {
+        boolean isSaved = true;
+        Connection dbC = getConnection();
+        String welcome = home.getwelcome();
+        String special = home.getspecialEvents();
+        try {
+            PreparedStatement prep = dbC.prepareStatement("UPDATE Home SET welcome = ?, special = ?;");
+>>>>>>> ded12c6c343afad2ff63e6b876fc810eff59c534
+
+            prep.setString(1, welcome);
+            prep.setString(2, special);
+
+            prep.executeUpdate();
+            prep.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            isSaved = false;
+        }
+        return isSaved;
     }
 
     public boolean postTicketPrices(String type, Float price) {
@@ -549,14 +584,30 @@ public class Db2Manager {
         return false;
     }
 
-    public boolean postNotice() {
-        return false;
+    public boolean postNotice(String main, String sub) {
+        boolean isSaved = true;
+        Connection dbC = getConnection();
+        
+        try {
+            PreparedStatement prep = dbC.prepareStatement("UPDATE Notices SET main = ?, sub =?;");
+
+            prep.setString(1, main);
+            prep.setString(2, sub);
+
+            prep.executeUpdate();
+            prep.close();
+            dbC.commit();
+        } catch (Exception e) {
+            System.out.print(e);
+            isSaved = false;
+        }
+        return isSaved;
     }
 
     public boolean postConcessionItem(SaleItem itemToSell) {
         boolean saveConfirmation = true;
         Connection databaseConnection = getConnection();
-        String query = "SELECT * FROM SaleItem";
+        String query = "SELECT * FROM SaleItem;";
         
         try {
 
@@ -600,7 +651,7 @@ public class Db2Manager {
         
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET Address = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET Address = ?;");
 
             //set missing parameter
             prep.setString(1, locate);
@@ -629,7 +680,7 @@ public class Db2Manager {
 
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET email = ?, phone = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET email = ?, phone = ?;");
 
             //set missing parameters
             prep.setString(1, chewtoy);
@@ -650,7 +701,36 @@ public class Db2Manager {
         //close connection
         releaseConnection(dbC);
 
-        return saveConfirmation;                
+        return saveConfirmation;
+    }
+
+    public boolean postFooterData(Footer footer) {
+        boolean isSaved = true;
+        Connection dbC = getConnection();
+
+        try {
+            // prepare statement
+            PreparedStatement prep = dbC.prepareStatement("INSERT INTO tickets(type, price) VALUES(?, ?)");
+
+            // // missing parameters
+            // prep.setString(1, type);
+            // prep.setFloat(2, price);
+
+            // // execute
+            // prep.execute();
+
+            // closing
+            prep.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            isSaved = false;
+        }
+
+        releaseConnection(dbC);
+
+        return isSaved;
     }
 
     public boolean postAboutUs(AboutUsContent content) {
@@ -664,7 +744,7 @@ public class Db2Manager {
 
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE ABOUTUS SET header = ?, sub = ?, body = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE ABOUTUS SET header = ?, sub = ?, body = ?;");
 
             //set missing parameters
             prep.setString(1, header);
@@ -687,5 +767,35 @@ public class Db2Manager {
         releaseConnection(dbC);
 
         return saveConfirmation; 
+    }
+
+    public Footer getFooter() {
+        Footer FT = new Footer();
+        Connection dbC = getConnection();
+        //TODO
+        releaseConnection(dbC);
+        return FT;
+    }
+
+    public boolean postFooter(String a, String e, String p, String t, String f, String i) {
+        boolean isSaved = true;
+        Connection dbC = getConnection();
+        try{
+            PreparedStatement prep = dbC.prepareStatement("UPDATE contactinfo SET address = ?, email = ?, phone = ?, twitter = ?, facebook = ?, instagram = ?;");
+            prep.setString(1, a);
+            prep.setString(2, e);
+            prep.setString(3, p);
+            prep.setString(4, t);
+            prep.setString(5, f);
+            prep.setString(6, i);
+            prep.executeUpdate();
+            prep.close();
+            dbC.commit();
+        } catch (Exception b) {
+            System.out.print(b);
+            isSaved = false;
+        }
+        releaseConnection(dbC);
+        return isSaved;
     }
 }

@@ -12,18 +12,26 @@ public class HomeScreenService {
 
     private Db2Manager dbManager = Db2Manager.getInstance();
 
+    public void postHomeContent(HomeContent newContent) {
+        //dbManager.postHomeContent(newContent);
+    }
+
+    public HomeContent getHomeContent() {
+        return dbManager.getHomeContent();
+    }
+
     public ArrayList<Movie> getNowShowingMovies() {
         ArrayList<Movie> nowShowingMovies = dbManager.getNowShowingMovies();
         return nowShowingMovies;
     }
 
-    public WelcomeMessage getWelcomeMessage() {
-        WelcomeMessage welcomeMessage = dbManager.getWelcomeMessage();
-        return welcomeMessage;
-    }
+    // public WelcomeMessage getWelcomeMessage() {
+    //     WelcomeMessage welcomeMessage = dbManager.getWelcomeMessage();
+    //     return welcomeMessage;
+    // }
 
-    public String getSpecialAnnouncements() {
-        String specialAnnouncements = dbManager.getSpecialAnnouncements();
-        return specialAnnouncements;
-    }
+    // public String getSpecialAnnouncements() {
+    //     String specialAnnouncements = dbManager.getSpecialAnnouncements();
+    //     return specialAnnouncements;
+    // }
 }

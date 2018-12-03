@@ -2,6 +2,13 @@
 <%@ include file="admin/header.jspf"%>
 <%@ include file="admin/navigation.jspf"%>
 
+<style>
+#adminConcession{
+  background-color: #E1D8C6;
+  color: #707070
+}
+</style>
+
 <div class="container" id="concessions">
 	<h1>Concessions</h1>
 	<button type="button" class="btn add" data-toggle="modal" data-target="#addModal">Click to Add Item...</button>

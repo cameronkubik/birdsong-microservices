@@ -59,6 +59,10 @@ body, html {
 	margin-bottom: 30px;
 }
 
+.main-text{
+	font-size: 20px;
+}
+
 #showings{
 	text-align: center;
 }
@@ -94,6 +98,7 @@ body, html {
 
 #aboutUsTitle{
 	font-size: 50px;
+	text-align: center;
 }
 
 .concessionTitle{
