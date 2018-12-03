@@ -9,24 +9,24 @@
     <form>
         <div class="form-group">
             <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+            <input type="text" class="form-control" id="inputAddress" placeholder="${address}"">
         </div>
         <div class="form-group">
             <label for="inputAddress2">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+            <input type="text" class="form-control" id="inputAddress2" placeholder="${address2}">
         </div>
         <div class="form-row">
             <div class="form-group col-md-6" id="city">
                 <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity">
+                <input type="text" class="form-control" id="inputCity" placeholder="${city}">
             </div>
             <div class="form-group col-md-4">
                 <label for="inputState">State</label>
-                <select class="form-control bfh-states" data-country="US"></select>
+                <input type="text" class="form-control" id="inputState" placeholder="${state}">
             </div>
             <div class="form-group col-md-2" id="zip">
                 <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
+                <input type="text" class="form-control" id="inputZip" placeholder="${zip}">
             </div>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
@@ -39,31 +39,31 @@
         <div class="form-row">
             <div class="form-group col-md-6" id=email>
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="inputEmail" aria-describedby="email-input" placeholder="Enter email">
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="email-input" placeholder="${email}">
             </div>
-            <div class="form-group col-md-6" id=phone>
+            <div class="form-group col-md-6" id="phone">
                 <label for="phone">Phone</label>
-                <input type="text" class="form-control bfh-phone" id="inputPhone" data-format="+1 (ddd) ddd-dddd">
+                <input type="text" class="form-control bfh-phone" id="inputPhone" placeholder="${phone}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6" id="twitter">
                 <label for="inputTwitter">Twitter</label>
-                <input type="text" class="form-control" id="inputTwitter">
+                <input type="text" class="form-control" id="inputTwitter" placeholder="${twitter}">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputFacebook">Facebook</label>
-                <input type="text" class="form-control" id="inputFacebook">
+                <input type="text" class="form-control" id="inputFacebook" placeholder="${facebook}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6" id="instagram">
                 <label for="inputInstagram">Instagram</label>
-                <input type="text" class="form-control" id="inputInstagram">
+                <input type="text" class="form-control" id="inputInstagram" placeholder="${instagram}">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputYoutube">Youtube</label>
-                <input type="text" class="form-control" id="inputYoutube">
+                <input type="text" class="form-control" id="inputYoutube" placeholder="${youtube}">
             </div>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
