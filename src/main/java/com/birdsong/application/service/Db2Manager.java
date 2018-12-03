@@ -475,10 +475,33 @@ public class Db2Manager {
     }
 
     public AboutUsContent getAboutUsContent()  {
+        AboutUsContent content = new AboutUsContent("", "", "");
+        Connection databaseConnection = getConnection();
+        String query = "SELECT * FROM ABOUTUS";
 
-        AboutUsContent returnContent =  new AboutUsContent();
+        try {
+            // Create the Statement, not updatable
+            Statement statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet contentResults = statement.executeQuery(query);
+            contentResults.beforeFirst();
+            while(contentResults.next()) {
+                String header = contentResults.getString("HEADER");
+                String subheader = contentResults.getString("SUB");
+                String body = contentResults.getString("BODY");
+                content = new AboutUsContent(header, subheader, body);
+            }
 
-        return returnContent;
+            // teardown
+            contentResults.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+
+        releaseConnection(databaseConnection);
+
+        return content;
     }
 
     public boolean postWelcomeMessage() {
@@ -686,7 +709,7 @@ public class Db2Manager {
 
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE ABOUTUS SET header = ?, sub = ?, body = ?;");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE ABOUTUS SET header = ?, sub = ?, body = ?");
 
             //set missing parameters
             prep.setString(1, header);
