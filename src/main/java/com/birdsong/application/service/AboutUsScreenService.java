@@ -18,4 +18,8 @@ public class AboutUsScreenService {
         AboutUsContent aboutUsContent = dbManager.getAboutUsContent();
         return aboutUsContent;
     }
+
+    public boolean postAboutUs() {
+        return false;
+    }
 }

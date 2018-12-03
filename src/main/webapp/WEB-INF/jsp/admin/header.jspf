@@ -15,7 +15,7 @@
 		paths relative to src/main/resources/static/ or using webjars defined in pom.xml 
 	--%>
 	<link href="webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/main.css"/>
+	<link rel="stylesheet" href="css/admin.css"/>
 </head>
 <body>
 <%-- None of these tags are closed because the footer handles closing tags --%>

@@ -25,5 +25,26 @@
 <script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
 <script src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
+	<script>
+		$(document).ready( function () {
+			$('#showingTable').DataTable({
+				"columnDefs": [
+					{ "orderable": false, "targets": 2 },
+					{ "width": "15%", "targets": 2}
+				]
+			});
+
+			var date_input = $('input[name="date"]'); //our date input has the name "date"
+			var container = $('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+			var options = {
+				format: 'mm/dd/yyyy',
+				container: container,
+				todayHighlight: true,
+				autoclose: true,
+			};
+			date_input.datepicker(options);
+		} );
+	</script>
+
 </body>
 </html>

@@ -1,0 +1,7 @@
+<%-- Navigation bar HTML --%>
+<nav role="navigation" class="navbar navbar-default">
+	<a href="/">Home</a>
+	<a href="box-office">Box Office</a>
+	<a href="concession">Concessions</a>
+	<a href="about-us">About Us</a>
+</nav>

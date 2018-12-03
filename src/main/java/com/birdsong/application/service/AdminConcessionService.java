@@ -8,7 +8,7 @@ import com.birdsong.application.model.*;
 
 // Service for Model
 @Service
-public class ConcessionScreenService {
+public class AdminConcessionService {
     
     private ArrayList<SaleItem> saleItemsList;
     private Db2Manager dbManager = Db2Manager.getInstance();
@@ -17,7 +17,7 @@ public class ConcessionScreenService {
         //System.out.print("Any static logic can be executed here...");
     }
 
-    public ConcessionScreenService() {
+    public AdminConcessionService() {
         this.saleItemsList = new ArrayList<SaleItem>();
     }
 
@@ -28,10 +28,5 @@ public class ConcessionScreenService {
         // assign to saleItemsList
 
         return this.saleItemsList;
-    }
-
-    public boolean postSaleItemsList()  {
-        this.saleItemsList = 
-        return false;
     }
 }
