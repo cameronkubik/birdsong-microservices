@@ -411,17 +411,17 @@ public class Db2Manager {
 
     public HomeContent getHomeContent() {
         Connection dbC = getConnection();
-        HomeContent HC = new HomeContent();
+        HomeContent HC = null;
         String q = "SELECT * FROM home;";
-        try {
+        try {}
+
             Statement st = dbC.createStatement();
             ResultSet rs = st.executeQuery(q);
 
             String w = rs.getString("Welcome");
             String s = rs.getString("Special");
 
-            HC.setwelcome(w);
-            HC.setspecialEvents(s);
+            HC = new HomeContent(w, s);
 
             st.close();
             dbC.commit();
@@ -489,9 +489,11 @@ public class Db2Manager {
         return returnContent;
     }
 
-    public boolean postHomeContent(String welcome, String special) {
+    public boolean postHomeContent(HomeContent home) {
         boolean isSaved = true;
         Connection dbC = getConnection();
+        String welcome = home.getwelcome();
+        String special = home.getspecialEvents();
         try {
             PreparedStatement prep = dbC.prepareStatement("UPDATE Home SET welcome = ?, special = ?;");
 
@@ -729,5 +731,29 @@ public class Db2Manager {
         releaseConnection(dbC);
 
         return saveConfirmation; 
+    }
+
+    public Footer getFooter() {
+        Footer FT = new Footer();
+        Connection dbC = getConnection();
+        releaseConnection(dbC);
+        return FT;
+    }
+
+    public boolean postFooter(String a, String e, String p, String t, String f, String i) {
+        boolean isSaved = true;
+        Connection dbC = getConnection();
+        try{
+            PreparedStatement prep = dbC.prepareStatement("UPDATE contactinfo SET address = ?, email = ?, phone = ?, twitter = ?, facebook = ?, instagram = ?;");
+            prep.setString(1, a);
+            prep.setString(2, e);
+            prep.setString(3, p);
+            prep.setString(4, t);
+            prep.setString(5, f);
+            prep.setString(6, i);
+
+        }
+        releaseConnection(dbC);
+        return isSaved;
     }
 }
