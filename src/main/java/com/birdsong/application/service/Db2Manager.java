@@ -475,6 +475,7 @@ public class Db2Manager {
     }
 
     public AboutUsContent getAboutUsContent()  {
+
         AboutUsContent returnContent =  new AboutUsContent();
 
         return returnContent;
