@@ -601,6 +601,6 @@ public class Db2Manager {
         //close connection
         releaseConnection(dbC);
 
-        return false;                
+        return saveConfirmation;                
     }
 }
