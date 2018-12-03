@@ -1,44 +1,6 @@
 <%-- Include header components --%>
 <%@ include file="admin/header.jspf"%>
 <%@ include file="admin/navigation.jspf"%>
-<<<<<<< HEAD
-
-	<script src="DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
-	<!-- Bootstrap Date-Picker Plugin -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-	<script>
-	$(document).ready( function () {
-	    $('#concessionTable').DataTable({
-"columnDefs": [
-    { "orderable": false, "targets": 2 },
-		{ "width": "15%", "targets": 2}
-  ]
-  });
-
-	var date_input=$('input[name="date"]'); //our date input has the name "date"
-var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-var options={
-format: 'mm/dd/yyyy',
-container: container,
-todayHighlight: true,
-autoclose: true,
-};
-date_input.datepicker(options);
-	} );
-	</script>
-
-	<nav class="navbar">
-	  <a href="index.html">Home</a>
-	  <a href="boxoffice.html">Box Office</a>
-	  <a href="concessions.html">Concessions</a>
-	  <a href="aboutus.html">About Us</a>
-		<a href="footer.html">Footer</a>
-	</nav>
-=======
->>>>>>> 9a64c2200a77df2e932d2ce3cf669fc97fa63750
 
 <div class="container" id="concessions">
 	<h1>Concessions</h1>
@@ -152,9 +114,6 @@ date_input.datepicker(options);
 
 </div>
 </div>
-<<<<<<< HEAD
-</body>
-=======
 
 <%@ include file="admin/dependencies.jspf"%>
 
@@ -179,7 +138,6 @@ date_input.datepicker(options);
 	} );
 	</script>
 
->>>>>>> 9a64c2200a77df2e932d2ce3cf669fc97fa63750
 
 <%-- Footer HTML --%>
 <%@ include file="admin/footer.jspf"%>
