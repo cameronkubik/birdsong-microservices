@@ -14,6 +14,11 @@ public class HomeContent {
         this.specialEvents = service.getSubHeaderFromDb();
     }
 
+    public HomeContent(String _welcome, String _specialEvents) {
+        this.welcome = _welcome;
+        this.specialEvents = _specialEvents;
+    }
+
     public String getwelcome() {
         return this.welcome;
     }

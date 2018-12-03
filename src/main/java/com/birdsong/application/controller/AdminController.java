@@ -44,8 +44,10 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.POST)
-    public String postAdminHome(ModelMap model) {
-        HomeScreenService homeService = new HomeScreenService();
+    public String postAdminHome(@Valid @ModelAttribute("homeContent") HomeContent content, BindingResult result,
+            ModelMap model) {
+        HomeScreenService service = new HomeScreenService();
+        service.postHomeContent(content);
         return "adminHome";
     }
 

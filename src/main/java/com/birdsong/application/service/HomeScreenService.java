@@ -12,6 +12,14 @@ public class HomeScreenService {
 
     private Db2Manager dbManager = Db2Manager.getInstance();
 
+    public void postHomeContent(HomeContent newContent) {
+        //dbManager.postHomeContent();
+    }
+
+    // public HomeContent get() {
+
+    // }
+
     public ArrayList<Movie> getNowShowingMovies() {
         ArrayList<Movie> nowShowingMovies = dbManager.getNowShowingMovies();
         return nowShowingMovies;
