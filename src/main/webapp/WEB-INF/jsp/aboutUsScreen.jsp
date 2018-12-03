@@ -11,10 +11,10 @@
 </style>
 
 <%-- This page/components HTML --%>
+<h1 id="aboutUsTitle">
+    ${content.getHeader()}
+</h1>
 <div class="container" id="aboutUs">
-    <h1 id="aboutUsTitle">
-        ${content.getHeader()}
-    </h1>
     <h2>
         ${content.getSubHeader()}
     </h2>
