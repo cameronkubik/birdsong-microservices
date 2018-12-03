@@ -76,8 +76,9 @@ public class AdminController {
         return "adminAboutUs";
     }
 
-    @RequestMapping(value = "/admin/about-us", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/about-us/postAboutUs", method = RequestMethod.POST)
     public String postAdminAboutUs(ModelMap model) {
+        
         return "adminAboutUs";
     }
 
