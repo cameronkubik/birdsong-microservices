@@ -2,6 +2,9 @@ package com.birdsong.application.controller;
 
 
 import com.birdsong.application.service.*;
+
+import java.util.ArrayList;
+
 import com.birdsong.application.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +22,22 @@ public class AdminController {
     // Pre load Classes for spring boot
     @Autowired
     ConcessionScreenService concessionService = new ConcessionScreenService();
+    HomeScreenService homeService = new HomeScreenService();
+    BoxOfficeScreenService boxOfficeService = new BoxOfficeScreenService();
+    AboutUsScreenService aboutUsService = new AboutUsScreenService();
+    FooterService footerService = new FooterService();
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String loadAdminHome(ModelMap model) {
-        
+        // Gather data from controller service object
+        WelcomeMessage welcomeMessage = homeService.getWelcomeMessage();
+        String specialAnnouncements = homeService.getSpecialAnnouncements();
+        ArrayList<Movie> movieList = homeService.getNowShowingMovies();
+
+        model.put("welcomeMessage", welcomeMessage);
+        model.put("specialAnnouncements", specialAnnouncements);
+        model.put("movieList", movieList);
+
         return "adminHome";
     }
 
@@ -64,5 +79,15 @@ public class AdminController {
     @RequestMapping(value = "/admin/about-us", method = RequestMethod.POST)
     public String postAdminAboutUs(ModelMap model) {
         return "adminAboutUs";
+    }
+
+    @RequestMapping(value = "/admin/footer", method = RequestMethod.GET)
+    public String loadAdminFooter(ModelMap model) {
+        return "adminFooter";
+    }
+
+    @RequestMapping(value = "/admin/footer", method = RequestMethod.POST)
+    public String postAdminFooter(ModelMap model) {
+        return "adminFooter";
     }
 }

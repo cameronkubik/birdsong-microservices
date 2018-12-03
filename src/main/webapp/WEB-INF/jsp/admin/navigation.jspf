@@ -2,7 +2,7 @@
 <nav role="navigation" class="navbar navbar-default">
 	<a href="/admin">Home</a>
 	<a href="/admin/box-office">Box Office</a>
-	<a href="admin/concession">Concessions</a>
-	<a href="./about-us">About Us</a>
-	<a href="./admin/footer">Footer</a>
+	<a href="/admin/concession">Concessions</a>
+	<a href="/admin/about-us">About Us</a>
+	<a href="/admin/footer">Footer</a>
 </nav>
