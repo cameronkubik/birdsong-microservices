@@ -4,7 +4,7 @@ var Page = {
             this.bindConcessionPage();
         },
         bindConcessionPage: function () {
-            $("#whateverContainer").find(".classOfButton").click(function(e) {
+            $("#tabs").find(".nav-link").click(function(e) {
                 //logic
             });
         }
