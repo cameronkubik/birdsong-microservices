@@ -31,7 +31,6 @@ public class ConcessionScreenService {
     }
 
     public boolean postSaleItemsList()  {
-        this.saleItemsList = 
         return false;
     }
 }
