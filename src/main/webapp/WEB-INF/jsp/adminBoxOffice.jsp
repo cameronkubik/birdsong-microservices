@@ -65,7 +65,7 @@
 <h1>Announcements</h1>
 <form>
 <div class="form-group">
-	<textarea class="form-control" rows="5" id="announcements-edit">${notice.getMainNotice()}${"\n"}${notice.getSubNotice()}</textarea>
+	<textarea class="form-control" rows="5" id="announcements-edit">${notice.getMainNotice()}${notice.getSubNotice()}</textarea>
 </div>
 <button type="submit" class="btn btn-default">Submit</button>
 </form>

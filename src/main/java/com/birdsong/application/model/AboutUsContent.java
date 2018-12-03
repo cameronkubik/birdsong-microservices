@@ -1,15 +1,21 @@
 package com.birdsong.application.model;
 
+import com.birdsong.application.service.AboutUsScreenService;;
+
 public class AboutUsContent {
+
+    private AboutUsScreenService service = new AboutUsScreenService();
 
     private String header;
     private String subHeader;
     private String body;
 
-    public AboutUsContent(String _header, String _subHeader, String _body) {
-        this.header = _header;
-        this.subHeader = _subHeader;
-        this.body = _body;
+    public AboutUsContent() {
+        this.header = service.getHeaderFromDb();
+        this.subHeader = service.getBodyFromDb();
+        this.body = service.getBodyFromDb();
+        // this.subHeader = _subHeader;
+        // this.body = _body;
     }
 
     public String getHeader() {

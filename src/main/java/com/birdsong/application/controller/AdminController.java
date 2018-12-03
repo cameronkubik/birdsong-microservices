@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AdminController {
@@ -83,16 +84,16 @@ public class AdminController {
     } 
     
     @RequestMapping(value = "/admin/about-us", method = RequestMethod.GET)
-    public String loadAdminAboutUs(ModelMap model) {
-        return "adminAboutUs";
+    public ModelAndView loadAdminAboutUs() {
+        return new ModelAndView("adminAboutUs", "aboutUsContent", new AboutUsContent());
     }
 
     @RequestMapping(value = "/admin/about-us/postAboutUs", method = RequestMethod.POST)
-    public String postAdminAboutUs(@Valid @ModelAttribute("aboutUsContent") AboutUsContent aboutUs, 
+    public String postAdminAboutUs(@Valid @ModelAttribute("aboutUsContent") AboutUsContent aboutUsContent, 
         BindingResult result, ModelMap model) {
-        model.addAttribute("header", aboutUs.getHeader());
-        model.addAttribute("subheader", aboutUs.getSubHeader());
-        model.addAttribute("body", aboutUs.getBody());
+        model.addAttribute("header", aboutUsContent.getHeader());
+        model.addAttribute("subheader", aboutUsContent.getSubHeader());
+        model.addAttribute("body", aboutUsContent.getBody());
         return "adminAboutUs";
     }
 
