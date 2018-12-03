@@ -475,6 +475,7 @@ public class Db2Manager {
     }
 
     public AboutUsContent getAboutUsContent()  {
+
         AboutUsContent returnContent =  new AboutUsContent();
 
         return returnContent;
@@ -525,14 +526,30 @@ public class Db2Manager {
         return false;
     }
 
-    public boolean postNotice() {
-        return false;
+    public boolean postNotice(String main, String sub) {
+        boolean isSaved = true;
+        Connection dbC = getConnection();
+        
+        try {
+            PreparedStatement prep = dbC.prepareStatement("UPDATE Notices SET main = ?, sub =?;");
+
+            prep.setString(1, main);
+            prep.setString(2, sub);
+
+            prep.executeUpdate();
+            prep.close();
+            dbC.commit();
+        } catch (Exception e) {
+            System.out.print(e);
+            isSaved = false;
+        }
+        return isSaved;
     }
 
     public boolean postConcessionItem(SaleItem itemToSell) {
         boolean saveConfirmation = true;
         Connection databaseConnection = getConnection();
-        String query = "SELECT * FROM SaleItem";
+        String query = "SELECT * FROM SaleItem;";
         
         try {
 
@@ -576,7 +593,7 @@ public class Db2Manager {
         
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET Address = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET Address = ?;");
 
             //set missing parameter
             prep.setString(1, locate);
@@ -605,7 +622,7 @@ public class Db2Manager {
 
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET email = ?, phone = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET email = ?, phone = ?;");
 
             //set missing parameters
             prep.setString(1, chewtoy);
@@ -669,7 +686,7 @@ public class Db2Manager {
 
         try {
             //prepare statement
-            PreparedStatement prep = dbC.prepareStatement("UPDATE ABOUTUS SET header = ?, sub = ?, body = ?");
+            PreparedStatement prep = dbC.prepareStatement("UPDATE ABOUTUS SET header = ?, sub = ?, body = ?;");
 
             //set missing parameters
             prep.setString(1, header);
