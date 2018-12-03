@@ -410,7 +410,7 @@ public class Db2Manager {
 
     public WelcomeMessage getWelcomeMessage() {
         // TODO
-        String header = "Welcome to Birdsong Drive-In!\n";
+        String header = "Welcome to Birdsong Drive-In!\n\n";
         String subHeader = "Located in Camden, TN, we are a family owned and operated old-school drive-in theater.";
         WelcomeMessage welcomeMessage = new WelcomeMessage(header, subHeader);
 
@@ -420,7 +420,7 @@ public class Db2Manager {
     public String getSpecialAnnouncements() {
         // TODO
         StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("Friday Night Special:\t");
+        sBuilder.append("Friday Night Special: ");
         sBuilder.append("Admission price by car! Pay only $10 for each carload.");
 
         return sBuilder.toString();

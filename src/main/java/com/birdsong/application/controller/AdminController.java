@@ -22,13 +22,12 @@ public class AdminController {
     // Pre load Classes for spring boot
     @Autowired
     ConcessionScreenService concessionService = new ConcessionScreenService();
-    HomeScreenService homeService = new HomeScreenService();
-    BoxOfficeScreenService boxOfficeService = new BoxOfficeScreenService();
     AboutUsScreenService aboutUsService = new AboutUsScreenService();
     FooterService footerService = new FooterService();
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String loadAdminHome(ModelMap model) {
+        HomeScreenService homeService = new HomeScreenService();
         // Gather data from controller service object
         WelcomeMessage welcomeMessage = homeService.getWelcomeMessage();
         String specialAnnouncements = homeService.getSpecialAnnouncements();
@@ -43,12 +42,20 @@ public class AdminController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.POST)
     public String postAdminHome(ModelMap model) {
-
+        HomeScreenService homeService = new HomeScreenService();
         return "adminHome";
     }
 
     @RequestMapping(value = "/admin/box-office", method = RequestMethod.GET)
     public String loadAdminBoxOffice(ModelMap model) {
+        BoxOfficeScreenService boxOfficeService = new BoxOfficeScreenService();
+        OperationHours opHours = boxOfficeService.getOperationHours();
+        Admission admission = boxOfficeService.getAdmissionInfo();
+        Notice notice = boxOfficeService.getNotice();
+
+        model.put("opHours", opHours);
+        model.put("admission", admission);
+        model.put("notice", notice);
 
         return "adminBoxOffice";
     }
