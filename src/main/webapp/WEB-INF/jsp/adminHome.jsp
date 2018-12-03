@@ -2,6 +2,13 @@
 <%@ include file="admin/header.jspf"%>
 <%@ include file="admin/navigation.jspf"%>
 
+<style>
+#adminHome{
+  background-color: #E1D8C6;
+  color: #707070
+}
+</style>
+
 <div class = "container" id="welcome">
     <h1>Welcome</h1>
     <form>

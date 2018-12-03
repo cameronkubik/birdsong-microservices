@@ -2,6 +2,12 @@
 <%@ include file="admin/header.jspf"%>
 <%@ include file="admin/navigation.jspf"%>
 
+<style>
+#adminBoxOffice{
+  background-color: #E1D8C6;
+  color: #707070
+}
+</style>
 
 <div class="container" id="tickets">
 	<h1>Tickets</h1>
@@ -102,7 +108,7 @@
 
   </div>
 </div>
-<%-- 
+<%--
 <!-- Add Modal -->
 <div id="addModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -157,7 +163,7 @@ $(document).ready( function () {
         autoclose: true,
     };
     date_input.datepicker(options);
-} );    
+} );
 </script>
 <%-- Footer HTML --%>
 <%@ include file="admin/footer.jspf"%>

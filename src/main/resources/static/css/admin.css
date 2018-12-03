@@ -100,3 +100,22 @@ button.btn.add{
 #zip{
 	padding-right: 0px;
 }
+
+/*About Us*/
+#header{
+	width: 1200px;
+}
+
+#subHeader{
+	width: 1200px;
+}
+
+#body{
+	width:1200px;
+}
+
+#submitAbout{
+	float: right;
+	margin-right: 129px;
+	margin-top: 25px;
+}
