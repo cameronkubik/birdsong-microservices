@@ -92,7 +92,7 @@ public class AdminController {
     public String postAdminAboutUs(@Valid @ModelAttribute("aboutUsContent") AboutUsContent aboutUsContent, 
         BindingResult result, ModelMap model) {
         model.addAttribute("header", aboutUsContent.getHeader());
-        model.addAttribute("subheader", aboutUsContent.getSubHeader());
+        model.addAttribute("subHeader", aboutUsContent.getSubHeader());
         model.addAttribute("body", aboutUsContent.getBody());
         return "adminAboutUs";
     }

@@ -24,11 +24,11 @@ public class AboutUsScreenController {
         return "aboutUsScreen";
     }
 
-    @RequestMapping(value = "/change-about-us", method = RequestMethod.POST)
-    public String changeAboutUs(@ModelAttribute("content")AboutUsContent content, ModelMap model) {
-        model.addAttribute("subHeader", content.getSubHeader());
-        model.addAttribute("body", content.getBody());
-        service.postAboutUs(content);
-        return "adminAboutUs";
-    }
+    // @RequestMapping(value = "/change-about-us", method = RequestMethod.POST)
+    // public String changeAboutUs(@ModelAttribute("content")AboutUsContent content, ModelMap model) {
+    //     model.addAttribute("subHeader", content.getSubHeader());
+    //     model.addAttribute("body", content.getBody());
+    //     service.postAboutUs(content);
+    //     return "adminAboutUs";
+    // }
 }
