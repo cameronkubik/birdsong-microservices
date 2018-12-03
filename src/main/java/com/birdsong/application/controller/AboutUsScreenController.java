@@ -5,6 +5,7 @@ import com.birdsong.application.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,5 +22,13 @@ public class AboutUsScreenController {
         AboutUsContent content = service.getAboutUs();
         model.put("content", content);
         return "aboutUsScreen";
+    }
+
+    @RequestMapping(value = "/change-about-us", method = RequestMethod.POST)
+    public String changeAboutUs(@ModelAttribute("content")AboutUsContent content, ModelMap model) {
+        model.addAttribute("subHeader", content.getSubHeader());
+        model.addAttribute("body", content.getBody());
+        service.postAboutUs(content);
+        return "adminAboutUs";
     }
 }

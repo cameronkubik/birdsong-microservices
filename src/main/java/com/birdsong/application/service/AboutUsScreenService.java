@@ -19,7 +19,8 @@ public class AboutUsScreenService {
         return aboutUsContent;
     }
 
-    public boolean postAboutUs() {
+    public boolean postAboutUs(AboutUsContent _content) {
+        System.out.print(_content);
         return false;
     }
 }

@@ -19,7 +19,16 @@ public class AboutUsContent {
     public String getSubHeader() {
         return this.subHeader;
     }
+
+    public void setSubHeader(String _subheader) {
+        this.subHeader  = _subheader;
+    }
+
     public String getBody() {
         return this.body;
+    }
+
+    public void setBody(String _body) {
+        this.body = _body;
     }
 }
