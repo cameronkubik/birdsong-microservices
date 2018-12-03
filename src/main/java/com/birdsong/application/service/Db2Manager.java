@@ -566,13 +566,41 @@ public class Db2Manager {
             saveConfirmation = false;
         }
 
+        //close connection
         releaseConnection(dbC);
 
         return saveConfirmation;
     }
 
 
-    public boolean postContacts() {
+    public boolean postContacts(String email, String phone) {
+        boolean saveConfirmation = true;
+        //make connection
+        Connection dbC = getConnection();
+
+        try {
+            //prepare statement
+            PreparedStatement prep = dbC.prepareStatement("UPDATE BIRDSONG_CONTACTINFO SET email = ?, phone = ?");
+
+            //set missing parameters
+            prep.setString(1, email);
+            prep.setString(2, phone);
+
+            //execute
+            prep.executeUpdate();
+
+            //close
+            prep.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            saveConfirmation = false;
+        }
+
+        //close connection
+        releaseConnection(dbC);
+
         return false;                
     }
 }
