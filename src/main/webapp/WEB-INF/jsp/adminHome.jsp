@@ -6,7 +6,7 @@
     <h1>Welcome</h1>
     <form>
         <div class="form-group">
-            <textarea class="form-control" rows="5" id="welcome-edit"></textarea>
+            <textarea class="form-control" rows="5" id="welcome-edit">${welcomeMessage.getHeader()}${welcomeMessage.getSubHeader()}</textarea>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
@@ -16,7 +16,7 @@
     <h1>Events/Specials</h1>
     <form>
         <div class="form-group">
-            <textarea class="form-control" rows="5" id="events-edit"></textarea>
+            <textarea class="form-control" rows="5" id="events-edit">${specialAnnouncements}</textarea>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
@@ -35,24 +35,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Black Panther</td>
-                <td>Currently Showing</td>
-                <td>Screen 1</td>
-                <td class="buttons"><button type="button" class="btn btn-info edit" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <td>The Lion King</td>
-                <td>Future Showing: 1/30</td>
-                <td>Screen 1</td>
-                <td class="buttons"><button type="button" class="btn btn-info edit" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <td>Iron Man</td>
-                <td>Future Showing: 2/22</td>
-                <td>Screen 2</td>
-                <td class="buttons"><button type="button" class="btn btn-info edit" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
+            <c:forEach items="${movieList}" var="movieItem">
+                <tr>
+                    <td>${movieItem.getTitle()}</td>
+                    <td>${movieItem.getShowingStatus()}</td>
+                    <td>Screen 1</td>
+                    <td class="buttons">
+                        <button type="button" class="btn btn-info edit" data-toggle="modal" data-target="#editModal">Edit</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 </div>

@@ -72,6 +72,7 @@ public class Movie {
     public int getIsCurrentShowing() {
         return isCurrentShowing;
     }
+
     @JsonGetter("isUpcomingShowing") 
     public int getIsUpcomingShowing() {
         return isUpcomingShowing;
@@ -79,5 +80,12 @@ public class Movie {
     @JsonGetter("duration") 
     public int getDuration() {
         return duration;
+    }
+
+    public String getShowingStatus() {
+        if (isCurrentShowing == 1) {
+            return "Currently Showing";
+        }
+        return "Upcoming Showing";
     }
 }

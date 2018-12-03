@@ -1,6 +1,15 @@
 /* style.css
  * This file provides css styles.
  */
+
+td.buttons.goRight {
+	float: right;
+}
+
+ /*
+	Framework defined styles
+ **/
+
 body, html {
 	background-color: #F5EFE3 !important;
 	width: 100%;
