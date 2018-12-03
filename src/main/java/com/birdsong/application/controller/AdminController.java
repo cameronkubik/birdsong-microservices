@@ -30,6 +30,8 @@ public class AdminController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String loadAdminHome(ModelMap model) {
+
+        
         HomeScreenService homeService = new HomeScreenService();
         // Gather data from controller service object
         WelcomeMessage welcomeMessage = homeService.getWelcomeMessage();
