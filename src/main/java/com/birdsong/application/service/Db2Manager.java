@@ -507,13 +507,73 @@ public class Db2Manager {
         return false;
     }
 
-    public boolean postConcessionItem() {
-        return false;
+    public boolean postConcessionItem(SaleItem itemToSell) {
+        boolean saveConfirmation = true;
+        Connection databaseConnection = getConnection();
+        String query = "SELECT * FROM BirdSong_SaleItem";
+        
+        try {
+
+            // Create the Statement
+            Statement statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            // load table
+            ResultSet resultSet = statement.executeQuery(query);
+            resultSet.moveToInsertRow();
+
+            // do update
+            resultSet.updateInt("ITEMID", itemToSell.getItemId());
+            resultSet.updateInt("CATEGORYID", itemToSell.getCategoryId());
+            resultSet.updateString("NAME", itemToSell.getItem());
+            resultSet.updateString("COST", itemToSell.getCost());
+            resultSet.updateString("PRICE", itemToSell.getPrice());
+            resultSet.updateString("DISCOUNTID", itemToSell.getDiscount());
+            resultSet.updateString("IMAGEURI", itemToSell.getImageUri());
+            resultSet.insertRow();
+            resultSet.moveToCurrentRow();
+
+            // teardown
+            resultSet.close();
+            statement.close();
+            databaseConnection.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            saveConfirmation = false;
+        }
+
+        releaseConnection(databaseConnection);
+
+        return saveConfirmation;
     }
 
-    public boolean postLocation() {
-        return false;
+    public boolean postLocation(String locate) {
+        boolean saveConfirmation = true;
+        //make connection
+        Connection dbC = getConnection();
+        
+        try {
+            //prepare statement
+            PreparedStatement prep = dbC.prepareStatement("UPDATE BIRDSONG_CONTACTINFO SET Address = ?");
+
+            //set missing parameter
+            prep.setString(1, locate);
+
+            //call executableUPdate to execute
+            prep.executeUpdate();
+            prep.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+            saveConfirmation = false;
+        }
+
+        releaseConnection(dbC);
+
+        return saveConfirmation;
     }
+
 
     public boolean postContacts() {
         return false;                
