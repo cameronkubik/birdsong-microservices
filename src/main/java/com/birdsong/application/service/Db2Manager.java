@@ -434,15 +434,6 @@ public class Db2Manager {
 
         return HC;
     }
-    
-    public String getSpecialAnnouncements() {
-        // TODO
-        StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("Friday Night Special: ");
-        sBuilder.append("Admission price by car! Pay only $10 for each carload.");
-
-        return sBuilder.toString();
-    }
 
     public OperationHours getOperationHours() {
         OperationHours operationHours = new OperationHours(6, 7);
