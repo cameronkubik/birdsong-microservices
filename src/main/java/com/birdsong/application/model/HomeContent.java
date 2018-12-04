@@ -1,37 +1,66 @@
 package com.birdsong.application.model;
 
-import com.birdsong.application.service.AboutUsScreenService;;
+import java.util.ArrayList;
+
+import com.birdsong.application.service.HomeService;
+import com.birdsong.application.model.Movie;
 
 public class HomeContent {
 
-    private AboutUsScreenService service = new AboutUsScreenService();
+    // Service to interact with Database
+    private HomeService service = new HomeService();
 
-    private String welcome;
-    private String specialEvents;
+    // private members that reflect dynamic components of the UI screens
+    private ArrayList<Movie> nowShowingMovies;
+    private String welcomeMessage;
+    private String specialsMessage;
 
+    /*
+     * The constructor used for loading content to the website This will be called
+     * for every request to the public home page
+     */
     public HomeContent() {
-        this.welcome = service.getHeaderFromDb();
-        this.specialEvents = service.getSubHeaderFromDb();
+        this.nowShowingMovies = new ArrayList<Movie>();
+        this.welcomeMessage = service.getWelcome();
+        this.specialsMessage = service.getSpecial();
     }
 
-    public HomeContent(String _welcome, String _specialEvents) {
-        this.welcome = _welcome;
-        this.specialEvents = _specialEvents;
+    /*
+     * The constructor used by {HomeService service} to wrap content coming from the
+     * database
+     */
+    public HomeContent(ArrayList<Movie> _nowShowingMovies, String _welcome, String _special) {
+        this.nowShowingMovies = _nowShowingMovies;
+        this.welcomeMessage = _welcome;
+        this.specialsMessage = _special;
     }
 
-    public String getwelcome() {
-        return this.welcome;
+    /*
+     * GETTERS and SETTERS for Spring framework and UI content loading
+     */
+    
+    public ArrayList<Movie> getNowShowingMovies() {
+        return this.nowShowingMovies;
     }
 
-    public void setwelcome(String _welcome) {
-        this.welcome = _welcome;
+    public void setNowShowingMovies(ArrayList<Movie> _nowShowingMovies) {
+        this.nowShowingMovies = _nowShowingMovies;
     }
 
-    public String getspecialEvents() {
-        return this.specialEvents;
+    public String getWelcomeMessage() {
+        return this.welcomeMessage;
     }
 
-    public void setspecialEvents(String _specialEvents) {
-        this.specialEvents = _specialEvents;
+    public void setWelcomeMessage(String _welcomeMessage) {
+        this.welcomeMessage = _welcomeMessage;
     }
+
+    public String getSpecialsMessage() {
+        return this.specialsMessage;
+    }
+
+    public void setSpecialsMessage(String _specialsMessage) {
+        this.specialsMessage = _specialsMessage;
+    }
+
 }

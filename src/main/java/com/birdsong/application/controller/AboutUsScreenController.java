@@ -31,4 +31,13 @@ public class AboutUsScreenController {
     //     service.postAboutUs(content);
     //     return "adminAboutUs";
     // }
+
+    // @RequestMapping(value = "/admin/about-us", method = RequestMethod.GET)
+    // public String loadAboutUsAsAdmin(@ModelAttribute("content")AboutUsContent content,
+    // ModelMap model) {
+    // model.addAttribute("subHeader", content.getSubHeader());
+    // model.addAttribute("body", content.getBody());
+    // service.postAboutUs(content);
+    // return "adminAboutUs";
+    // }
 }

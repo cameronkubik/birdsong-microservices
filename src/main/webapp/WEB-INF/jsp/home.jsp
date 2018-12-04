@@ -4,17 +4,17 @@
 
 <%-- Styling the navbar so that the current page has its appropriate tab highlighted --%>
 <style>
-#homeNav{
-  background-color: #E1D8C6;
-  color: #707070
-}
+    #homeNav {
+        background-color: #E1D8C6;
+        color: #707070
+    }
 </style>
 
 <%-- This page/components HTML --%>
 <div class = "container" id="welcome">
-    <h1>${welcomeMessage.getHeader()}</h1>
-    <p class="main-text">We're glad you're here!</p>
-    <p class="main-text">${welcomeMessage.getSubHeader()}</p>
+    <h1>${content.getWelcomeMessage()}</h1>
+    <p class="main-text">${content.getSpecialsMessage()}</p>
+    <%-- <p class="main-text">${welcomeMessage.getSubHeader()}</p> --%>
     <a class="btn btn-primary" href="/about-us">Learn More</a>
 </div>
 
@@ -60,8 +60,8 @@
                 <div class="carousel-caption">
                     <h3>${movieItem.getTitle()}</h3>
                     <h5>${movieItem.getOverview()}</h5>
-                    <p>Showing Times: TODO!!</p>
-                    <p>Screen: TODO!!</p>
+                    <p>Showing Times: 7 PM</p>
+                    <p>Screen: 1</p>
 					<a class="btn btn-warning" href="https://www.imdb.com">IMBD</a>
                 </div>
             </div>

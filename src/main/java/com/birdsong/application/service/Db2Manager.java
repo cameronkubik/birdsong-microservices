@@ -47,7 +47,7 @@ public class Db2Manager {
     final int SCROLLABLE = ResultSet.TYPE_SCROLL_SENSITIVE;
     final int NON_UPDATABLE = ResultSet.CONCUR_READ_ONLY;
     final int UPDATABLE = ResultSet.CONCUR_UPDATABLE;
-    ;
+    
     /**
      *
      * Method Name: Db2Manager
@@ -264,6 +264,45 @@ public class Db2Manager {
         return instance;
     }
 
+
+    /*
+     * Team Defined functions below
+     * Used to get and put data for website pages to and from the database
+     */
+    public HomeContent getHomeContentNEW() {
+        Connection connection = getConnection();
+        HomeContent newContent = new HomeContent(new ArrayList<Movie>(), "no error", "no error");
+        String query = "SELECT * FROM HOME";
+        String welcome;
+        String specials;
+
+        try {
+            // Create the Statement
+            Statement statement = connection.createStatement(SCROLLABLE, NON_UPDATABLE);
+            // load table
+            ResultSet resultSet = statement.executeQuery(query);
+            resultSet.beforeFirst();
+            resultSet.next();
+
+            welcome = resultSet.getString("Welcome");
+            specials = resultSet.getString("Special");
+            
+            resultSet.close();
+            statement.close();
+            releaseConnection(connection);
+
+            ArrayList<Movie> movies = getNowShowingMovies();
+
+            newContent = new HomeContent(movies, welcome, specials);
+            
+        } catch (Exception e) {
+            System.out.print(e);
+            newContent = new HomeContent(new ArrayList<Movie>(), "error", e.getMessage());
+        }
+
+        return newContent;
+    }
+
     public boolean saveMovie(Movie movieToSave) throws Exception {
         boolean saveConfirmation = true;
         Connection databaseConnection = getConnection();
@@ -474,17 +513,18 @@ public class Db2Manager {
         return notice;
     }
 
-    public AboutUsContent getAboutUsContent()  {
+    public AboutUsContent getAboutUsContent() {
         AboutUsContent content = new AboutUsContent("", "", "");
         Connection databaseConnection = getConnection();
         String query = "SELECT * FROM ABOUTUS";
 
         try {
             // Create the Statement, not updatable
-            Statement statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            Statement statement = databaseConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
             ResultSet contentResults = statement.executeQuery(query);
             contentResults.beforeFirst();
-            while(contentResults.next()) {
+            while (contentResults.next()) {
                 String header = contentResults.getString("HEADER");
                 String subheader = contentResults.getString("SUB");
                 String body = contentResults.getString("BODY");
@@ -502,6 +542,32 @@ public class Db2Manager {
         releaseConnection(databaseConnection);
 
         return content;
+    }
+    
+    public HomeContent getHomeContent() {
+        Connection dbC = getConnection();
+        HomeContent HC = null;
+        String q = "SELECT * FROM home";
+        try {
+
+            Statement st = dbC.createStatement();
+            ResultSet rs = st.executeQuery(q);
+
+            String w = rs.getString("Welcome");
+            String s = rs.getString("Special");
+
+            HC = new HomeContent(new ArrayList<Movie>(), w, s);
+
+            st.close();
+            dbC.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+        }
+
+        releaseConnection(dbC);
+
+        return HC;
     }
 
     public boolean postWelcomeMessage() {

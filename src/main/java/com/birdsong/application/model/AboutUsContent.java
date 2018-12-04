@@ -1,6 +1,6 @@
 package com.birdsong.application.model;
 
-import com.birdsong.application.service.AboutUsScreenService;;
+import com.birdsong.application.service.AboutUsScreenService;
 
 public class AboutUsContent {
 
@@ -11,6 +11,7 @@ public class AboutUsContent {
     private String body;
 
     public AboutUsContent() {
+        //repeated queries
         this.header = service.getAboutUs().getHeader();
         this.subHeader = service.getAboutUs().getSubHeader();
         this.body = service.getAboutUs().getBody();
