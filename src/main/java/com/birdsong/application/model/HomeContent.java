@@ -20,9 +20,9 @@ public class HomeContent {
      * for every request to the public home page
      */
     public HomeContent() {
-        this.nowShowingMovies = new ArrayList<Movie>();
-        this.welcomeMessage = service.getWelcome();
-        this.specialsMessage = service.getSpecial();
+        nowShowingMovies = service.getNowShowingMovies();
+        welcomeMessage = service.getWelcomeMessage();
+        specialsMessage = service.getSpecialsMessage();
     }
 
     /*

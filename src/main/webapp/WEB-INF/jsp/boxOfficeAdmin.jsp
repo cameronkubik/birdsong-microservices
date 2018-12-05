@@ -3,15 +3,15 @@
 <%@ include file="admin/navigation.jspf"%>
 
 <style>
-#adminBoxOffice{
-  background-color: #E1D8C6;
-  color: #707070
-}
+    #adminBoxOffice{
+        background-color: #E1D8C6;
+        color: #707070
+    }
 </style>
 
 <div class="container" id="tickets">
 	<h1>Tickets</h1>
-		<button type="button" class="btn add" data-toggle="modal" data-target="#addModal">Click to Add Ticket...</button>
+    <button type="button" class="btn add" data-toggle="modal" data-target="#addModal">Click to Add Ticket...</button>
 	<table class="table" id="ticketTable">
 		<thead>
 			<tr>
@@ -143,27 +143,27 @@
 <%@ include file="admin/dependencies.jspf"%>
 
 <script>
-$(document).ready( function () {
-    $('#ticketTable').DataTable({
-        "columnDefs": [
-            { "orderable": false, "targets": 1 },
-            { "width": "15%", "targets": 1}
-        ]
-    });
+    $(document).ready( function () {
+        $('#ticketTable').DataTable({
+            "columnDefs": [
+                { "orderable": false, "targets": 1 },
+                { "width": "15%", "targets": 1}
+            ]
+        });
 
-    $('.timepicker-1').timepicker();
-    $('.timepicker-2').timepicker();
+        $('.timepicker-1').timepicker();
+        $('.timepicker-2').timepicker();
 
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    var options={
-        format: 'mm/dd/yyyy',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-    };
-    date_input.datepicker(options);
-} );
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        var options={
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    } );
 </script>
 <%-- Footer HTML --%>
 <%@ include file="admin/footer.jspf"%>

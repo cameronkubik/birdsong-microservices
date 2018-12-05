@@ -36,7 +36,7 @@ public class Db2Manager {
     // though.
     // ===================================================
     private static Vector<Connection> connectionPool = new Vector<Connection>();
-    private final int MAX_POOL_SIZE = 4;
+    private final int MAX_POOL_SIZE = 1;
 
     // DB2 Values
     // TODO - should we remove these?
@@ -269,7 +269,7 @@ public class Db2Manager {
      * Team Defined functions below
      * Used to get and put data for website pages to and from the database
      */
-    public HomeContent getHomeContentNEW() {
+    public HomeContent getHomeContent() {
         Connection connection = getConnection();
         HomeContent newContent = new HomeContent(new ArrayList<Movie>(), "no error", "no error");
         String query = "SELECT * FROM HOME";
@@ -301,6 +301,26 @@ public class Db2Manager {
         }
 
         return newContent;
+    }
+
+    public void postHomeContent(HomeContent home) {
+        Connection connection = getConnection();
+        String welcomeMsg = home.getWelcomeMessage();
+        String specialsMsg = home.getSpecialsMessage();
+        
+        try {
+            PreparedStatement prep = connection.prepareStatement("UPDATE Home SET welcome = ?, special = ?");
+
+            prep.setString(1, welcomeMsg);
+            prep.setString(2, specialsMsg);
+
+            prep.executeUpdate();
+            prep.close();
+            connection.commit();
+
+        } catch (Exception e) {
+            System.out.print(e);
+        }
     }
 
     public boolean saveMovie(Movie movieToSave) throws Exception {
@@ -543,32 +563,6 @@ public class Db2Manager {
 
         return content;
     }
-    
-    public HomeContent getHomeContent() {
-        Connection dbC = getConnection();
-        HomeContent HC = null;
-        String q = "SELECT * FROM home";
-        try {
-
-            Statement st = dbC.createStatement();
-            ResultSet rs = st.executeQuery(q);
-
-            String w = rs.getString("Welcome");
-            String s = rs.getString("Special");
-
-            HC = new HomeContent(new ArrayList<Movie>(), w, s);
-
-            st.close();
-            dbC.commit();
-
-        } catch (Exception e) {
-            System.out.print(e);
-        }
-
-        releaseConnection(dbC);
-
-        return HC;
-    }
 
     public boolean postWelcomeMessage() {
         return false;
@@ -607,13 +601,13 @@ public class Db2Manager {
         return isSaved;
     }
 
-    public boolean postOperationHours() {
-        return false;
-    }
+    // public boolean postOperationHours() {
+    //     return false;
+    // }
 
-    public boolean postAdmissionHours() {
-        return false;
-    }
+    // public boolean postAdmissionHours() {
+    //     return false;
+    // }
 
     public boolean postNotice(String main, String sub) {
         boolean isSaved = true;

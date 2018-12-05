@@ -28,22 +28,22 @@ public class AdminController {
     // @Autowired
     // FooterService footerService = new FooterService();
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String loadAdminHome(ModelMap model) {
+    // @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    // public String loadAdminHome(ModelMap model) {
 
         
-        //HomeScreenService homeService = new HomeScreenService();
-        // Gather data from controller service object
-        // WelcomeMessage welcomeMessage = homeService.getWelcomeMessage();
-        // String specialAnnouncements = homeService.getSpecialAnnouncements();
-        // ArrayList<Movie> movieList = homeService.getNowShowingMovies();
+    //     //HomeScreenService homeService = new HomeScreenService();
+    //     // Gather data from controller service object
+    //     // WelcomeMessage welcomeMessage = homeService.getWelcomeMessage();
+    //     // String specialAnnouncements = homeService.getSpecialAnnouncements();
+    //     // ArrayList<Movie> movieList = homeService.getNowShowingMovies();
 
-        // model.put("welcomeMessage", welcomeMessage);
-        // model.put("specialAnnouncements", specialAnnouncements);
-        // model.put("movieList", movieList);
+    //     // model.put("welcomeMessage", welcomeMessage);
+    //     // model.put("specialAnnouncements", specialAnnouncements);
+    //     // model.put("movieList", movieList);
 
-        return "adminHome";
-    }
+    //     return "adminHome";
+    // }
 
     // @RequestMapping(value = "/admin", method = RequestMethod.POST)
     // public String postAdminHome(@Valid @ModelAttribute("homeContent") HomeContent content, BindingResult result,
