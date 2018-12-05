@@ -59,30 +59,30 @@
         <h4 class="modal-title">Edit</h4>
       </div>
       <div class="modal-body">
-				<form>
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name">
-  </div>
-  <div class="form-group">
-    <label class="control-label" id="dateLabel" for="date">Price</label>
-    <input class="form-control" id="price" name="price">
-  </div>
-  <div class="form-group">
-    <label>Category</label>
-		<select>
-			<option value="category1">Food</option>
-			<option value="category2">Drink</option>
-			<option value="category3">Snacks</option>
-		</select>
-  </div>
+				<form:form method="POST" action="/admin/edit-concession-item" modelAttribute="saleItem">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<form:input path="item" />
+					</div>
+					<div class="form-group">
+						<label class="control-label" id="dateLabel" for="date">Price</label>
+						<form:input path="price" />
+					</div>
+					<div class="form-group">
+						<label>Category</label>
+						<form:select path="categoryId">
+							<option value="category1">Food</option>
+							<option value="category2">Drink</option>
+							<option value="category3">Snacks</option>
+						</form:select>
+					</div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				  <button type="submit" class="btn btn-default">Submit</button>
-      </div>
-			</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-default"></button>
+							</div>
+			</form:form>
     </div>
 
   </div>

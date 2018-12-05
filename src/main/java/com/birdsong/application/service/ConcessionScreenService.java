@@ -33,4 +33,8 @@ public class ConcessionScreenService {
     public boolean postSaleItemsList()  {
         return false;
     }
+
+    public boolean editSaleItem(SaleItem _saleitem) {
+        return false;
+    }
 }

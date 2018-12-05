@@ -74,18 +74,23 @@ public class AdminController {
     // }    
 
     @RequestMapping(value = "/admin/concession", method = RequestMethod.GET)
-    public String loadConcessionItems(ModelMap model) {
+    public ModelAndView loadConcessionItems(ModelMap model) {
         ConcessionScreenService concessionService = new ConcessionScreenService();
-        model.addAttribute("testData", concessionService.getSaleItemsList());
-        return "adminConcession";
+        ArrayList<SaleItem> items = concessionService.getSaleItemsList();
+        model.addAttribute("testData", items);
+        return new ModelAndView("adminConcession", "saleItem", new SaleItem());
     }
 
-    // @RequestMapping(value = "/admin/concession", method = RequestMethod.POST)
-    // public String postConcessionItems(ModelMap model) {
-    //     ConcessionScreenService concessionService = new ConcessionScreenService();
-    //     model.addAttribute("testData", concessionService.postSaleItemsList());
-    //     return "adminConcession";
-    // } 
+    @RequestMapping(value = "/admin/edit-concession-item", method = RequestMethod.POST)
+    public String postConcessionItems(@Valid @ModelAttribute("saleItem") SaleItem saleItem, 
+            BindingResult result, ModelMap model) {
+        ConcessionScreenService concessionService = new ConcessionScreenService();
+        model.addAttribute("item", saleItem.getItem());
+        model.addAttribute("categoryId", saleItem.getCategoryId());
+        model.addAttribute("price", saleItem.getPrice());
+        concessionService.editSaleItem(saleItem);
+        return "adminConcession";
+    } 
     
     @RequestMapping(value = "/admin/about-us", method = RequestMethod.GET)
     public ModelAndView loadAdminAboutUs() {

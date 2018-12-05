@@ -10,6 +10,16 @@ public class SaleItem {
     private final String discount;
     private final String imageUri;
 
+    public SaleItem() {
+        itemId = 0;
+        categoryId = 0;
+        item = "";
+        cost = "";
+        price = "";
+        discount = "";
+        imageUri = "";
+    }
+
     public SaleItem(int _itemId, int _categoryId, String _item, String _cost, String _price, String _discount, String _imageUri) {
         itemId = _itemId;
         categoryId = _categoryId;
