@@ -412,6 +412,35 @@ public class Db2Manager {
         return concessionList;
     }
 
+    public boolean editSaleItem(SaleItem _saleItem) {
+        // boolean saveConfirmation = true;
+        // //make connection
+        // Connection dbC = getConnection();
+        
+        // try {
+        //     //prepare statement
+        //     //PreparedStatement prep = dbC.prepareStatement("UPDATE CONTACTINFO SET Address = ?;");
+
+        //     //set missing parameter
+        //     //prep.setString(1, locate);
+
+        //     //call executableUPdate to execute
+        //     prep.executeUpdate();
+        //     prep.close();
+        //     dbC.commit();
+
+        // } catch (Exception e) {
+        //     System.out.print(e);
+        //     saveConfirmation = false;
+        // }
+
+        // //close connection
+        // releaseConnection(dbC);
+
+        // return saveConfirmation;
+        return false;
+    }
+
     public ArrayList<String> getAboutUsInfo() {
         ArrayList<String> info = new ArrayList<String>();
         Connection databaseConnection = getConnection();

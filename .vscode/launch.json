@@ -11,5 +11,27 @@
             "args": "",
             "projectName": "BirdsongMicroservices"
         },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SBApplication",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "microservice.SBApplication",
+            "args": "",
+            "projectName": "BirdsongMicroservices"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SBApplication",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "application.SBApplication",
+            "args": "",
+            "projectName": "BirdsongMicroservices"
+        }
     ]
 }

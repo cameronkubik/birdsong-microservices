@@ -35,6 +35,7 @@ public class ConcessionScreenService {
     }
 
     public boolean editSaleItem(SaleItem _saleitem) {
+        dbManager.editSaleItem(_saleitem);
         return false;
     }
 }

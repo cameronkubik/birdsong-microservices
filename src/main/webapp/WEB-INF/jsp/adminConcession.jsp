@@ -16,6 +16,7 @@
 	<thead>
 		<tr>
 			<th>Food</th>
+			<th>Id</th>
 			<th>Category</th>
 			<th></th>
 		</tr>
@@ -24,6 +25,7 @@
 			<c:forEach items="${testData}" var="SaleItem">
 			<tr>
 					<td><c:out value="${SaleItem.getItem()}" /></td>
+					<td><c:out value="${SaleItem.getItemId()}" /></td>
 					<c:choose>
 						<c:when test="${SaleItem.getCategoryId() == 1}">
 							<td>Food</td>
