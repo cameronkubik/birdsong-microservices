@@ -17,7 +17,8 @@
             <div class="col-md-6">
                 <img src="images/boxoffice.jpeg" class= "img-thumbnail">
             </div>
-
+            <c:set var="admission" value="${content.getAdmission()}" />
+            <c:set var="opHours" value="${content.getOperationHours()}" />
             <div class="col-md-6" id="boxOffice">
                 <h1>BOX OFFICE</h1>
                 <p>Office opens at ${opHours.getOpenTime()} PM<br>Movie showings start at ${opHours.getShowingsStartTime()} PM</p>
@@ -25,14 +26,6 @@
                 Adult: ${admission.getAdultTicketPrice()}<br>
                 Ages 6 to 11: ${admission.getChildTicketPrice()}<br>
                 Ages 5 & under: ${admission.getInfantTicketPrice()}</p>
-
-                <%-- <form class="form-inline" action="/action_page.php">
-                    <div class="form-group">
-                        <label class="sr-only" for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form> --%>
             </div>
         </div>
     </div>

@@ -25,6 +25,7 @@
     <ol class="carousel-indicators">
         <%-- Loop through movie list --%>
         <c:set var="index" value="${0}" />
+        <c:set var="movieList" value="${content.getNowShowingMovies()}" />
         <c:forEach items="${movieList}" var="movieItem">
             <c:choose>
 
