@@ -21,21 +21,29 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Food 1</td>
-			<td>Category 1</td>
-			<td class="buttons"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-		</tr>
-		<tr>
-			<td>Food 2</td>
-			<td>Category 2</td>
-			<td class="buttons"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-		</tr>
-		<tr>
-			<td>Food 3</td>
-			<td>Category 1</td>
-			<td class="buttons"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-		</tr>
+			<c:forEach items="${testData}" var="SaleItem">
+			<tr>
+					<td><c:out value="${SaleItem.getItem()}" /></td>
+					<c:choose>
+						<c:when test="${SaleItem.getCategoryId() == 1}">
+							<td>Food</td>
+						</c:when>
+
+						<c:when test="${SaleItem.getCategoryId() == 2}">
+							<td>Drink</td>
+						</c:when>
+
+						<c:when test="${SaleItem.getCategoryId() == 3}">
+							<td>Snack</td>
+						</c:when>
+
+						<c:otherwise>
+							<td>Other</td>
+						</c:otherwise>
+					</c:choose>
+					<td class="buttons"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
+				</tr>
+			</c:forEach>
 	</tbody>
 	</table>
 </div>

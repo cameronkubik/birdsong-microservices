@@ -73,12 +73,12 @@ public class AdminController {
     //     return "adminBoxOffice";
     // }    
 
-    // @RequestMapping(value = "/admin/concession", method = RequestMethod.GET)
-    // public String loadConcessionItems(ModelMap model) {
-    //     ConcessionScreenService concessionService = new ConcessionScreenService();
-    //     model.addAttribute("testData", concessionService.getSaleItemsList());
-    //     return "adminConcession";
-    // }
+    @RequestMapping(value = "/admin/concession", method = RequestMethod.GET)
+    public String loadConcessionItems(ModelMap model) {
+        ConcessionScreenService concessionService = new ConcessionScreenService();
+        model.addAttribute("testData", concessionService.getSaleItemsList());
+        return "adminConcession";
+    }
 
     // @RequestMapping(value = "/admin/concession", method = RequestMethod.POST)
     // public String postConcessionItems(ModelMap model) {
