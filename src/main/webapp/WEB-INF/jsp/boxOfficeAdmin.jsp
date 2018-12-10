@@ -165,5 +165,6 @@
         date_input.datepicker(options);
     } );
 </script>
+
 <%-- Footer HTML --%>
 <%@ include file="admin/footer.jspf"%>
